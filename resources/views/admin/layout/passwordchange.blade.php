@@ -1,22 +1,20 @@
 @extends('admin.layout.admin_layouts')
 @section('content')
-    <div class="container"><br><br><br><br>
+    <div class="container mg-t-70">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header"><strong>Admin</strong> Change Password</div>
 
                     <div class="card-body">
-                        <form method="POST" action="" aria-label="{{ __('Reset Password') }}">
+                        <form method="POST" action="{{route('admin.updatepassword')}}" aria-label="{{ __('Reset Password') }}">
                         @csrf
-
-                        <!--  -->
 
                             <div class="form-group row">
                                 <label for="oldpass" class="col-md-4 col-form-label text-md-right">{{ __('Old Password') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="oldpass" type="password" class="form-control{{ $errors->has('oldpass') ? ' is-invalid' : '' }}" name="oldpass" value="{{ $oldpass ?? old('oldpass') }}" required autofocus>
+                                    <input id="oldpass" type="password" class="form-control{{ $errors->has('oldpass') ? ' is-invalid' : '' }}" name="oldpassword" value="{{ $oldpass ?? old('oldpass') }}" required autofocus>
 
                                     @if ($errors->has('oldpass'))
                                         <span class="invalid-feedback" role="alert">
@@ -30,7 +28,7 @@
                                 <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('New Password') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="newpassword" required>
 
                                     @if ($errors->has('password'))
                                         <span class="invalid-feedback" role="alert">
