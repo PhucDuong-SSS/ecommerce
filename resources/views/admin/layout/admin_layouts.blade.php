@@ -38,6 +38,9 @@
 
     <!-- Starlight CSS -->
     <link rel="stylesheet" href="{{asset('backend/css/starlight.css')}}">
+    <!-- Toarst CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
+
 </head>
 
 <body>
@@ -375,5 +378,29 @@
 <script src="{{asset('backend/js/starlight.js')}}"></script>
 <script src="{{asset('backend/js/ResizeSensor.js')}}"></script>
 <script src="{{asset('backend/js/dashboard.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<script>
+    @if(Session::has('message'))
+    var type = "{{Session::get('alert-type', 'info') }}";
+    switch(type){
+        case 'info':
+            toastr.info("{{ Session::get('message') }}");
+            break;
+
+        case 'warning':
+            toastr.warning("{{ Session::get('message') }}");
+            break;
+
+        case 'success':
+            toastr.success("{{ Session::get('message') }}");
+            break;
+
+        case 'error':
+            toastr.error("{{ Session::get('message') }}");
+            break;
+    }
+    @endif
+</script>
+
 </body>
 </html>

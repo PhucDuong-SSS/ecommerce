@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\UserRequest;
+
 
 class LoginController extends Controller
 {
@@ -11,7 +13,7 @@ class LoginController extends Controller
     {
         return view('admin.layout.login');
     }
-    public function login(Request $request)
+    public function login(UserRequest $request)
     {
 
         $admin = [
@@ -20,15 +22,28 @@ class LoginController extends Controller
         ];
         if(!Auth::attempt($admin))
         {
-            return redirect()->route('login')->with('login-error','User or Password not match');
+            $notification = [
+                'message'=>'User or Password not match',
+                'alert-type'=>'error'
+            ];
+            return redirect()->route('login')->with($notification);
         }
         else
         {
-            return view('admin.layout.home');
+            $notification = [
+                'message'=>'Successfully login',
+                'alert-type'=>'success'
+            ];
+            return redirect()->route('dashboard.show')->with($notification);
         }
     }
     public function logout()
     {
-
+        Auth::logout();
+        $notification = [
+            'message'=>'Successfully logout',
+            'alert-type'=>'success'
+        ];
+        return redirect()->route('login')->with($notification);
     }
 }
