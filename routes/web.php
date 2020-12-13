@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +25,5 @@ Route::post('login', [LoginController::class, 'login'])->name('admin.login');
 Route::get('logout', [LoginController::class, 'logout'])->name('admin.logout');
 
 Route::prefix('admin')->group(function (){
-
+    Route::get('/', [DashboardController::class, 'showDashboard'])->name('dashboard.show');
 });

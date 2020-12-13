@@ -37,6 +37,9 @@
 
     <!-- Starlight CSS -->
     <link rel="stylesheet" href="{{asset('backend/css/starlight.css')}}">
+    <!-- Toastr CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
+
 </head>
 
 <body>
@@ -49,12 +52,21 @@
         <form action="{{route('admin.login')}}" method="post">
             @csrf
             <div class="form-group">
-                <input name="username" type="text" class="form-control" placeholder="Enter your user name">
+                <input name="username" value="{{old('username')}}" type="text" class="form-control @error('username') is-invalid @enderror" placeholder="Enter your user name">
             </div><!-- form-group -->
+            @error('username')
+            <div class="alert alert-danger" role="alert">{{ $message }}</div>
+            @enderror
             <div class="form-group">
-                <input name="password" type="password" class="form-control" placeholder="Enter your password">
+                <input name="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Enter your password">
+                @error('password')
+                <div class="alert alert-danger" role="alert">
+                    {{$message}}
+                </div>
+                @enderror
                 <a href="" class="tx-info tx-12 d-block mg-t-10">Forgot password?</a>
             </div><!-- form-group -->
+
             <button type="submit" class="btn btn-info btn-block">Sign In</button>
         </form>
 
@@ -64,6 +76,29 @@
 <script src="{{asset('backend/lib/jquery/jquery.js')}}"></script>
 <script src="{{asset('backend/lib/popper.js/popper.js')}}"></script>
 <script src="{{asset('backend/lib/bootstrap/bootstrap.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<script>
+    @if(Session::has('message'))
+    var type = "{{Session::get('alert-type', 'info') }}";
+    switch(type){
+        case 'info':
+            toastr.info("{{ Session::get('message') }}");
+            break;
+
+        case 'warning':
+            toastr.warning("{{ Session::get('message') }}");
+            break;
+
+        case 'success':
+            toastr.success("{{ Session::get('message') }}");
+            break;
+
+        case 'error':
+            toastr.error("{{ Session::get('message') }}");
+            break;
+    }
+    @endif
+</script>
 
 </body>
 </html>
