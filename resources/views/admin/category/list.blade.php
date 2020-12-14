@@ -27,14 +27,19 @@
                         </tr>
                         </thead>
                         <tbody>
-
+                        @if(count($categories))
+                            @foreach($categories as $key=>$category)
 
                         </tr>
                         <tr>
-                            <td>Bruno</td>
-                            <td>Nash</td>
-                            <td>Software Engineer</td>
-
+                            <td>{{++$key}}</td>
+                            <td>{{$category->name}}</td>
+                            <td>
+                                <a href="" class="btn btn-sm btn-info">Edit</a>
+                                <a href="" class="btn btn-sm btn-warning" id="delete">Delete</a>
+                            </td>
+                        @endforeach
+                         @endif
                         </tbody>
                     </table>
                 </div><!-- table-wrapper -->

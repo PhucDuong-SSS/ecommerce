@@ -75,7 +75,7 @@
             </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
         <ul class="sl-menu-sub nav flex-column">
-            <li class="nav-item"><a href="#" class="nav-link">Category List</a></li>
+            <li class="nav-item"><a href="{{route('category.list')}}" class="nav-link">Category List</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Sub Category</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Brand</a></li>
 
@@ -406,6 +406,9 @@
 <script src="{{asset('backend/js/ResizeSensor.js')}}"></script>
 <script src="{{asset('backend/js/dashboard.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
+
+
 <script>
     @if(Session::has('message'))
     var type = "{{Session::get('alert-type', 'info') }}";
@@ -427,6 +430,26 @@
             break;
     }
     @endif
+</script>
+<script>
+    $(document).on("click", "#delete", function(e){
+        e.preventDefault();
+        var link = $(this).attr("href");
+        swal({
+            title: "Are you Want to delete?",
+            text: "Once Delete, This will be Permanently Delete!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    window.location.href = link;
+                } else {
+                    swal("Safe Data!");
+                }
+            });
+    });
 </script>
 
 
