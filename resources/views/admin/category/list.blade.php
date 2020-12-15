@@ -35,8 +35,8 @@
                             <td>{{++$key}}</td>
                             <td>{{$category->name}}</td>
                             <td>
-                                <a href="" class="btn btn-sm btn-info">Edit</a>
-                                <a href="" class="btn btn-sm btn-warning" id="delete">Delete</a>
+                                <a href="{{route('category.editForm', $category->id)}}" class="btn btn-sm btn-info">Edit</a>
+                                <a href="{{route('category.delete',$category->id)}}" class="btn btn-sm btn-warning" id="delete">Delete</a>
                             </td>
                         @endforeach
                          @endif
@@ -80,13 +80,12 @@
                         </ul>
                     </div>
                 @endif
-                <form method="post" action="">
+                <form method="post" action="{{route('category.store')}}">
                     @csrf
                     <div class="modal-body pd-20">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Category Name</label>
                             <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Category" name="category_name">
-
                         </div>
 
                     </div><!-- modal-body -->

@@ -1,5 +1,5 @@
 <?php
-namespace App\Repositories;
+namespace App\Http\Repo;
 
 use Exception;
 use Illuminate\Database\Eloquent\Model;
@@ -14,4 +14,6 @@ interface RepositoryInterface
     public function getAll();
 
     public function findById(int $id);
+
+    public function delete($id);
 }
