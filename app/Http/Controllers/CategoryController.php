@@ -2,32 +2,59 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Http\Repo\UserRepo\UserRepositoryInterface;
+use App\Http\Repo\CategoryRepo\CategoryRepositoryInterface;
 use Illuminate\Http\Request;
-use App\Repositories\Category\CategoryRepositoryInterface;
-use App\Repositories\Category\CategoryRepository;
-
 class CategoryController extends Controller
 {
-    /**
-     * @var CategoryRepositoryInterface
-     */
-//    private $categoryRepository;
-//    public function __construct(CategoryRepositoryInterface $categoryRepository)
-//    {
-//        $this->categoryRepository = $categoryRepository;
-//    }
+
+    private $categoryRepository;
+    public function __construct(CategoryRepositoryInterface $categoryRepository)
+    {
+        $this->categoryRepository = $categoryRepository;
+    }
 
     public function index()
     {
-        $categories = Category::all();
+
+        $categories = $this->categoryRepository->getAll();
         return view('admin.category.list', compact('categories'));
 
     }
+    public function store(Request $request)
+    {
+        $this->categoryRepository->create($request);
+        $notification = [
+            'message'=>'Successfully create category',
+            'alert-type'=>'success'
+        ];
+        return redirect()->route('category.list')->with($notification);
+    }
 
-    public function edit($id)
+    public function showFormEdit($id)
     {
         $category = $this->categoryRepository->findById($id);
-        //retu
+        return view('admin.category.edit', compact('category'));
+    }
+
+    public function update( Request  $request, $id)
+    {
+        $category = $this->categoryRepository->findById($id);
+        $this->categoryRepository->update($request, $category);
+        $notification = [
+            'message'=>'Successfully update category',
+            'alert-type'=>'success'
+        ];
+        return redirect()->route('category.list')->with($notification);
+
+    }
+    public function delete($id)
+    {
+        $this->categoryRepository->delete($id);
+        $notification = [
+            'message'=>'Successfully delete category',
+            'alert-type'=>'success'
+        ];
+        return redirect()->route('category.list')->with($notification);
     }
 }

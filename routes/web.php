@@ -35,5 +35,8 @@ Route::middleware('auth')->prefix('admin')->group(function (){
     Route::prefix('category')->group(function (){
         Route::get('/',[CategoryController::class,'index'])->name('category.list');
         Route::post('/',[CategoryController::class,'store'])->name('category.store');
+        Route::get('edit/{id}',[CategoryController::class,'showFormEdit'])->name('category.editForm');
+        Route::post('edit/{id}',[CategoryController::class,'update'])->name('category.update');
+        Route::get('delete/{id}',[CategoryController::class,'delete'])->name('category.delete');
     });
 });

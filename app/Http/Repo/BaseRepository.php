@@ -1,5 +1,5 @@
 <?php
-namespace App\Repositories;
+namespace App\Http\Repo;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -33,6 +33,11 @@ class BaseRepository implements RepositoryInterface
     public function findById($id)
     {
         return $this->model->where('id',$id)->first();
+    }
+
+    public function delete($id)
+    {
+        return $this->model->where('id',$id)->delete();
     }
 
 }
