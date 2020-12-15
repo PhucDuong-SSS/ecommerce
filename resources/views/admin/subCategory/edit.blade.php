@@ -1,14 +1,16 @@
 @extends('admin.layout.admin_layouts')
 @section('content')
     <div class="sl-mainpanel">
+
         <div class="sl-pagebody">
             <div class="sl-page-title">
-                <h5>Category Update</h5>
+                <h5>Sub Category Update</h5>
 
             </div><!-- sl-page-title -->
 
             <div class="card pd-20 pd-sm-40">
-                <h6 class="card-body-title">Category Update</h6>
+                <h6 class="card-body-title">Sub Category Update </h6>
+
                 <div class="table-wrapper">
 
                     @if ($errors->any())
@@ -20,12 +22,28 @@
                             </ul>
                         </div>
                     @endif
-                    <form method="post" action="{{route('category.update',$category->id)}}">
+                    <form method="post" action="{{route('subcategory.update',$subCategory->id)}}">
                         @csrf
                         <div class="modal-body pd-20">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Category Name</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ $category->name }}" name="category_name">
+                                <label for="exampleInputEmail1">Sub Category Name</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ $subCategory->name }}" name="subcategory_name">
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1"> Category Name</label>
+
+                                <select class="form-control" name="category_id">
+
+                                    @foreach($categoryList as $row)
+                                        <option value="{{ $row->id }}"
+                                        <?php if ($row->id == $subCategory->category->id ) {
+                                            echo "selected"; } ?> >{{ $row->name }}  </option>
+                                    @endforeach
+
+                                </select>
+
 
                             </div>
 
@@ -36,8 +54,13 @@
                         </div>
                     </form>
 
+
                 </div><!-- table-wrapper -->
             </div><!-- card -->
 
+
+
+
         </div><!-- sl-mainpanel -->
+
 @endsection

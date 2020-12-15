@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Repo\UserRepo\UserRepositoryInterface;
 use App\Http\Repo\CategoryRepo\CategoryRepositoryInterface;
+use App\Http\Requests\CategoryRequest;
 use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
@@ -21,7 +22,7 @@ class CategoryController extends Controller
         return view('admin.category.list', compact('categories'));
 
     }
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         $this->categoryRepository->create($request);
         $notification = [
@@ -37,7 +38,7 @@ class CategoryController extends Controller
         return view('admin.category.edit', compact('category'));
     }
 
-    public function update( Request  $request, $id)
+    public function update( CategoryRequest  $request, $id)
     {
         $category = $this->categoryRepository->findById($id);
         $this->categoryRepository->update($request, $category);
@@ -50,11 +51,26 @@ class CategoryController extends Controller
     }
     public function delete($id)
     {
-        $this->categoryRepository->delete($id);
-        $notification = [
-            'message'=>'Successfully delete category',
-            'alert-type'=>'success'
-        ];
-        return redirect()->route('category.list')->with($notification);
+        $hasSubCategory = true;
+        $category =$this->categoryRepository->findById($id);
+        count($category->sub_categories)>0?$hasSubCategory = true:$hasSubCategory=false;
+        if(!$hasSubCategory)
+        {
+            $this->categoryRepository->delete($id);
+            $notification = [
+                'message'=>'Successfully delete category',
+                'alert-type'=>'success'
+            ];
+            return redirect()->route('category.list')->with($notification);
+        }
+        else
+        {
+            $notification = [
+                'message'=>'You have to delete all sub category of this category to continue delete',
+                'alert-type'=>'warning'
+            ];
+            return redirect()->route('category.list')->with($notification);
+        }
+
     }
 }

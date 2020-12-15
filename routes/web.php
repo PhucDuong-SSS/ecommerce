@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SubCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,5 +39,13 @@ Route::middleware('auth')->prefix('admin')->group(function (){
         Route::get('edit/{id}',[CategoryController::class,'showFormEdit'])->name('category.editForm');
         Route::post('edit/{id}',[CategoryController::class,'update'])->name('category.update');
         Route::get('delete/{id}',[CategoryController::class,'delete'])->name('category.delete');
+    });
+    Route::prefix('sub-category')->group(function (){
+        Route::get('/',[SubCategoryController::class,'index'])->name('subcategory.list');
+        Route::post('/',[SubCategoryController::class,'store'])->name('subcategory.store');
+        Route::get('edit/{id}',[SubCategoryController::class,'showFormEdit'])->name('subcategory.editForm');
+        Route::post('edit/{id}',[SubCategoryController::class,'update'])->name('subcategory.update');
+        Route::get('delete/{id}',[SubCategoryController::class,'delete'])->name('subcategory.delete');
+
     });
 });
