@@ -76,7 +76,7 @@
         </a><!-- sl-menu-link -->
         <ul class="sl-menu-sub nav flex-column">
             <li class="nav-item"><a href="{{route('category.list')}}" class="nav-link">Category List</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Sub Category</a></li>
+            <li class="nav-item"><a href="{{route('subcategory.list')}}" class="nav-link">Sub Category</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Brand</a></li>
 
         </ul>
