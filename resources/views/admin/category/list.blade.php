@@ -87,7 +87,7 @@
                             <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Category" required name="category_name">
                         </div>
 
-                    </div><!-- modal-body -->
+                    </div><!-- modal-body -->g
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-info pd-x-20">Sumbit</button>
                         <button type="button" class="btn btn-secondary pd-x-20" data-dismiss="modal">Close</button>
