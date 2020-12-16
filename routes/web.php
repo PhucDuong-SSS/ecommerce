@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CouponController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,13 @@ Route::middleware('auth')->prefix('admin')->group(function (){
         Route::get('edit/{id}',[BrandController::class,'showFormEdit'])->name('brand.editForm');
         Route::post('edit/{id}',[BrandController::class,'update'])->name('brand.update');
         Route::get('delete/{id}',[BrandController::class,'delete'])->name('brand.delete');
+    });
 
+        Route::prefix('coupon')->group(function (){
+        Route::get('/',[CouponController::class,'index'])->name('coupon.list');
+        Route::post('/',[CouponController::class,'store'])->name('coupon.store');
+        Route::get('edit/{id}',[CouponController::class,'showFormEdit'])->name('coupon.editForm');
+        Route::post('edit/{id}',[CouponController::class,'update'])->name('coupon.update');
+        Route::get('delete/{id}',[CouponController::class,'delete'])->name('coupon.delete');
     });
 });
