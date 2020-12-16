@@ -78,8 +78,19 @@
             <li class="nav-item"><a href="{{route('category.list')}}" class="nav-link">Category List</a></li>
             <li class="nav-item"><a href="{{route('subcategory.list')}}" class="nav-link">Sub Category</a></li>
             <li class="nav-item"><a href="{{route('brand.list')}}" class="nav-link">Brand</a></li>
-
         </ul>
+
+        <a href="#" class="sl-menu-link">
+            <div class="sl-menu-item">
+                <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
+                <span class="menu-item-label">Coupon</span>
+                <i class="menu-item-arrow fa fa-angle-down"></i>
+            </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+        <ul class="sl-menu-sub nav flex-column">
+            <li class="nav-item"><a href="{{route('coupon.list')}}" class="nav-link">Coupon List</a></li>
+        </ul>
+
         <a href="#" class="sl-menu-link">
             <div class="sl-menu-item">
                 <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>

@@ -20,7 +20,7 @@ class BrandController extends Controller
         return view('admin.branch.list', compact('brands'));
     }
 
-    public function store(BrandRequest $request)
+    public function store(Request $request)
     {
         $this->brandRepository->create($request);
         $notification = [
