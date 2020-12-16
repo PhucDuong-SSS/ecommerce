@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CouponController;
+use App\Http\Controllers\NewsLaterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,5 +65,9 @@ Route::middleware('auth')->prefix('admin')->group(function (){
         Route::get('edit/{id}',[CouponController::class,'showFormEdit'])->name('coupon.editForm');
         Route::post('edit/{id}',[CouponController::class,'update'])->name('coupon.update');
         Route::get('delete/{id}',[CouponController::class,'delete'])->name('coupon.delete');
+    });
+        Route::prefix('newlater')->group(function (){
+        Route::get('/',[NewsLaterController::class,'index'])->name('newslater.list');
+        Route::get('delete/{id}',[NewsLaterController::class,'delete'])->name('newslater.delete');
     });
 });
