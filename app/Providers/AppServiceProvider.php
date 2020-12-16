@@ -5,6 +5,8 @@ namespace App\Providers;
 
 
 
+use App\Http\Repo\BrandRepo\BrandRepository;
+use App\Http\Repo\BrandRepo\BrandRepositoryInterface;
 use App\Http\Repo\CategoryRepo\CategoryRepository;
 use App\Http\Repo\CategoryRepo\CategoryRepositoryInterface;
 use App\Http\Repo\SubCategoryRepo\SubCategoryRepository;
@@ -25,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
         $this->app->bind(SubCategoryRepositoryInterface::class, SubCategoryRepository::class);
+        $this->app->bind(BrandRepositoryInterface::class, BrandRepository::class);
     }
 
     /**

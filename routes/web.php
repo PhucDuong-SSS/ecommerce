@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\BrandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,14 @@ Route::middleware('auth')->prefix('admin')->group(function (){
         Route::get('edit/{id}',[SubCategoryController::class,'showFormEdit'])->name('subcategory.editForm');
         Route::post('edit/{id}',[SubCategoryController::class,'update'])->name('subcategory.update');
         Route::get('delete/{id}',[SubCategoryController::class,'delete'])->name('subcategory.delete');
+
+    });
+    Route::prefix('brand')->group(function (){
+        Route::get('/',[BrandController::class,'index'])->name('brand.list');
+        Route::post('/',[BrandController::class,'store'])->name('brand.store');
+        Route::get('edit/{id}',[BrandController::class,'showFormEdit'])->name('brand.editForm');
+        Route::post('edit/{id}',[BrandController::class,'update'])->name('brand.update');
+        Route::get('delete/{id}',[BrandController::class,'delete'])->name('brand.delete');
 
     });
 });
