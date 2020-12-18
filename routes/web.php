@@ -27,7 +27,8 @@ use App\Http\Controllers\PostController;
 Route::get('/', function () {
 //    return bcrypt('123456');
 //    return  view('admin.category.list');
-    return view('admin.layout.login');
+//    return view('page.layout.index');
+    return view('page.blog');
 });
 
 Route::get('login', [LoginController::class, 'showLogin'])->name('login');
