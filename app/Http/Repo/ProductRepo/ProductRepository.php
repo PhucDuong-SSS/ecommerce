@@ -114,9 +114,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         $image_one = $request->file('image_one');
         $image_two = $request->file('image_two');
         $image_three = $request->file('image_three');
-//        $image_one_store="";
-//        $image_two_store="";
-//        $image_three_store="";
+
         if($image_one)
         {
             $image_one_old=ltrim($old_one,'storage/');

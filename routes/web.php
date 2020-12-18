@@ -10,6 +10,8 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\NewsLaterController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PostCategoryController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,6 +87,23 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::get('inactive/{id}', [ProductController::class, 'inactive'])->name('product.inactive');
         Route::get('active/{id}', [ProductController::class, 'active'])->name('product.active');
 
+        Route::prefix('post-category')->group(function () {
+            Route::get('/', [PostCategoryController::class, 'index'])->name('postcategory.list');
+            Route::post('/', [PostCategoryController::class, 'store'])->name('postcategory.store');
+            Route::get('edit/{id}', [PostCategoryController::class, 'showFormEdit'])->name('postcategory.editForm');
+            Route::post('edit/{id}', [PostCategoryController::class, 'update'])->name('postcategory.update');
+            Route::get('delete/{id}', [PostCategoryController::class, 'delete'])->name('postcategory.delete');
+
+    });
+        Route::prefix('post')->group(function () {
+            Route::get('/', [PostController::class, 'index'])->name('post.list');
+            Route::post('/', [PostController::class, 'store'])->name('post.store');
+            Route::get('create', [PostController::class, 'showFormCreate'])->name('post.createForm');
+            Route::get('edit/{id}', [PostController::class, 'showFormEdit'])->name('post.editForm');
+            Route::post('edit/{id}', [PostController::class, 'update'])->name('post.update');
+            Route::get('delete/{id}', [PostController::class, 'delete'])->name('post.delete');
+
+        });
 
 
     });
@@ -92,4 +111,4 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
 
 
-    });
+});
