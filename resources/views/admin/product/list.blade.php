@@ -18,21 +18,21 @@
                     <table id="datatable1" class="table display responsive nowrap">
                         <thead>
                         <tr>
-                            <th class="wd-15p">Product Code</th>
-                            <th class="wd-15p">Product Name</th>
+{{--                            <th class="wd-5p">Product Code</th>--}}
+                            <th class="wd-20p">Product Name</th>
                             <th class="wd-15p">Image</th>
-                            <th class="wd-15p">Category</th>
-                            <th class="wd-15p">Brand</th>
+                            <th class="wd-5p">Category</th>
+                            <th class="wd-5p">Brand</th>
                             <th class="wd-15p">Quantity</th>
                             <th class="wd-15p">Status</th>
-                            <th class="wd-20p">Action</th>
+                            <th class="wd-25p">Action</th>
 
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($products as $row)
                             <tr>
-                                <td>{{ $row->code }}</td>
+{{--                                <td>{{ $row->code }}</td>--}}
                                 <td>{{ $row->name }}</td>
 
                                 <td> <img src="{{ asset($row->image_one) }}" height="50px;" width="50px;"> </td>

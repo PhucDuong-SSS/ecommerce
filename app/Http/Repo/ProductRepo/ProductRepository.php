@@ -187,5 +187,42 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
     }
 
+    public function getFeaturedProduct()
+    {
+        $featuredProducts =$this->model->where('status',1)->orderBy('id','desc')->limit(12)->get();
+        return $featuredProducts;
+    }
+
+    public function getTrendProduct()
+    {
+        $trendProducts =$this->model->where('status',1)->where('trend',1)->orderBy('id','desc')->limit(8)->get();
+        return $trendProducts;
+    }
+
+    public function getHotProduct()
+    {
+        $hotProducts =$this->model->where('status',1)->where('hot_deal',1)->orderBy('id','desc')->limit(3)->get();
+        return $hotProducts;
+
+    }
+
+    public function getBestProduct()
+    {
+        $bestProducts =$this->model->where('status',1)->where('best_rated',1)->orderBy('id','desc')->limit(8)->get();
+        return $bestProducts;
+
+    }
+    public function getBanner()
+    {
+        $banners =$this->model->where('status',1)->where('mid_slider',1)->orderBy('id','desc')->limit(3)->get();
+        return $banners;
+    }
+
+    public function buyOnegetOne()
+    {
+        $getOne =$this->model->where('status',1)->where('buyone_getone',1)->orderBy('id','desc')->limit(6)->get();
+        return $getOne;
+    }
+
 
 }

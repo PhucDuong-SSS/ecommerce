@@ -48,7 +48,7 @@
                         <div class="col-lg-4">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">Sub Category: <span class="tx-danger">*</span></label><br>
-                                <strong>{{ $product->sub_category->name }}</strong>
+                                <strong>{{ $product->sub_category->name??"" }}</strong>
 
                             </div>
                         </div><!-- col-4 -->
