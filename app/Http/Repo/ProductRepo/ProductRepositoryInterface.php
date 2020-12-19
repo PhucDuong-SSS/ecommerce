@@ -20,4 +20,18 @@ interface ProductRepositoryInterface extends RepositoryInterface
     public function inactive($obj);
 
     public function active($obj);
+
+    public function getFeaturedProduct();
+
+    public function getTrendProduct();
+
+    public function getHotProduct();
+
+    public function getBestProduct();
+
+    public function getBanner();
+
+    public function buyOnegetOne();
+
+
 }

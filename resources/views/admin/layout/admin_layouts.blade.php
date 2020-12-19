@@ -457,6 +457,7 @@
 
         $('#datatable1').DataTable({
             responsive: true,
+
             language: {
                 searchPlaceholder: 'Search...',
                 sSearch: '',

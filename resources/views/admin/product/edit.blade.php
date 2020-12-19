@@ -66,7 +66,7 @@
                                 <div class="form-group mg-b-10-force">
                                     <label class="form-control-label">Sub Category: <span class="tx-danger">*</span></label>
                                     <select class="form-control select2"  name="subcategory_id">
-                                            <option value="{{ $product->sub_category->id }}" > {{ $product->sub_category->name}}</option>
+                                            <option value="{{ isset($product->sub_category->id)?$product->sub_category->id:"" }}" > {{ $product->sub_category->name??''}}</option>
 
                                     </select>
                                 </div>

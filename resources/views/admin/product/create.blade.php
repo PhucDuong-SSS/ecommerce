@@ -82,6 +82,8 @@
                                     <div style="color: red">{{ $message }}</div>
                                     @enderror
                                     <select class="form-control select2" data-placeholder="Choose country" name="subcategory_id">
+                                        <option value="">No sub category to choice</option>
+
 
                                     </select>
                                 </div>

@@ -28,10 +28,12 @@ use App\Http\Controllers\SiteSettingController;
 Route::get('/', function () {
 //    return bcrypt('123456');
 //    return  view('admin.category.list');
-//    return view('page.layout.index');
-    return view('page.blog');
+    return view('page.layout.index');
+//    return view('page.blog');
 });
-
+//Frontend
+Route::get('/',[ProductController::class, 'showProductFrontend']);
+//Admin
 Route::get('admin/login', [LoginController::class, 'showLogin'])->name('login');
 Route::post('admin/login', [LoginController::class, 'login'])->name('admin.login');
 Route::get('admin/logout', [LoginController::class, 'logout'])->name('admin.logout');

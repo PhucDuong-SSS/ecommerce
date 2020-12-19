@@ -119,6 +119,21 @@ class ProductController extends Controller
 
     }
 
+    public function showProductFrontend()
+    {
+        $featuredProducts = $this->productRepository->getFeaturedProduct();
+        $trendProducts = $this->productRepository->getTrendProduct();
+        $hotProducts = $this->productRepository->getHotProduct();
+        $bestProducts = $this->productRepository->getBestProduct();
+        $categories = $this->productRepository->getCategory();
+        $banner2 = $this->productRepository->getBanner();
+
+        return view('page.layout.index',
+            compact('featuredProducts','trendProducts','hotProducts','bestProducts','categories','banner2'));
+    }
+
+
+
 
 
 }
