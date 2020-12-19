@@ -11,7 +11,7 @@
 
             <div class="card pd-20 pd-sm-40">
                 <h6 class="card-body-title">Brand List
-                    <a href="#" class="btn btn-sm btn-warning" style="float: right;" data-toggle="modal" data-target="#modaldemo3">Add New</a>
+                    <a href="" class="btn btn-sm btn-warning" style="float: right;" data-toggle="modal" data-target="#modaldemo3">Add New</a>
                 </h6>
 
 

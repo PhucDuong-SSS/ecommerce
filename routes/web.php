@@ -12,6 +12,7 @@ use App\Http\Controllers\NewsLaterController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PostCategoryController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SiteSettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,9 +32,9 @@ Route::get('/', function () {
     return view('page.blog');
 });
 
-Route::get('login', [LoginController::class, 'showLogin'])->name('login');
-Route::post('login', [LoginController::class, 'login'])->name('admin.login');
-Route::get('logout', [LoginController::class, 'logout'])->name('admin.logout');
+Route::get('admin/login', [LoginController::class, 'showLogin'])->name('login');
+Route::post('admin/login', [LoginController::class, 'login'])->name('admin.login');
+Route::get('admin/logout', [LoginController::class, 'logout'])->name('admin.logout');
 
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'showDashboard'])->name('dashboard.show');
@@ -103,7 +104,11 @@ Route::middleware('auth')->prefix('admin')->group(function () {
             Route::get('edit/{id}', [PostController::class, 'showFormEdit'])->name('post.editForm');
             Route::post('edit/{id}', [PostController::class, 'update'])->name('post.update');
             Route::get('delete/{id}', [PostController::class, 'delete'])->name('post.delete');
+        });
 
+        Route::prefix('site-setting')->group(function () {
+            Route::get('/', [SiteSettingController::class, 'index'])->name('siteSetting.list');
+            Route::post('edit/{id}', [SiteSettingController::class, 'update'])->name('siteSetting.update');
         });
 
 
