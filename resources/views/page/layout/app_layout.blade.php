@@ -7,7 +7,7 @@
     <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>OneTech</title>
+    <title>OneClick</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="OneTech shop project">
@@ -54,21 +54,12 @@
                             <div class="top_bar_menu">
                                 <ul class="standard_dropdown top_bar_dropdown">
                                     <li>
-                                        <a href="#">English<i class="fas fa-chevron-down"></i></a>
+                                        <a href="#">VietNamese<i class="fas fa-chevron-down"></i></a>
                                         <ul>
-                                            <li><a href="#">Italian</a></li>
-                                            <li><a href="#">Spanish</a></li>
-                                            <li><a href="#">Japanese</a></li>
+                                            <li><a href="#">English</a></li>
                                         </ul>
                                     </li>
-                                    <li>
-                                        <a href="#">$ US dollar<i class="fas fa-chevron-down"></i></a>
-                                        <ul>
-                                            <li><a href="#">EUR Euro</a></li>
-                                            <li><a href="#">GBP British Pound</a></li>
-                                            <li><a href="#">JPY Japanese Yen</a></li>
-                                        </ul>
-                                    </li>
+
                                 </ul>
                             </div>
                             <div class="top_bar_user">
@@ -91,7 +82,7 @@
                     <!-- Logo -->
                     <div class="col-lg-2 col-sm-3 col-3 order-1">
                         <div class="logo_container">
-                            <div class="logo"><a href="#">OneTech</a></div>
+                            <div class="logo"><a href="#">OneClick</a></div>
                         </div>
                     </div>
 
