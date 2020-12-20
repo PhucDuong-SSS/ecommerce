@@ -32,7 +32,8 @@ Route::get('/', function () {
 //    return view('page.blog');
 });
 //Frontend
-Route::get('/',[ProductController::class, 'showProductFrontend']);
+Route::get('/',[ProductController::class, 'showProductFrontend'])->name('index');
+
 //Admin
 Route::get('admin/login', [LoginController::class, 'showLogin'])->name('login');
 Route::post('admin/login', [LoginController::class, 'login'])->name('admin.login');

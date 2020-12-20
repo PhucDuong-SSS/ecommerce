@@ -24,7 +24,7 @@
 {{--    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/main_styles.css') }}">--}}
 
     <!-- chart -->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
 
 {{--    <link rel="stylesheet" href="{{asset('frontend/sweetalert2.min.css')}}">--}}
 
@@ -63,9 +63,25 @@
                                 </ul>
                             </div>
                             <div class="top_bar_user">
-                                <div class="user_icon"><img src="{{asset('frontend/images/user.svg')}}" alt=""></div>
-                                <div><a href="#">Register</a></div>
-                                <div><a href="#">Sign in</a></div>
+
+                                @if(!\Illuminate\Support\Facades\Auth::guard('customer')->check())
+                                    <div class="user_icon"><img src="{{asset('frontend/images/user.svg')}}" alt=""></div>
+                                    <div><a href="{{route('customer.showFormRegister')}}">Register</a></div>
+                                    <div><a href="{{route('customer.showFormLogin')}}">Sign in</a></div>
+                                @else
+
+                                    <ul class="standard_dropdown top_bar_dropdown">
+                                        <li>
+                                            <a href=""><div class="user_icon"><img src="{{ asset('frontend/images/user.svg')}}" alt=""></div> {{\Illuminate\Support\Facades\Auth::guard('customer')->user()->username}}<i class="fas fa-chevron-down"></i></a>
+                                            <ul>
+                                                <li><a href="">Wishlist</a></li>
+                                                <li><a href="">Checkout</a></li>
+                                                <li><a href="{{route('customer.logout')}}">Logout</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                @endif
+
                             </div>
                         </div>
                     </div>
@@ -403,7 +419,7 @@
 @yield('script')
 {{--<script src="{{ asset('frontend/js/custom.js')}}"></script>--}}
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 
 
 
@@ -411,20 +427,23 @@
 {{--<script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>--}}
 
 <script>
-    @if(Session::has('messege'))
-    var type="{{Session::get('alert-type','info')}}"
+    @if(Session::has('message'))
+    var type = "{{Session::get('alert-type', 'info') }}";
     switch(type){
         case 'info':
-            toastr.info("{{ Session::get('messege') }}");
+            toastr.info("{{ Session::get('message') }}");
             break;
-        case 'success':
-            toastr.success("{{ Session::get('messege') }}");
-            break;
+
         case 'warning':
-            toastr.warning("{{ Session::get('messege') }}");
+            toastr.warning("{{ Session::get('message') }}");
             break;
+
+        case 'success':
+            toastr.success("{{ Session::get('message') }}");
+            break;
+
         case 'error':
-            toastr.error("{{ Session::get('messege') }}");
+            toastr.error("{{ Session::get('message') }}");
             break;
     }
     @endif
