@@ -209,7 +209,7 @@
                                                         <input type="radio" name="product_color" style="background:#000000">
                                                         <input type="radio" name="product_color" style="background:#999999">
                                                     </div>
-                                                    <button class="product_cart_button">Add to Cart</button>
+                                                    <button class="product_cart_button addcart" data-id="{{$product->id}}">Add to Cart</button>
                                                 </div>
                                             </div>
                                             <div class="product_fav"><i class="fas fa-heart"></i></div>
@@ -1630,6 +1630,65 @@
             </div>
         </div>
     </div>
+<script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous">
+
+</script>
+<script type="text/javascript">
+
+   $(document).ready(function(){
+     $('.addcart').on('click', function(){
+        var id = $(this).data('id');
+        if (id) {
+            $.ajax({
+                url: " {{ url('/add-cart/') }}/"+id,
+                type:"GET",
+                datType:"json",
+                success:function(data){
+                    $('#count').html(data.count);
+                    $('#subtotal').html(data.subtotal);
+             const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  onOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                })
+
+             if ($.isEmptyObject(data.error)) {
+
+                Toast.fire({
+                  icon: 'success',
+                  title: data.success
+                })
+             }else{
+                 Toast.fire({
+                  icon: 'error',
+                  title: data.error
+                })
+             }
+
+
+                },
+            });
+
+        }else{
+            alert('danger');
+        }
+     });
+
+   });
+
+
+</script>
+
+
 
 
 @endsection

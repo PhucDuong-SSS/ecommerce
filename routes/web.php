@@ -13,6 +13,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PostCategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SiteSettingController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,17 @@ Route::get('/', function () {
 //    return view('page.blog');
 });
 //Frontend
-Route::get('/',[ProductController::class, 'showProductFrontend']);
+Route::get('/',[ProductController::class, 'showProductFrontend'])->name('index');
+//Add cart
+Route::get('add-cart/{id}',[CartController::class, 'addCart'])->name('cart.addCart');
+//Show cart
+Route::get('show-cart',[CartController::class, 'showCart'])->name('cart.showCart');
+Route::get('remove-cart/{id}',[CartController::class, 'removeCart'])->name('cart.removeCart');
+Route::get('remove-all-cart',[CartController::class, 'destroyCart'])->name('cart.destroyCart');
+Route::post('update-cart',[CartController::class, 'updateCart'])->name('cart.updateCart');
+
+
+
 //Admin
 Route::get('admin/login', [LoginController::class, 'showLogin'])->name('login');
 Route::post('admin/login', [LoginController::class, 'login'])->name('admin.login');
