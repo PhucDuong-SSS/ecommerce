@@ -98,7 +98,7 @@
                     <!-- Logo -->
                     <div class="col-lg-2 col-sm-3 col-3 order-1">
                         <div class="logo_container">
-                            <div class="logo"><a href="#">OneClick</a></div>
+                            <div class="logo"><a href="{{route('index')}}">OneClick</a></div>
                         </div>
                     </div>
 
@@ -146,11 +146,11 @@
                                 <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                                     <div class="cart_icon">
                                         <img src="{{asset('frontend/images/cart.png')}}" alt="">
-                                        <div class="cart_count"><span>10</span></div>
+                                        <div class="cart_count"><span id="count">{{\Gloudemans\Shoppingcart\Facades\Cart::count()}}</span></div>
                                     </div>
                                     <div class="cart_content">
-                                        <div class="cart_text"><a href="#">Cart</a></div>
-                                        <div class="cart_price">$85</div>
+                                        <div class="cart_text"><a href="{{route('cart.showCart')}}">Cart</a></div>
+                                        <div class="cart_price"><span id="subtotal">{{\Gloudemans\Shoppingcart\Facades\Cart::subtotal()}}</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -423,8 +423,8 @@
 
 
 
-{{--<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>--}}
-{{--<script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>--}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
 
 <script>
     @if(Session::has('message'))
@@ -469,13 +469,23 @@
                 }
             });
     });
+    $( document ).ready(function() {
+        $(document).on("click", ".cart_button_clear", function(e){
+            e.preventDefault();
+            swal({
+                title: "Are you Want to delete cart?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location.href = "{{route('cart.destroyCart')}}"
+                    }
+                });
+        });
+    });
 </script>
-
-
-
-
-
-
 
 
 
