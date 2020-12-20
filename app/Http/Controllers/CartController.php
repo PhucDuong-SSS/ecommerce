@@ -84,5 +84,23 @@ class CartController extends Controller
         return Redirect()->back();
     }
 
+    public function checkout(){
+        if (Auth::guard('customer')->check()) {
+
+            $cart = Cart::content();
+            return view('page.checkout',compact('cart'));
+
+        }else{
+            $notification=array(
+                'messege'=>'At first Login Your Account',
+                'alert-type'=>'success'
+            );
+            return Redirect()->route('admin.login')->with($notification);
+        }
+
+    }
+
+
+
 
 }
