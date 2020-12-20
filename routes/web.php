@@ -34,6 +34,7 @@ Route::get('/', function () {
 });
 //Frontend
 Route::get('/',[ProductController::class, 'showProductFrontend'])->name('index');
+
 //Add cart
 Route::get('add-cart/{id}',[CartController::class, 'addCart'])->name('cart.addCart');
 //Show cart
@@ -42,7 +43,7 @@ Route::get('remove-cart/{id}',[CartController::class, 'removeCart'])->name('cart
 Route::get('remove-all-cart',[CartController::class, 'destroyCart'])->name('cart.destroyCart');
 Route::post('update-cart',[CartController::class, 'updateCart'])->name('cart.updateCart');
 Route::get('customer/checkout',[CartController::class, 'checkout'])->name('cart.checkout');
-
+routes/web.php
 
 
 //Admin
@@ -97,7 +98,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::get('edit/{id}', [ProductController::class, 'showFormEdit'])->name('product.editForm');
         Route::post('edit-product/{id}', [ProductController::class, 'updateProduct'])->name('product.update');
         Route::get('delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
-        Route::get('show/{id}', [ProductController::class, 'show'])->name('product.show');
+        Route::get('show/{id}', [ProductController::class, 'show'])->name('product.show');routes/web.php
         Route::get('get-subcategory/{id}', [ProductController::class, 'getSubCategory'])->name('product.getsubcategory');
         Route::post('update-photo/{id}', [ProductController::class, 'updateImageProduct'])->name('product.updatephoto');
         Route::get('inactive/{id}', [ProductController::class, 'inactive'])->name('product.inactive');
