@@ -43,7 +43,9 @@ Route::get('remove-cart/{id}',[CartController::class, 'removeCart'])->name('cart
 Route::get('remove-all-cart',[CartController::class, 'destroyCart'])->name('cart.destroyCart');
 Route::post('update-cart',[CartController::class, 'updateCart'])->name('cart.updateCart');
 Route::get('customer/checkout',[CartController::class, 'checkout'])->name('cart.checkout');
-routes/web.php
+Route::get('customer/checkout',[CartController::class, 'checkout'])->name('cart.checkout');
+Route::post('customer/add-coupon',[CartController::class, 'coupon'])->name('cart.addCoupon');
+Route::get('customer/remove-coupon',[CartController::class, 'couponRemove'])->name('cart.couponRemove');
 
 
 //Admin
@@ -98,7 +100,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::get('edit/{id}', [ProductController::class, 'showFormEdit'])->name('product.editForm');
         Route::post('edit-product/{id}', [ProductController::class, 'updateProduct'])->name('product.update');
         Route::get('delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
-        Route::get('show/{id}', [ProductController::class, 'show'])->name('product.show');routes/web.php
+        Route::get('show/{id}', [ProductController::class, 'show'])->name('product.show');
         Route::get('get-subcategory/{id}', [ProductController::class, 'getSubCategory'])->name('product.getsubcategory');
         Route::post('update-photo/{id}', [ProductController::class, 'updateImageProduct'])->name('product.updatephoto');
         Route::get('inactive/{id}', [ProductController::class, 'inactive'])->name('product.inactive');
