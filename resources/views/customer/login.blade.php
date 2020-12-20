@@ -148,7 +148,8 @@
 
 {{--<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>--}}
 {{--<script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>--}}
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
     <script>
         @if(Session::has('message'))
         var type = "{{Session::get('alert-type', 'info') }}";
