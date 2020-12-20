@@ -71,7 +71,8 @@
 
                         <div class="cart_buttons">
                             <a href="{{route('cart.destroyCart')}}"><button type="button" class="button cart_button_clear">All Cancel</button></a>
-                            <button type="button" class="button cart_button_checkout">Checkout</button>
+                            <a href="{{route('cart.checkout')}}"><button type="button" class="button cart_button_checkout">Checkout</button></a>
+
                         </div>
                     </div>
                 </div>
