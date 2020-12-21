@@ -178,6 +178,7 @@
                             <input type="hidden" name="vat" value="{{ $vat }} ">
                             <input type="hidden" name="subtotal" value="{{ $total_pay }} ">
                             <input type="hidden" name="total" value="{{ $total }} ">
+                            <input type="hidden" name="vat" value="{{ $vat }} ">
                             <input type="hidden" name="ship_name" value="{{ $data['name'] }} ">
                             <input type="hidden" name="ship_phone" value="{{ $data['phone'] }} ">
                             <input type="hidden" name="ship_email" value="{{ $data['email'] }} ">

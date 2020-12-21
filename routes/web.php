@@ -16,7 +16,7 @@ use App\Http\Controllers\SiteSettingController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\OrderController;
-
+use App\Http\Controllers\ReportController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -145,6 +145,16 @@ Route::middleware('auth')->prefix('admin')->group(function () {
             Route::get('cancel-order-show', [OrderController::class, 'showCancelOrder'])->name('order.showCancelOrder');
             Route::get('process-payment-show', [OrderController::class, 'showProcessPayment'])->name('order.showProcessPayment');
             Route::get('success-order-show', [OrderController::class, 'showSuccessPayment'])->name('order.showSuccessPayment');
+        });
+        //Report order
+        Route::prefix('report')->group(function () {
+            Route::get('today-order', [ReportController::class, 'getTodayOrder'])->name('report.getTodayOrder');
+            Route::get('today-delivery', [ReportController::class, 'getTodayDelivery'])->name('report.getTodayDelivery');
+            Route::get('thismonth-delivery', [ReportController::class, 'getThisMonthDelivery'])->name('report.getThisMonthDelivery');
+            Route::get('search-report', [ReportController::class, 'searchReport'])->name('report.searchReport');
+            Route::post('search-by-date', [ReportController::class, 'searchByDate'])->name('report.searchByDate');
+            Route::post('search-by-month', [ReportController::class, 'searchByMonth'])->name('report.searchByMonth');
+            Route::post('search-by-year', [ReportController::class, 'searchByYear'])->name('report.searchByYear');
         });
 
 
