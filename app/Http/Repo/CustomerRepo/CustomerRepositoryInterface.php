@@ -6,4 +6,6 @@ use App\Http\Repo\RepositoryInterface;
 interface CustomerRepositoryInterface extends RepositoryInterface
 {
     public function create($request);
+
+    public function showOrder($id);
 }
