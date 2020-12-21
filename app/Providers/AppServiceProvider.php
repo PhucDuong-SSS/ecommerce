@@ -15,6 +15,8 @@ use App\Http\Repo\CustomerRepo\CustomerRepository;
 use App\Http\Repo\CustomerRepo\CustomerRepositoryInterface;
 use App\Http\Repo\NewsLaterRepo\NewsLaterRepository;
 use App\Http\Repo\NewsLaterRepo\NewsLaterRepositoryInterface;
+use App\Http\Repo\OrderRepo\OrderRepository;
+use App\Http\Repo\OrderRepo\OrderRepositoryInterface;
 use App\Http\Repo\PostCategoryRepo\PostCategoryRepository;
 use App\Http\Repo\PostCategoryRepo\PostCategoryRepositoryInterface;
 use App\Http\Repo\PostRepo\PostRepository;
@@ -49,6 +51,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(PostRepositoryInterface::class, PostRepository::class);
         $this->app->bind(SiteSettingRepositoryInterface::class, SiteSettingRepository::class);
         $this->app->bind(CustomerRepositoryInterface::class, CustomerRepository::class);
+        $this->app->bind(OrderRepositoryInterface::class, OrderRepository::class);
     }
 
     /**

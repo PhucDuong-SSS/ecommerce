@@ -15,6 +15,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\SiteSettingController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -131,6 +132,19 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::prefix('site-setting')->group(function () {
             Route::get('/', [SiteSettingController::class, 'index'])->name('siteSetting.list');
             Route::post('edit/{id}', [SiteSettingController::class, 'update'])->name('siteSetting.update');
+        });
+
+        Route::prefix('order')->group(function () {
+            Route::get('/', [OrderController::class, 'showOrder'])->name('order.showOrder');
+            Route::get('view/{id}', [OrderController::class, 'viewOrder'])->name('order.viewOrder');
+            Route::get('accept-payment/{id}', [OrderController::class, 'acceptPayment'])->name('order.acceptPayment');
+            Route::get('cancel-payment/{id}', [OrderController::class, 'cancelPayment'])->name('order.cancelPayment');
+            Route::get('delivery-process/{id}', [OrderController::class, 'deleveryProcess'])->name('order.deleveryProcess');
+            Route::get('delivery-done/{id}', [OrderController::class, 'doneDelivery'])->name('order.doneDelivery');
+            Route::get('accept-payment-show', [OrderController::class, 'showAcceptPayment'])->name('order.showAcceptPayment');
+            Route::get('cancel-order-show', [OrderController::class, 'showCancelOrder'])->name('order.showCancelOrder');
+            Route::get('process-payment-show', [OrderController::class, 'showProcessPayment'])->name('order.showProcessPayment');
+            Route::get('success-order-show', [OrderController::class, 'showSuccessPayment'])->name('order.showSuccessPayment');
         });
 
 

@@ -111,11 +111,11 @@
             </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
         <ul class="sl-menu-sub nav flex-column">
-            <li class="nav-item"><a href="" class="nav-link">New Order</a></li>
-            <li class="nav-item"><a href="" class="nav-link">Accept Payment </a></li>
-            <li class="nav-item"><a href="" class="nav-link">Cancel Order </a></li>
-            <li class="nav-item"><a href="" class="nav-link">Process Delivery </a></li>
-            <li class="nav-item"><a href="" class="nav-link">Delivery Success </a></li>
+            <li class="nav-item"><a href="{{route('order.showOrder')}}" class="nav-link">New Order</a></li>
+            <li class="nav-item"><a href="{{route('order.showAcceptPayment')}}" class="nav-link">Accept Payment </a></li>
+            <li class="nav-item"><a href="{{route('order.showCancelOrder')}}" class="nav-link">Cancel Order </a></li>
+            <li class="nav-item"><a href="{{route('order.showProcessPayment')}}" class="nav-link">Process Delivery </a></li>
+            <li class="nav-item"><a href="{{route('order.showSuccessPayment')}}" class="nav-link">Delivery Success </a></li>
         </ul>
 
 
