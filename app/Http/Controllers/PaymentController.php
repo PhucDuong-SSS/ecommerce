@@ -68,6 +68,7 @@ class PaymentController extends Controller
         $data['shipping'] = $request->shipping;
         $data['subtotal'] = $request->subtotal;
         $data['total'] = $request->total;
+        $data['vat'] = $request->vat;
         $data['payment_type'] = $request->payment_type;
         $data['status_code'] = mt_rand(100000,999999);
 
