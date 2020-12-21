@@ -50,7 +50,7 @@
                                             <div class="cart_item_quantity cart_info_col">
                                                 <div class="cart_item_title">Quantity</div><br>
 
-                                                <form method="post" action="">
+                                                <form method="post" action="{{ route('cart.updateCart') }}">
                                                     @csrf
                                                     <input type="hidden" name="productid" value="{{ $row->rowId }}">
                                                     <input type="number" name="qty" value="{{ $row->qty }}" style="width: 50px;">
@@ -72,7 +72,7 @@
 
                                             <div class="cart_item_total cart_info_col">
                                                 <div class="cart_item_title">Action</div><br>
-                                                <a href="{{ url('remove/cart/'.$row->rowId ) }}" class="btn btn-sm btn-danger">x</a>
+                                                <a href="{{ route('cart.removeCart', $row->rowId ) }}" class="btn btn-sm btn-danger">x</a>
                                             </div>
 
 

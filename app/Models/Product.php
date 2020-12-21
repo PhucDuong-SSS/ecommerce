@@ -24,4 +24,8 @@ class Product extends Model
         return $this->belongsTo(Brand::class,'brand_id','id');
     }
 
+    public function orderdetail()
+    {
+        return $this->hasOne(OrderDetails::class, 'product_id', 'id');
+    }
 }

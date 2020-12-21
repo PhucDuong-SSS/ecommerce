@@ -53,7 +53,7 @@ class PaymentController extends Controller
         $token = $_POST['stripeToken'];
 
         $charge = \Stripe\Charge::create([
-            'amount' => 123,
+            'amount' => $total*100,
             'currency' => 'usd',
             'description' => 'phucduong Ecommerce Details',
             'source' => $token,
