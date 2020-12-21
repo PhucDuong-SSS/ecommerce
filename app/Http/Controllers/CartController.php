@@ -150,7 +150,16 @@ class CartController extends Controller
         return Redirect()->back()->with($notification);
 
     }
+    public function showPaymentPage()
+    {
+        $customer =Auth::guard('customer')->user();
+        $setting = DB::table('settings')->first();
+        $cart = Cart::content();
+        $subtotal = $this->number_unformat(Cart::Subtotal());
+        $shipping_charge = $this->number_unformat($setting->shipping_charge);
 
+        return view('page.paymentpage',compact('cart','shipping_charge', 'subtotal','customer') );
+    }
 
 
 

@@ -14,6 +14,7 @@ use App\Http\Controllers\PostCategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SiteSettingController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,10 @@ Route::get('customer/checkout',[CartController::class, 'checkout'])->name('cart.
 Route::get('customer/checkout',[CartController::class, 'checkout'])->name('cart.checkout');
 Route::post('customer/add-coupon',[CartController::class, 'coupon'])->name('cart.addCoupon');
 Route::get('customer/remove-coupon',[CartController::class, 'couponRemove'])->name('cart.couponRemove');
+Route::get('customer/payment',[CartController::class, 'showPaymentPage'])->name('cart.showPaymentPage');
+Route::post('customer/payment-process',[PaymentController::class, 'paymentProcess'])->name('payment.paymentProcess');
+Route::post('customer/payment-process',[PaymentController::class, 'paymentProcess'])->name('payment.paymentProcess');
+Route::post('customer/stripe-charge',[PaymentController::class, 'stripeCharge'])->name('payment.stripeCharge');
 
 
 //Admin
