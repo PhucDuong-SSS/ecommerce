@@ -28,4 +28,8 @@ class Product extends Model
     {
         return $this->hasOne(OrderDetails::class, 'product_id', 'id');
     }
+    public function wishlist()
+    {
+        return $this->belongsTo(Wishlist::class, 'product_id', 'id');
+    }
 }

@@ -212,7 +212,10 @@
                                                     <button class="product_cart_button addcart" data-id="{{$product->id}}">Add to Cart</button>
                                                 </div>
                                             </div>
-                                            <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                            <button class="addWishlist" data-id="{{$product->id}}">
+                                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                            </button>
+
                                             <ul class="product_marks">
                                                 @if($product->discount_price == NULL)
                                                     <li class="product_mark product_new " style="background: blue;">New</li>
@@ -1682,6 +1685,50 @@
             alert('danger');
         }
      });
+
+       $('.addWishlist').on('click', function(){
+           var id = $(this).data('id');
+           if (id) {
+               $.ajax({
+                   url: " {{ url('/customer/add-wishlist/') }}/"+id,
+                   type:"GET",
+                   datType:"json",
+                   success:function(data){
+                       console.log(data);
+                       $('#wishlist').html(data.count);
+                       const Toast = Swal.mixin({
+                           toast: true,
+                           position: 'top-end',
+                           showConfirmButton: false,
+                           timer: 3000,
+                           timerProgressBar: true,
+                           onOpen: (toast) => {
+                               toast.addEventListener('mouseenter', Swal.stopTimer)
+                               toast.addEventListener('mouseleave', Swal.resumeTimer)
+                           }
+                       })
+
+                       if ($.isEmptyObject(data.error)) {
+
+                           Toast.fire({
+                               icon: 'success',
+                               title: data.success
+                           })
+                       }else{
+                           Toast.fire({
+                               icon: 'error',
+                               title: data.error
+                           })
+                       }
+
+
+                   },
+               });
+
+           }else{
+               alert('danger');
+           }
+       });
 
    });
 
