@@ -67,7 +67,7 @@ Route::post('admin/login', [LoginController::class, 'login'])->name('admin.login
 Route::get('admin/logout', [LoginController::class, 'logout'])->name('admin.logout');
 
 Route::middleware('auth')->prefix('admin')->group(function () {
-    Route::get('/', [DashboardController::class, 'showDashboard'])->name('dashboard.show');
+    Route::get('/', [AdminController::class, 'showHome'])->name('dashboard.show');
     Route::get('change-password', [AdminController::class, 'showChangePassword'])->name('admin.changepassword');
     Route::post('change-password', [AdminController::class, 'updatePassword'])->name('admin.updatepassword');
 
@@ -182,6 +182,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
             Route::get('get-mesage-details/{id}',[ContactController::class, 'showDetail'])->name('contact.showDetail');
 
         });
+
 
 
 

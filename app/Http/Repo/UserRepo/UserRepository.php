@@ -65,7 +65,48 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
        $obj->setting = $request->setting;
        $obj->save();
     }
+    public function getTotalofDay($date)
+    {
+        $totalToday = DB::table('orders')->where('date',$date)->sum('total');
+        return $totalToday;
+    }
+    public function getTotalofMonth($month)
+    {
+        $totalMonth = DB::table('orders')->where('month',$month)->sum('total');
+        return $totalMonth;
+    }
+    public function getTotalofYear($year)
+    {
+        $totalYear = DB::table('orders')->where('year',$year)->sum('total');
+        return $totalYear;
+    }
 
+    public function getDeliveryThisDay($date)
+    {
+        $delevery = DB::table('orders')->where('date',$date)->where('status',3)->sum('total');
+        return $delevery;
+    }
+
+    public function getOrderReturn()
+    {
+        $orderReturns = DB::table('orders')->where('status',4)->sum('total');
+        return $orderReturns;
+    }
+     public function getProduct()
+     {
+         $products = DB::table('products')->get();
+         return $products;
+     }
+     public function getBranch()
+     {
+         $brands = DB::table('brands')->get();
+         return $brands;
+     }
+     public function getCustomer()
+     {
+         $customers = DB::table('customers')->get();
+         return $customers;
+     }
 
 
 }

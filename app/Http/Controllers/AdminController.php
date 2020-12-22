@@ -112,6 +112,21 @@ class AdminController extends Controller
         return back()->with($notification);
     }
 
+    public function showHome()
+    {
+        $date = date('d-m-y');
+        $month = date('F');
+        $year = date('Y');
+        $totalofDay =$this->userRepository->getTotalofDay($date);
+        $totalofMonth =$this->userRepository->getTotalofMonth($month);
+        $totalofYear =$this->userRepository->getTotalofYear($year);
+        $deliveryofDay = $this->userRepository->getDeliveryThisDay($date);
+        $orderReturns = $this->userRepository->getOrderReturn();
+        $products = $this->userRepository->getProduct();
+        $brands = $this->userRepository->getBranch();
+        $customers = $this->userRepository->getCustomer();
+        return view('admin.home.showHome',compact('totalofDay','totalofMonth','totalofYear','deliveryofDay','products','customers','brands','orderReturns'));
+    }
 
 
 }
