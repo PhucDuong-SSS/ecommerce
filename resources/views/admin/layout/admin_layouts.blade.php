@@ -66,7 +66,7 @@
                 <span class="menu-item-label">Dashboard</span>
             </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-
+        @if(\Illuminate\Support\Facades\Auth::user()->category == 1)
         <a href="#" class="sl-menu-link">
             <div class="sl-menu-item">
                 <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
@@ -79,6 +79,9 @@
             <li class="nav-item"><a href="{{route('subcategory.list')}}" class="nav-link">Sub Category</a></li>
             <li class="nav-item"><a href="{{route('brand.list')}}" class="nav-link">Brand</a></li>
         </ul>
+        @else
+        @endif
+        @if(\Illuminate\Support\Facades\Auth::user()->coupon == 1)
 
         <a href="#" class="sl-menu-link">
             <div class="sl-menu-item">
@@ -90,6 +93,9 @@
         <ul class="sl-menu-sub nav flex-column">
             <li class="nav-item"><a href="{{route('coupon.list')}}" class="nav-link">Coupon List</a></li>
         </ul>
+        @else
+        @endif
+        @if(\Illuminate\Support\Facades\Auth::user()->product == 1)
 
         <a href="#" class="sl-menu-link">
             <div class="sl-menu-item">
@@ -102,6 +108,9 @@
             <li class="nav-item"><a href="{{route('product.createForm')}}" class="nav-link">Add Product</a></li>
             <li class="nav-item"><a href="{{route('product.list')}}" class="nav-link">All Product</a></li>
         </ul>
+        @else
+            @endif
+        @if(\Illuminate\Support\Facades\Auth::user()->order == 1)
 
         <a href="#" class="sl-menu-link">
             <div class="sl-menu-item">
@@ -117,8 +126,10 @@
             <li class="nav-item"><a href="{{route('order.showProcessPayment')}}" class="nav-link">Process Delivery </a></li>
             <li class="nav-item"><a href="{{route('order.showSuccessPayment')}}" class="nav-link">Delivery Success </a></li>
         </ul>
+        @else
+            @endif
 
-
+        @if(\Illuminate\Support\Facades\Auth::user()->blog == 1)
 
         <a href="#" class="sl-menu-link">
             <div class="sl-menu-item">
@@ -133,7 +144,10 @@
             <li class="nav-item"><a href="{{route('post.createForm')}}" class="nav-link">Add Post</a></li>
             <li class="nav-item"><a href="{{route('post.list')}}" class="nav-link">Post List</a></li>
         </ul>
+        @else
+        @endif
 
+        @if(\Illuminate\Support\Facades\Auth::user()->other == 1)
 
         <a href="#" class="sl-menu-link">
             <div class="sl-menu-item">
@@ -146,6 +160,10 @@
             <li class="nav-item"><a href="{{ route('newslater.list') }}" class="nav-link">Newslaters</a></li>
             <li class="nav-item"><a href="#" class="nav-link">SEO Setting </a></li>
         </ul>
+        @else
+        @endif
+
+        @if(\Illuminate\Support\Facades\Auth::user()->report == 1)
 
         <a href="#" class="sl-menu-link">
             <div class="sl-menu-item">
@@ -160,6 +178,10 @@
             <li class="nav-item"><a href="{{route('report.getThisMonthDelivery')}}" class="nav-link">This Month </a></li>
             <li class="nav-item"><a href="{{route('report.searchReport')}}" class="nav-link">Search Report </a></li>
         </ul>
+        @else
+        @endif
+
+        @if(\Illuminate\Support\Facades\Auth::user()->role == 1)
 
         <a href="#" class="sl-menu-link">
             <div class="sl-menu-item">
@@ -169,9 +191,13 @@
             </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
         <ul class="sl-menu-sub nav flex-column">
-            <li class="nav-item"><a href="" class="nav-link">Create User</a></li>
-            <li class="nav-item"><a href="" class="nav-link">All User </a></li>
+            <li class="nav-item"><a href="{{route('admin.createUser')}}" class="nav-link">Create User</a></li>
+            <li class="nav-item"><a href="{{route('admin.showUser')}}" class="nav-link">All User </a></li>
         </ul>
+        @else
+        @endif
+
+        @if(\Illuminate\Support\Facades\Auth::user()->return == 1)
 
         <a href="#" class="sl-menu-link">
             <div class="sl-menu-item">
@@ -184,6 +210,10 @@
             <li class="nav-item"><a href="" class="nav-link">Return Request</a></li>
             <li class="nav-item"><a href="" class="nav-link">All Request </a></li>
         </ul>
+        @else
+        @endif
+
+        @if(\Illuminate\Support\Facades\Auth::user()->stock == 1)
 
         <a href="#" class="sl-menu-link">
             <div class="sl-menu-item">
@@ -195,6 +225,10 @@
         <ul class="sl-menu-sub nav flex-column">
             <li class="nav-item"><a href="" class="nav-link">Stock</a></li>
         </ul>
+        @else
+            @endif
+
+        @if(\Illuminate\Support\Facades\Auth::user()->contact == 1)
 
         <a href="#" class="sl-menu-link">
             <div class="sl-menu-item">
@@ -206,6 +240,11 @@
         <ul class="sl-menu-sub nav flex-column">
             <li class="nav-item"><a href="" class="nav-link">All Message </a></li>
         </ul>
+        @else
+        @endif
+
+        @if(\Illuminate\Support\Facades\Auth::user()->comment == 1)
+
 
         <a href="#" class="sl-menu-link">
             <div class="sl-menu-item">
@@ -218,6 +257,10 @@
             <li class="nav-item"><a href=" " class="nav-link">New Comments</a></li>
             <li class="nav-item"><a href=" " class="nav-link">All Comments </a></li>
         </ul>
+        @else
+            @endif
+
+        @if(\Illuminate\Support\Facades\Auth::user()->setting == 1)
 
         <a href="#" class="sl-menu-link">
             <div class="sl-menu-item">
@@ -229,7 +272,8 @@
         <ul class="sl-menu-sub nav flex-column">
             <li class="nav-item"><a href="{{ route('siteSetting.list') }}" class="nav-link">Site Setting</a></li>
         </ul>
-
+        @else
+        @endif
     </div><!-- sl-sideleft-menu -->
 
     <br>

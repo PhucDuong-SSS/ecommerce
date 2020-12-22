@@ -24,8 +24,10 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required',
-            'password' => 'required'
+            'name' => 'required',
+            'username' => 'required|unique:users,username'.$this->id,
+            'email' => 'required|unique:users,email'.$this->id,
+            'password' => 'required|min:6',
         ];
     }
 
@@ -35,11 +37,4 @@ class UserRequest extends FormRequest
      * @returns array
      */
 
-    public function messages()
-    {
-        return [
-            'username.required' =>'User required',
-            'password.required' =>'Password required'
-        ];
-    }
 }

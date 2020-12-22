@@ -159,6 +159,17 @@ Route::middleware('auth')->prefix('admin')->group(function () {
             Route::post('search-by-month', [ReportController::class, 'searchByMonth'])->name('report.searchByMonth');
             Route::post('search-by-year', [ReportController::class, 'searchByYear'])->name('report.searchByYear');
         });
+        //role
+        Route::prefix('role')->group(function () {
+            Route::get('show-user', [AdminController::class, 'showUser'])->name('admin.showUser');
+            Route::get('create-user', [AdminController::class, 'createUser'])->name('admin.createUser');
+            Route::post('store-user', [AdminController::class, 'storeUser'])->name('admin.storeUser');
+            Route::post('edit-user/{id}', [AdminController::class, 'updateUser'])->name('admin.updateUser');
+            Route::get('show-edit-user/{id}', [AdminController::class, 'showFormEdit'])->name('admin.showFormEdit');
+            Route::get('delete-user/{id}', [AdminController::class, 'deleteUser'])->name('admin.deleteUser');
+        });
+
+
 
 
     });

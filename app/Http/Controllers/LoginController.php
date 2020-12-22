@@ -13,7 +13,7 @@ class LoginController extends Controller
     {
         return view('admin.layout.login');
     }
-    public function login(UserRequest $request)
+    public function login(Request $request)
     {
 
         $admin = [
