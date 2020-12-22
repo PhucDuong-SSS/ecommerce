@@ -169,6 +169,11 @@ Route::middleware('auth')->prefix('admin')->group(function () {
             Route::get('delete-user/{id}', [AdminController::class, 'deleteUser'])->name('admin.deleteUser');
         });
 
+        Route::prefix('stock')->group(function () {
+            Route::get('show-user', [ProductController::class, 'getProductStock'])->name('product.getProductStock');
+
+        });
+
 
 
 
