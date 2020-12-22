@@ -54,16 +54,15 @@
                             <div class="top_bar_menu">
                                 <ul class="standard_dropdown top_bar_dropdown">
                                     <li>
-                                        <a href="#">VietNamese<i class="fas fa-chevron-down"></i></a>
+                                        <a href="#">English<i class="fas fa-chevron-down"></i></a>
                                         <ul>
-                                            <li><a href="#">English</a></li>
+                                            <li><a href="#">VietNamese</a></li>
                                         </ul>
                                     </li>
 
                                 </ul>
                             </div>
                             <div class="top_bar_user">
-
                                 @if(!\Illuminate\Support\Facades\Auth::guard('customer')->check())
                                     <div class="user_icon"><img src="{{asset('frontend/images/user.svg')}}" alt=""></div>
                                     <div><a href="{{route('customer.showFormRegister')}}">Register</a></div>
@@ -137,7 +136,7 @@
                                 <div class="wishlist_icon"><img src="{{asset('frontend/images/heart.png')}}" alt=""></div>
                                 <div class="wishlist_content">
                                     <div class="wishlist_text"><a href="#">Wishlist</a></div>
-                                    <div class="wishlist_count">115</div>
+                                    <div class="wishlist_count"><span id="wishlist">{{\Illuminate\Support\Facades\Session::get('count')}}</span></div>
                                 </div>
                             </div>
 

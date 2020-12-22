@@ -48,6 +48,10 @@ class Customer extends Authenticatable
     {
         return $this->hasMany(Order::class,'customer_id','id');
     }
+    public function wishlist()
+    {
+        return $this->hasOne(Wishlist::class, 'customer_id', 'id');
+    }
 
 
 }

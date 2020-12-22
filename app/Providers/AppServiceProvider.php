@@ -29,6 +29,8 @@ use App\Http\Repo\SubCategoryRepo\SubCategoryRepository;
 use App\Http\Repo\SubCategoryRepo\SubCategoryRepositoryInterface;
 use App\Http\Repo\UserRepo\UserRepository;
 use App\Http\Repo\UserRepo\UserRepositoryInterface;
+use App\Http\Repo\WishlistRepo\WishlistRepository;
+use App\Http\Repo\WishlistRepo\WishlistRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -52,6 +54,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(SiteSettingRepositoryInterface::class, SiteSettingRepository::class);
         $this->app->bind(CustomerRepositoryInterface::class, CustomerRepository::class);
         $this->app->bind(OrderRepositoryInterface::class, OrderRepository::class);
+        $this->app->bind(WishlistRepositoryInterface::class, WishlistRepository::class);
     }
 
     /**

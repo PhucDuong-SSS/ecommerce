@@ -17,6 +17,8 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\WishlistController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,6 +41,7 @@ Route::get('/',[ProductController::class, 'showProductFrontend'])->name('index')
 
 //Add cart
 Route::get('add-cart/{id}',[CartController::class, 'addCart'])->name('cart.addCart');
+Route::get('customer/add-wishlist/{id}',[WishlistController::class, 'addWishlist'])->name('wishlist.addWishlist');
 //Show cart
 Route::get('show-cart',[CartController::class, 'showCart'])->name('cart.showCart');
 Route::get('remove-cart/{id}',[CartController::class, 'removeCart'])->name('cart.removeCart');
