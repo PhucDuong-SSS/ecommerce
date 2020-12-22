@@ -28,7 +28,7 @@
     <meta name="description" content="Premium Quality and Responsive UI for Dashboard.">
     <meta name="author" content="ThemePixels">
 
-    <title>Starlight Responsive Bootstrap 4 Admin Template</title>
+    <title>One click</title>
 
     <!-- vendor css -->
     <link href="{{asset('backend/lib/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
@@ -60,7 +60,7 @@
 
     <label class="sidebar-label">Navigation</label>
     <div class="sl-sideleft-menu">
-        <a href="index.html" class="sl-menu-link active">
+        <a href="{{route('dashboard.show')}}" class="sl-menu-link active">
             <div class="sl-menu-item">
                 <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
                 <span class="menu-item-label">Dashboard</span>
