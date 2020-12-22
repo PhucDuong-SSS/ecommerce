@@ -7,6 +7,7 @@ namespace App\Http\Repo\UserRepo;
 use App\Http\Repo\BaseRepository;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserRepository extends BaseRepository implements UserRepositoryInterface
@@ -64,5 +65,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
        $obj->setting = $request->setting;
        $obj->save();
     }
+
+
 
 }

@@ -132,6 +132,11 @@ class ProductController extends Controller
             compact('featuredProducts','trendProducts','hotProducts','bestProducts','categories','banner2'));
     }
 
+    public function getProductStock()
+    {
+        $products = $this->productRepository->getAll();
+        return view('admin.stock.stockProduct', compact('products'));
+    }
 
 
 

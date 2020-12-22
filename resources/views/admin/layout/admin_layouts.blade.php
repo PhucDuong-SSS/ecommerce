@@ -223,7 +223,7 @@
             </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
         <ul class="sl-menu-sub nav flex-column">
-            <li class="nav-item"><a href="" class="nav-link">Stock</a></li>
+            <li class="nav-item"><a href="{{route('product.getProductStock')}}" class="nav-link">Stock</a></li>
         </ul>
         @else
             @endif
@@ -290,8 +290,8 @@
         <nav class="nav">
             <div class="dropdown">
                 <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
-                    <span class="logged-name">Jane<span class="hidden-md-down"> Doe</span></span>
-                    <img src="{{asset('backend/img/img3.jpg')}}" class="wd-32 rounded-circle" alt="">
+                    <span class="logged-name">{{\Illuminate\Support\Facades\Auth::user()->username}}</span></span>
+{{--                    <img src="{{asset('backend/img/img3.jpg')}}" class="wd-32 rounded-circle" alt="">--}}
                 </a>
                 <div class="dropdown-menu dropdown-menu-header wd-200">
                     <ul class="list-unstyled user-profile-nav">
