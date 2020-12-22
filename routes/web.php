@@ -18,6 +18,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,9 @@ Route::get('/', function () {
 });
 //Frontend
 Route::get('/',[ProductController::class, 'showProductFrontend'])->name('index');
+//Contact page
+Route::get('show-contact-page',[ContactController::class, 'showContactPage'])->name('contact.showContactPage');
+Route::post('show-contact-page',[ContactController::class, 'storeInfo'])->name('contact.storeInfo');
 
 //Add cart
 Route::get('add-cart/{id}',[CartController::class, 'addCart'])->name('cart.addCart');
@@ -171,6 +175,11 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
         Route::prefix('stock')->group(function () {
             Route::get('show-user', [ProductController::class, 'getProductStock'])->name('product.getProductStock');
+
+        });
+        Route::prefix('contact')->group(function () {
+            Route::get('get-mesage',[ContactController::class, 'getMessage'])->name('contact.getMessage');
+            Route::get('get-mesage-details/{id}',[ContactController::class, 'showDetail'])->name('contact.showDetail');
 
         });
 
