@@ -238,7 +238,7 @@
             </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
         <ul class="sl-menu-sub nav flex-column">
-            <li class="nav-item"><a href="" class="nav-link">All Message </a></li>
+            <li class="nav-item"><a href="{{route('contact.getMessage')}}" class="nav-link">All Message </a></li>
         </ul>
         @else
         @endif

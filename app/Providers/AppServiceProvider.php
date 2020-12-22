@@ -9,6 +9,8 @@ use App\Http\Repo\BrandRepo\BrandRepository;
 use App\Http\Repo\BrandRepo\BrandRepositoryInterface;
 use App\Http\Repo\CategoryRepo\CategoryRepository;
 use App\Http\Repo\CategoryRepo\CategoryRepositoryInterface;
+use App\Http\Repo\ContactRepo\ContactRepository;
+use App\Http\Repo\ContactRepo\ContactRepositoryInterface;
 use App\Http\Repo\CouponRepo\CouponRepository;
 use App\Http\Repo\CouponRepo\CouponRepositoryInterface;
 use App\Http\Repo\CustomerRepo\CustomerRepository;
@@ -55,6 +57,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(CustomerRepositoryInterface::class, CustomerRepository::class);
         $this->app->bind(OrderRepositoryInterface::class, OrderRepository::class);
         $this->app->bind(WishlistRepositoryInterface::class, WishlistRepository::class);
+        $this->app->bind(ContactRepositoryInterface::class, ContactRepository::class);
     }
 
     /**

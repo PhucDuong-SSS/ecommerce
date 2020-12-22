@@ -57,11 +57,21 @@
                     <div class="contact_form_container">
                         <div class="contact_form_title">Get in Touch</div>
 
-                        <form action="#" id="contact_form">
+                        <form method="post" action="{{route('contact.storeInfo')}}" id="contact_form">
+                            @csrf
                             <div class="contact_form_inputs d-flex flex-md-row flex-column justify-content-between align-items-between">
-                                <input type="text" id="contact_form_name" class="contact_form_name input_field" placeholder="Your name" required="required" data-error="Name is required.">
-                                <input type="text" id="contact_form_email" class="contact_form_email input_field" placeholder="Your email" required="required" data-error="Email is required.">
-                                <input type="text" id="contact_form_phone" class="contact_form_phone input_field" placeholder="Your phone number">
+                                <input type="text" id="contact_form_name" name="name" class="contact_form_name input_field" placeholder="Your name" required data-error="Name is required.">
+                                @error('name')
+                                <div style="color: red">{{ $message }}</div>
+                                @enderror
+                                <input type="text" id="contact_form_email" name="email" class="contact_form_email input_field" placeholder="Your email"  required data-error="Email is required.">
+                                @error('email')
+                                <div style="color: red">{{ $message }}</div>
+                                @enderror
+                                <input type="text" id="contact_form_phone" name="phone" class="contact_form_phone input_field" required placeholder="Your phone number">
+                                @error('phone')
+                                <div style="color: red">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="contact_form_text">
                                 <textarea id="contact_form_message" class="text_field contact_form_message" name="message" rows="4" placeholder="Message" required="required" data-error="Please, write us a message."></textarea>
