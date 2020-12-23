@@ -224,5 +224,10 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         return $getOne;
     }
 
+    public function showProductCategory($id)
+    {
+
+        return $this->model->where('category_id',$id)->paginate(10);
+    }
 
 }

@@ -33,5 +33,7 @@ interface ProductRepositoryInterface extends RepositoryInterface
 
     public function buyOnegetOne();
 
+    public function showProductCategory($id);
+
 
 }
