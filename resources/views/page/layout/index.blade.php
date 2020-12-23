@@ -192,48 +192,51 @@
                                 <div class="featured_slider slider">
                                     @foreach($featuredProducts as $product)
                                     <!-- Slider Item -->
-                                    <div class="featured_slider_item">
-                                        <div class="border_active"></div>
-                                        <div class="product_item discount is_new d-flex flex-column align-items-center justify-content-center text-center">
-                                            <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="{{asset($product->image_one)}}" style="height: 115px; width: 115px;" alt=""></div>
-                                            <div class="product_content">
-                                                @if($product->discount_price == NULL)
-                                                    <div class="product_price discount">{{ number_format($product->selling_price) }}đ<span> </div>
-                                                @else
-                                                    <div class="product_price discount">{{number_format($product->discount_price)}}đ<span>{{ number_format($product->selling_price)  }}đ</span></div>
-                                                @endif
-                                                <div class="product_name"><div><a href="product.html">{{$product->name}}</a></div></div>
-                                                <div class="product_extras">
-                                                    <div class="product_color">
-                                                        <input type="radio" checked name="product_color" style="background:#b19c83">
-                                                        <input type="radio" name="product_color" style="background:#000000">
-                                                        <input type="radio" name="product_color" style="background:#999999">
+                                        <a href="{{route('product.showDetails', $product->id)}}">
+                                            <div class="featured_slider_item">
+                                                <div class="border_active"></div>
+                                                <div class="product_item discount is_new d-flex flex-column align-items-center justify-content-center text-center">
+                                                    <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="{{asset($product->image_one)}}" style="height: 115px; width: 115px;" alt=""></div>
+                                                    <div class="product_content">
+                                                        @if($product->discount_price == NULL)
+                                                            <div class="product_price discount">{{ number_format($product->selling_price) }}đ<span> </div>
+                                                        @else
+                                                            <div class="product_price discount">{{number_format($product->discount_price)}}đ<span>{{ number_format($product->selling_price)  }}đ</span></div>
+                                                        @endif
+                                                        <div class="product_name"><div><a href="product.html">{{$product->name}}</a></div></div>
+                                                        <div class="product_extras">
+                                                            <div class="product_color">
+                                                                <input type="radio" checked name="product_color" style="background:#b19c83">
+                                                                <input type="radio" name="product_color" style="background:#000000">
+                                                                <input type="radio" name="product_color" style="background:#999999">
+                                                            </div>
+                                                            <button class="product_cart_button addcart" data-id="{{$product->id}}">Add to Cart</button>
+                                                        </div>
                                                     </div>
-                                                    <button class="product_cart_button addcart" data-id="{{$product->id}}">Add to Cart</button>
+                                                    <button class="addWishlist" data-id="{{$product->id}}">
+                                                        <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                                    </button>
+
+                                                    <ul class="product_marks">
+                                                        @if($product->discount_price == NULL)
+                                                            <li class="product_mark product_new " style="background: blue;">New</li>
+                                                        @else
+                                                            <li class="product_mark product_discount ">
+                                                                @php
+                                                                    $amount = $product->selling_price - $product->discount_price;
+                                                                    $discount = $amount/$product->selling_price*100;
+
+                                                                @endphp
+
+                                                                {{ intval($discount) }}%
+
+                                                            </li>
+                                                        @endif
+                                                    </ul>
                                                 </div>
                                             </div>
-                                            <button class="addWishlist" data-id="{{$product->id}}">
-                                                <div class="product_fav"><i class="fas fa-heart"></i></div>
-                                            </button>
+                                        </a>
 
-                                            <ul class="product_marks">
-                                                @if($product->discount_price == NULL)
-                                                    <li class="product_mark product_new " style="background: blue;">New</li>
-                                                @else
-                                                    <li class="product_mark product_discount ">
-                                                        @php
-                                                            $amount = $product->selling_price - $product->discount_price;
-                                                            $discount = $amount/$product->selling_price*100;
-
-                                                        @endphp
-
-                                                        {{ intval($discount) }}%
-
-                                                    </li>
-                                                @endif
-                                            </ul>
-                                        </div>
-                                    </div>
                                     @endforeach
                                     <!-- Slider Item -->
                                     <div class="featured_slider_item">
