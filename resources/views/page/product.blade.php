@@ -9,6 +9,7 @@
 @section('content')
 
     <!-- Single Product -->
+    <!-- Single Product -->
 
     <div class="single_product">
         <div class="container">
@@ -17,69 +18,84 @@
                 <!-- Images -->
                 <div class="col-lg-2 order-lg-1 order-2">
                     <ul class="image_list">
-                        <li data-image="images/single_4.jpg"><img src="images/single_4.jpg" alt=""></li>
-                        <li data-image="images/single_2.jpg"><img src="images/single_2.jpg" alt=""></li>
-                        <li data-image="images/single_3.jpg"><img src="images/single_3.jpg" alt=""></li>
+                        <li data-image="{{ asset( $product->image_one ) }}"><img src="{{ asset( $product->image_one ) }}" alt=""></li>
+                        <li data-image="{{ asset( $product->image_two ) }}"><img src="{{ asset( $product->image_two ) }}" alt=""></li>
+                        <li data-image="{{ asset( $product->image_three ) }}"><img src="{{ asset( $product->image_three ) }}" alt=""></li>
                     </ul>
                 </div>
 
                 <!-- Selected Image -->
                 <div class="col-lg-5 order-lg-2 order-1">
-                    <div class="image_selected"><img src="images/single_4.jpg" alt=""></div>
+                    <div class="image_selected"><img src="{{ asset( $product->image_one ) }}" alt=""></div>
                 </div>
 
                 <!-- Description -->
                 <div class="col-lg-5 order-3">
                     <div class="product_description">
-                        <div class="product_category">Laptops</div>
-                        <div class="product_name">MacBook Air 13</div>
+                        <div class="product_category">{{ $product->brand->name }}</div>
+                        <div class="product_name">{{ $product->name }}</div>
                         <div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                        <div class="product_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum. laoreet turpis, nec sollicitudin dolor cursus at. Maecenas aliquet, dolor a faucibus efficitur, nisi tellus cursus urna, eget dictum lacus turpis.</p></div>
+                        <div class="product_text"><p>
+                                {{  substr($product->details,0, 600 )  }}
+                            </p></div>
                         <div class="order_info d-flex flex-row">
-                            <form action="#">
-                                <div class="clearfix" style="z-index: 1000;">
 
-                                    <!-- Product Quantity -->
-                                    <div class="product_quantity clearfix">
-                                        <span>Quantity: </span>
-                                        <input id="quantity_input" type="text" pattern="[0-9]*" value="1">
-                                        <div class="quantity_buttons">
-                                            <div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fas fa-chevron-up"></i></div>
-                                            <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fas fa-chevron-down"></i></div>
+                            <form action="{{route('cart.addProductCart',$product->id)}}" method="post">
+                                @csrf
+
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlSelect1">Color</label>
+                                            <select class="form-control input-lg" id="exampleFormControlSelect1" name="color"> @foreach($product_color as $color)
+                                                    <option value="{{ $color }}">{{ $color }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
 
-                                    <!-- Product Color -->
-                                    <ul class="product_color">
-                                        <li>
-                                            <span>Color: </span>
-                                            <div class="color_mark_container"><div id="selected_color" class="color_mark"></div></div>
-                                            <div class="color_dropdown_button"><i class="fas fa-chevron-down"></i></div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlSelect1">Quantity</label>
+                                            <input class="form-control" type="number" value="1" pattern="[0-9]" name="qty">
+                                        </div>
+                                    </div>
 
-                                            <ul class="color_list">
-                                                <li><div class="color_mark" style="background: #999999;"></div></li>
-                                                <li><div class="color_mark" style="background: #b19c83;"></div></li>
-                                                <li><div class="color_mark" style="background: #000000;"></div></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+
 
                                 </div>
 
-                                <div class="product_price">$2000</div>
-                                <div class="button_container">
-                                    <button type="button" class="button cart_button">Add to Cart</button>
-                                    <div class="product_fav"><i class="fas fa-heart"></i></div>
-                                </div>
-
-                            </form>
                         </div>
+
+
+                        @if($product->discount_price == NULL)
+                            <div class="product_price">${{ $product->selling_price }}<span> </div>
+                        @else
+                            <div class="product_price">${{ $product->discount_price }}</div>
+                        @endif
+
+
+                        <div class="button_container">
+                            <button type="submit" class="button cart_button">Add to Cart</button>
+                            <div class="product_fav"><i class="fas fa-heart"></i></div>
+                        </div>
+
+                        <br><br>
+
+
+                        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                        <div class="addthis_inline_share_toolbox"></div>
+
+
+                        </form>
                     </div>
                 </div>
-
             </div>
+
         </div>
     </div>
+    </div>
+
 
     <!-- Recently Viewed -->
 
@@ -116,80 +132,6 @@
                                 </div>
                             </div>
 
-                            <!-- Recently Viewed Item -->
-                            <div class="owl-item">
-                                <div class="viewed_item d-flex flex-column align-items-center justify-content-center text-center">
-                                    <div class="viewed_image"><img src="images/view_2.jpg" alt=""></div>
-                                    <div class="viewed_content text-center">
-                                        <div class="viewed_price">$379</div>
-                                        <div class="viewed_name"><a href="#">LUNA Smartphone</a></div>
-                                    </div>
-                                    <ul class="item_marks">
-                                        <li class="item_mark item_discount">-25%</li>
-                                        <li class="item_mark item_new">new</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- Recently Viewed Item -->
-                            <div class="owl-item">
-                                <div class="viewed_item d-flex flex-column align-items-center justify-content-center text-center">
-                                    <div class="viewed_image"><img src="images/view_3.jpg" alt=""></div>
-                                    <div class="viewed_content text-center">
-                                        <div class="viewed_price">$225</div>
-                                        <div class="viewed_name"><a href="#">Samsung J730F...</a></div>
-                                    </div>
-                                    <ul class="item_marks">
-                                        <li class="item_mark item_discount">-25%</li>
-                                        <li class="item_mark item_new">new</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- Recently Viewed Item -->
-                            <div class="owl-item">
-                                <div class="viewed_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-                                    <div class="viewed_image"><img src="images/view_4.jpg" alt=""></div>
-                                    <div class="viewed_content text-center">
-                                        <div class="viewed_price">$379</div>
-                                        <div class="viewed_name"><a href="#">Huawei MediaPad...</a></div>
-                                    </div>
-                                    <ul class="item_marks">
-                                        <li class="item_mark item_discount">-25%</li>
-                                        <li class="item_mark item_new">new</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- Recently Viewed Item -->
-                            <div class="owl-item">
-                                <div class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                                    <div class="viewed_image"><img src="images/view_5.jpg" alt=""></div>
-                                    <div class="viewed_content text-center">
-                                        <div class="viewed_price">$225<span>$300</span></div>
-                                        <div class="viewed_name"><a href="#">Sony PS4 Slim</a></div>
-                                    </div>
-                                    <ul class="item_marks">
-                                        <li class="item_mark item_discount">-25%</li>
-                                        <li class="item_mark item_new">new</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- Recently Viewed Item -->
-                            <div class="owl-item">
-                                <div class="viewed_item d-flex flex-column align-items-center justify-content-center text-center">
-                                    <div class="viewed_image"><img src="images/view_6.jpg" alt=""></div>
-                                    <div class="viewed_content text-center">
-                                        <div class="viewed_price">$375</div>
-                                        <div class="viewed_name"><a href="#">Speedlink...</a></div>
-                                    </div>
-                                    <ul class="item_marks">
-                                        <li class="item_mark item_discount">-25%</li>
-                                        <li class="item_mark item_new">new</li>
-                                    </ul>
-                                </div>
-                            </div>
                         </div>
 
                     </div>
@@ -210,14 +152,14 @@
 
                         <div class="owl-carousel owl-theme brands_slider">
 
-                            <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_1.jpg" alt=""></div></div>
-                            <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_2.jpg" alt=""></div></div>
-                            <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_3.jpg" alt=""></div></div>
-                            <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_4.jpg" alt=""></div></div>
-                            <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_5.jpg" alt=""></div></div>
-                            <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_6.jpg" alt=""></div></div>
-                            <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_7.jpg" alt=""></div></div>
-                            <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_8.jpg" alt=""></div></div>
+                            <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_1.jpg')}}" alt=""></div></div>
+                            <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_2.jpg')}}" alt=""></div></div>
+                            <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_3.jpg')}}" alt=""></div></div>
+                            <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_4.jpg')}}" alt=""></div></div>
+                            <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_5.jpg')}}" alt=""></div></div>
+                            <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_6.jpg')}}" alt=""></div></div>
+                            <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_7.jpg')}}" alt=""></div></div>
+                            <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_8.jpg')}}" alt=""></div></div>
 
                         </div>
 

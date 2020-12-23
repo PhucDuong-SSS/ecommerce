@@ -137,8 +137,13 @@ class ProductController extends Controller
         $products = $this->productRepository->getAll();
         return view('admin.stock.stockProduct', compact('products'));
     }
-
-
+    public function showDetails($id)
+    {
+        $product = $this->productRepository->findById($id);
+        $color = $product->color;
+        $product_color = explode(',', $color);
+        return view('page.product', compact('product','product_color'));
+    }
 
 
 }

@@ -7,6 +7,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use function PHPUnit\Framework\isEmpty;
 
 
 class CartController extends Controller
@@ -159,6 +160,48 @@ class CartController extends Controller
         $shipping_charge = $this->number_unformat($setting->shipping_charge);
 
         return view('page.paymentpage',compact('cart','shipping_charge', 'subtotal','customer') );
+    }
+
+    public function addProductCart( Request  $request,$id)
+    {
+        $product = DB::table('products')->where('id',$id)->first();
+        $data = array();
+        if ($product->discount_price == NULL) {
+            $data['id'] = $product->id;
+            $data['name'] = $product->name;
+            $data['qty'] = $request->qty;
+            $data['price'] = $product->selling_price;
+            $data['weight'] = 1;
+            $data['options']['image'] = $product->image_one;
+            $data['options']['color'] = $request->color;
+            Cart::add($data);
+            $count =Cart::count();
+            $subtotal =Cart::subtotal();
+            $notification=array(
+                'messege'=>'Product add Successfully',
+                'alert-type'=>'success'
+            );
+            return Redirect()->back()->with($notification);
+        }else{
+
+            $data['id'] = $product->id;
+            $data['name'] = $product->name;
+            $data['qty'] = $request->qty;
+            $data['price'] = $product->discount_price;
+            $data['weight'] = 1;
+            $data['options']['image'] = $product->image_one;
+            $data['options']['color'] = $request->color;
+            Cart::add($data);
+            $count =Cart::count();
+            $subtotal =Cart::subtotal();
+            $notification=array(
+                'messege'=>'Product add Successfully',
+                'alert-type'=>'success'
+            );
+            return Redirect()->back()->with($notification);
+
+        }
+
     }
 
 

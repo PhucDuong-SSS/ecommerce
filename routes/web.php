@@ -43,8 +43,13 @@ Route::get('/',[ProductController::class, 'showProductFrontend'])->name('index')
 Route::get('show-contact-page',[ContactController::class, 'showContactPage'])->name('contact.showContactPage');
 Route::post('show-contact-page',[ContactController::class, 'storeInfo'])->name('contact.storeInfo');
 
+// Show detail products
+Route::get('show-product-details/{id}',[ProductController::class, 'showDetails'])->name('product.showDetails');
+
+
 //Add cart
 Route::get('add-cart/{id}',[CartController::class, 'addCart'])->name('cart.addCart');
+Route::post('add-product-cart/{id}',[CartController::class, 'addProductCart'])->name('cart.addProductCart');
 Route::get('customer/add-wishlist/{id}',[WishlistController::class, 'addWishlist'])->name('wishlist.addWishlist');
 //Show cart
 Route::get('show-cart',[CartController::class, 'showCart'])->name('cart.showCart');
