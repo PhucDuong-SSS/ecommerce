@@ -47,6 +47,9 @@ Route::post('show-contact-page',[ContactController::class, 'storeInfo'])->name('
 Route::get('show-product-details/{id}',[ProductController::class, 'showDetails'])->name('product.showDetails');
 Route::get('show-product-category/{id}',[ProductController::class, 'showProductCategory'])->name('product.showProductCategory');
 
+//recently product
+Route::post('show-recently-product',[ProductController::class, 'renderProductView'])->name('product.showrecently');
+
 
 //Add cart
 Route::get('add-cart/{id}',[CartController::class, 'addCart'])->name('cart.addCart');

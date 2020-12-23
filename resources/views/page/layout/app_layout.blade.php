@@ -11,6 +11,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="OneTech shop project">
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/bootstrap4/bootstrap.min.css')}}">
     <link href="{{ asset('frontend/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css') }}" rel="stylesheet" type="text/css">
@@ -484,7 +487,36 @@
                 });
         });
     });
+
+
+    $( document ).ready(function() {
+        $(document).on("click", "#content_product", function(e){
+         let idProudct = $('#content_product').attr('data-id');
+
+         let products = localStorage.getItem('products');
+         if(products == null)
+         {
+             arrayProduct = new Array();
+             arrayProduct.push(idProudct);
+             localStorage.setItem('products',JSON.stringify(arrayProduct));
+         }
+         else
+         {
+             let products = localStorage.getItem('products');
+
+             products = $.parseJSON(products);
+             if(products.indexOf(idProudct)==-1)
+             {
+                 products.push(idProudct);
+                 localStorage.setItem('products',JSON.stringify('products'));
+             }
+            console.log(products)
+         }
+        });
+    });
 </script>
+
+
 
 
 
