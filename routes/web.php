@@ -45,6 +45,7 @@ Route::post('show-contact-page',[ContactController::class, 'storeInfo'])->name('
 
 // Show detail products
 Route::get('show-product-details/{id}',[ProductController::class, 'showDetails'])->name('product.showDetails');
+Route::get('show-product-category/{id}',[ProductController::class, 'showProductCategory'])->name('product.showProductCategory');
 
 
 //Add cart

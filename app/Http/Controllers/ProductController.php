@@ -145,5 +145,14 @@ class ProductController extends Controller
         return view('page.product', compact('product','product_color'));
     }
 
+    public function showProductCategory($id)
+    {
+        $productsCategory = $this->productRepository->showProductCategory($id);
+        $brands = $this->productRepository->getBrand();
+        $categories = $this->productRepository->getCategory();
+        return view('page.shop', compact('productsCategory','categories','brands'));
+    }
+
+
 
 }
