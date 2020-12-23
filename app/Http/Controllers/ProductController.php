@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductRequest;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Repo\ProductRepo\ProductRepositoryInterface;
 use Illuminate\Support\Facades\DB;
@@ -151,6 +152,18 @@ class ProductController extends Controller
         $brands = $this->productRepository->getBrand();
         $categories = $this->productRepository->getCategory();
         return view('page.shop', compact('productsCategory','categories','brands'));
+    }
+
+    public function renderProductView(Request $request)
+    {
+        if($request->ajax())
+        {
+            $listId = $request->id;
+            $products = Product::whereIn('id',$listId)->get();
+            $html = view('components.recentlyView',compact('products'))->render();
+
+            return response()->json(['data'=>$html]);
+        }
     }
 
 
