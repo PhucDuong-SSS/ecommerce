@@ -32,4 +32,10 @@ class Product extends Model
     {
         return $this->belongsTo(Wishlist::class, 'product_id', 'id');
     }
+    public function getUrl()
+    {
+        return "https://phucduongc8.s3.amazonaws.com/";
+    }
+
+
 }

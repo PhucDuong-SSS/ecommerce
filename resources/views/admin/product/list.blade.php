@@ -35,7 +35,7 @@
 {{--                                <td>{{ $row->code }}</td>--}}
                                 <td>{{substr($row->name,0,35)  }}</td>
 
-                                <td> <img src="{{ asset($row->image_one) }}" height="50px;" width="50px;"> </td>
+                                <td> <img src="{{ $row->getUrl().$row->image_one}}" height="50px;" width="50px;"> </td>
                                 <td>{{ $row->category->name }}</td>
                                 <td>{{ $row->brand->name??'' }}</td>
                                 <td>{{ $row->quantity }}</td>
