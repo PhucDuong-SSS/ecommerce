@@ -18,15 +18,15 @@
                 <!-- Images -->
                 <div class="col-lg-2 order-lg-1 order-2">
                     <ul class="image_list">
-                        <li data-image="{{asset('frontend/images/single_4.jpg')}}"><img src="{{asset('frontend/images/single_4.jpg')}}" alt=""></li>
-                        <li data-image="{{asset('frontend/images/single_3.jpg')}}"><img src="{{asset('frontend/images/single_3.jpg')}}" alt=""></li>
-                        <li data-image="{{asset('frontend/images/single_2.jpg')}}"><img src="{{asset('frontend/images/single_2.jpg')}}" alt=""></li>
+                        <li data-image="{{$product->getUrl().$product->image_one}}"><img src="{{$product->getUrl().$product->image_one}}" alt=""></li>
+                        <li data-image="{{$product->getUrl().$product->image_two}}"><img src="{{$product->getUrl().$product->image_two}}" alt=""></li>
+                        <li data-image="{{$product->getUrl().$product->image_three}}"><img src="{{$product->getUrl().$product->image_three}}" alt=""></li>
                     </ul>
                 </div>
 
                 <!-- Selected Image -->
                 <div class="col-lg-5 order-lg-2 order-1">
-                    <div class="image_selected"><img src="{{asset('frontend/images/single_3.jpg')}}" alt=""></div>
+                    <div class="image_selected"><img src="{{$product->getUrl().$product->image_one}}" alt=""></div>
                 </div>
 
                 <!-- Description -->
