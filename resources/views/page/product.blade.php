@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/blog_styles.css') }}">
 @endsection
 @section('script')
-    <script src="{{ asset('frontend/js/product_custom.js')}}"></script>
+    <script src="{{ asset('frontend/js/blog_custom.js')}}"></script>
 @endsection
 @section('content')
 
