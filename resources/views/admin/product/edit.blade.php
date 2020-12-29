@@ -66,7 +66,7 @@
                                 <div class="form-group mg-b-10-force">
                                     <label class="form-control-label">Sub Category: <span class="tx-danger">*</span></label>
                                     <select class="form-control select2"  name="subcategory_id">
-                                            <option value="{{ isset($product->sub_category->id)?$product->sub_category->id:"" }}" > {{ $product->sub_category->name??''}}</option>
+                                        <option value="{{ isset($product->sub_category->id)?$product->sub_category->id:"" }}" > {{ $product->sub_category->name??''}}</option>
 
                                     </select>
                                 </div>
@@ -298,28 +298,22 @@
             $('select[name="category_id"]').on('change',function(){
                 var category_id = $(this).val();
                 if (category_id) {
-
                     $.ajax({
-                        url: "{{ url('/admin/product/get-subcategory') }}/"+category_id,                        type:"GET",
+                        url: "{{ url('/admin/product/get-subcategory') }}/"+category_id,
+                        type:"GET",
                         dataType:"json",
                         success:function(data) {
-                            console.log(data);
                             var d =$('select[name="subcategory_id"]').empty();
                             $.each(data, function(key, value){
-
                                 $('select[name="subcategory_id"]').append('<option value="'+ value.id + '">' + value.name + '</option>');
-
                             });
                         },
                     });
-
                 }else{
                     alert('danger');
                 }
-
             });
         });
-
     </script>
 
 

@@ -35,5 +35,9 @@ interface ProductRepositoryInterface extends RepositoryInterface
 
     public function showProductCategory($id);
 
+    public function getMainBanner();
+
+    public function getsiteSetting();
+
 
 }
