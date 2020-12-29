@@ -40,6 +40,11 @@ Route::post('show-contact-page',[ContactController::class, 'storeInfo'])->name('
 // Show detail products
 Route::get('show-product-details/{id}',[ProductController::class, 'showDetails'])->name('product.showDetails');
 Route::get('show-product-category/{id}',[ProductController::class, 'showProductCategory'])->name('product.showProductCategory');
+Route::get('show-product-category-feature/{categoryId}/',[ProductController::class, 'showProductCategoryFeature'])->name('product.showProductCategoryFeature');
+Route::get('show-product-category-trend/{categoryId}/',[ProductController::class, 'showProductCategoryTrend'])->name('product.showProductCategoryTrend');
+Route::get('show-product-category-hightview/{categoryId}/',[ProductController::class, 'showProductCategoryView'])->name('product.showProductCategoryView');
+Route::get('show-product-category-priceasc/{categoryId}/',[ProductController::class, 'showProductCategoryPriceAsc'])->name('product.showProductCategoryPriceAsc');
+Route::get('show-product-category-pricedesc/{categoryId}/',[ProductController::class, 'showProductCategoryPriceDecs'])->name('product.showProductCategoryPriceDecs');
 
 //recently product
 Route::post('show-recently-product',[ProductController::class, 'renderProductView'])->name('product.showrecently');

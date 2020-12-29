@@ -189,7 +189,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     public function showProductCategory($id)
     {
 
-        return $this->model->where('category_id',$id)->paginate(10);
+        return $this->model->where('category_id',$id)->paginate(8);
     }
     public function getMainBanner()
     {
@@ -200,5 +200,27 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         $siteSetting = DB::table('site_settings')->get();
         return $siteSetting;
     }
+
+    public function showProductCategoryFeature($categoryId)
+    {
+        return $this->model->where('category_id',$categoryId)->where('hot_deal',1)->paginate(8);
+    }
+    public function showProductCategoryTrend($categoryId)
+    {
+        return $this->model->where('category_id',$categoryId)->where('trend',1)->paginate(8);
+    }
+    public function showProductCategoryView($categoryId)
+    {
+        return $this->model->where('category_id',$categoryId)->orderBy('view', 'desc')->paginate(8);
+    }
+    public function showProductCategoryPriceAsc($categoryId)
+    {
+        return $this->model->where('category_id',$categoryId)->orderBy('selling_price', 'asc')->paginate(8);
+    }
+    public function showProductCategoryPriceDecs($categoryId)
+    {
+        return $this->model->where('category_id',$categoryId)->orderBy('selling_price', 'desc')->paginate(8);
+    }
+
 
 }

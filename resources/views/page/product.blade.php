@@ -106,14 +106,7 @@
                     <!-- navbar title-->
                     <div class="block-product__menu d-flex flex-row ">
                         <h2 class="block-product__menu-title"><a href="">Relate</a></h2>
-                        <ul class="d-flex flex-row">
-                            <li><a class="product-link" class="product-link" href="">Iphone 12 Pro Max</a></li>
-                            <li><a class="product-link" href="">Iphone 12 Pro Max</a></li>
-                            <li><a class="product-link" href="">Iphone 12 Pro Max</a></li>
-                            <li><a class="product-link" href="">Iphone 12 Pro Max</a></li>
 
-                        </ul>
-                        <div class="blog_button"><a href="blog_single.html">Continue Reading</a></div>
                     </div>
 
 
@@ -125,118 +118,54 @@
 
         </div>
         <div class="row ">
-            <div class="col-md-3 col-sm-6">
-                <div class="product-grid4">
-                    <div class="product-image4">
-                        <a href="#">
-                            <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-1.jpg">
-                            <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg">
-                        </a>
-                        <ul class="social">
-                            <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                            <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                            <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
-                        <span class="product-new-label">New</span>
-                        <span class="product-discount-label">-10%</span>
-                    </div>
-                    <div class="product-content">
-                        <h3 class="title"><a href="#">Women's Black Top</a></h3>
-                        <div class="price">
-                            $14.40
-                            <span>$16.00</span>
+            @if(count($productRelated))
+            @foreach($productRelated as $product)
+                <div class="col-md-3 col-sm-6">
+                    <div class="product-grid4">
+                        <div class="product-image4">
+                            <a href="{{route('product.showDetails',['id'=>$product->id])}}">
+                                <img class="pic-1" src="{{$product->getUrl().$product->image_one}}">
+                                <img class="pic-2" src="{{$product->getUrl().$product->image_two}}">
+                            </a>
+                            <ul class="social">
+                                <li><a href="{{route('product.showDetails',['id'=>$product->id])}}" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
+                                {{--                            <li><a  href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>--}}
+                                <li><a class="addcart" data-id="{{$product->id}}" href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                            @if($product->discount_price == NULL)
+
+                                <span class="product-new-label">New</span>
+                            @else
+                                <span class="product-discount-label">
+                              @php
+                                  $amount = $product->selling_price - $product->discount_price;
+                                  $discount = $amount/$product->selling_price*100;
+                              @endphp
+
+                                    {{ intval($discount) }}%
+                        </span>
+                            @endif
                         </div>
-                        <div class="home-product-item__origin">
-                            <span class="home-product-item__branch">100 view</span>
-                            <span class="home-product-item__origin-name">100 Sold</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="product-grid4">
-                    <div class="product-image4">
-                        <a href="#">
-                            <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-1.jpg">
-                            <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg">
-                        </a>
-                        <ul class="social">
-                            <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                            <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                            <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
-                        <span class="product-new-label">New</span>
-                        <span class="product-discount-label">-10%</span>
-                    </div>
-                    <div class="product-content">
-                        <h3 class="title"><a href="#">Women's Black Top</a></h3>
-                        <div class="price">
-                            $14.40
-                            <span>$16.00</span>
-                        </div>
-                        <div class="home-product-item__origin">
-                            <span class="home-product-item__branch">100 view</span>
-                            <span class="home-product-item__origin-name">100 Sold</span>
+                        <div class="product-content">
+                            <h3 class="title"><a href="#">{{$product->name}}</a></h3>
+                            <div class="price">
+                                @if($product->discount_price == NULL)
+                                    ${{ $product->selling_price }}
+                                @else
+                                    ${{$product->discount_price}}
+                                    <span>${{$product->selling_price}}</span>
+                                @endif
+                            </div>
+                            <div class="home-product-item__origin">
+                                <span class="home-product-item__branch">{{$product->view}} view</span>
+                                <span class="home-product-item__origin-name">{{$product->sold}} Sold</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="product-grid4">
-                    <div class="product-image4">
-                        <a href="#">
-                            <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-1.jpg">
-                            <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg">
-                        </a>
-                        <ul class="social">
-                            <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                            <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                            <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
-                        <span class="product-new-label">New</span>
-                        <span class="product-discount-label">-10%</span>
-                    </div>
-                    <div class="product-content">
-                        <h3 class="title"><a href="#">Women's Black Top</a></h3>
-                        <div class="price">
-                            $14.40
-                            <span>$16.00</span>
-                        </div>
-                        <div class="home-product-item__origin">
-                            <span class="home-product-item__branch">100 view</span>
-                            <span class="home-product-item__origin-name">100 Sold</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="product-grid4">
-                    <div class="product-image4">
-                        <a href="#">
-                            <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-1.jpg">
-                            <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg">
-                        </a>
-                        <ul class="social">
-                            <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                            <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                            <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
-                        <span class="product-new-label">New</span>
-                        <span class="product-discount-label">-10%</span>
-                    </div>
-                    <div class="product-content">
-                        <h3 class="title"><a href="#">Women's Black Top</a></h3>
-                        <div class="price">
-                            $14.40
-                            <span>$16.00</span>
-                        </div>
-                        <div class="home-product-item__origin">
-                            <span class="home-product-item__branch">100 view</span>
-                            <span class="home-product-item__origin-name">100 Sold</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
+                @endif
+
 
 
         </div>
