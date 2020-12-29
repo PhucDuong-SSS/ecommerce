@@ -12,11 +12,10 @@
 
             <div class="card pd-20 pd-sm-40">
                 <h6 class="card-body-title">EDIT Admin   </h6>
-                <p class="mg-b-20 mg-sm-b-30">New Admin Add From</p>
+                <p class="mg-b-20 mg-sm-b-30">New Admin Edit From</p>
 
                 <form method="post" action="{{ route('admin.updateUser', $user->id) }}" >
                     @csrf
-
                     <input type="hidden" name="id" value="{{ $user->id }}">
 
                     <div class="form-layout">

@@ -52,9 +52,11 @@ class CategoryController extends Controller
     public function delete($id)
     {
         $hasSubCategory = true;
+        $hasProduct = true;
         $category =$this->categoryRepository->findById($id);
         count($category->sub_categories)>0?$hasSubCategory = true:$hasSubCategory=false;
-        if(!$hasSubCategory)
+        count($category->products)>0?$hasProduct = true:$hasProduct=false;
+        if(!$hasSubCategory && !$hasProduct )
         {
             $this->categoryRepository->delete($id);
             $notification = [
@@ -66,7 +68,7 @@ class CategoryController extends Controller
         else
         {
             $notification = [
-                'message'=>'You have to delete all sub category of this category to continue delete',
+                'message'=>'You have to delete all sub category and product of this category to continue delete',
                 'alert-type'=>'warning'
             ];
             return redirect()->route('category.list')->with($notification);

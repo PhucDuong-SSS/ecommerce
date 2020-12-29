@@ -121,7 +121,7 @@
                             <div class="col-lg-4">
                                 <div class="form-group">
                                     <label class="form-control-label">Product Color: <span class="tx-danger">*</span></label>
-                                    <input class="form-control" type="text" name="product_color" id="color" data-role="tagsinput"  >
+                                    <input class="form-control" type="text" name="product_color" id="color" required data-role="tagsinput"  >
                                 </div>
                             </div><!-- col-4 -->
 

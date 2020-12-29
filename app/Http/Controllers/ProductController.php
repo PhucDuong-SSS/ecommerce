@@ -9,6 +9,8 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Repo\ProductRepo\ProductRepositoryInterface;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\RedirectResponse;
+use function PHPUnit\Framework\isEmpty;
 
 class ProductController extends Controller
 {
@@ -67,9 +69,11 @@ class ProductController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    public function updateImageProduct(ProductRequest $request, $id)
+    public function updateImage(ProductRequest $request, $id)
     {
         $product = $this->productRepository->findById($id);
+
+
         $this->productRepository->updateImageProduct($request, $product);
         $notification = [
             'message'=>'Successfully updated image product',
@@ -88,14 +92,32 @@ class ProductController extends Controller
 
     public function delete($id)
     {
+        $has_order_details = true;
+        $has_wishlist = true;
         $product = $this->productRepository->findById($id);
-        $this->productRepository->removeImage($product);
-        $this->productRepository->delete($id);
-        $notification = [
-            'message'=>'Successfully deleted product',
-            'alert-type'=>'success'
-        ];
-        return redirect()->back()->with($notification);
+        isEmpty($product->wishlist)?$has_wishlist = true:$has_wishlist=false;
+        isEmpty($product->orderdetail)?$has_order_details = true:$has_order_details=false;
+
+        if(!$has_order_details && !$has_wishlist )
+        {
+            $this->productRepository->removeImage($product);
+            $this->productRepository->delete($id);
+            $notification = [
+                'message'=>'Successfully deleted product',
+                'alert-type'=>'success'
+            ];
+            return redirect()->back()->with($notification);
+        }
+        else
+        {
+            $notification = [
+                'message'=>'Proudct belong to wishlist, order details table',
+                'alert-type'=>'warning'
+            ];
+            return redirect()->route('product.list')->with($notification);
+        }
+
+
 
     }
     public function active($id)
@@ -128,9 +150,11 @@ class ProductController extends Controller
         $bestProducts = $this->productRepository->getBestProduct();
         $categories = $this->productRepository->getCategory();
         $banner2 = $this->productRepository->getBanner();
+        $mainBaner = $this->productRepository->getMainBanner();
+        $siteSetting = $this->productRepository->getsiteSetting();
 
         return view('page.layout.index',
-            compact('featuredProducts','trendProducts','hotProducts','bestProducts','categories','banner2'));
+            compact('mainBaner','featuredProducts','trendProducts','hotProducts','bestProducts','categories','banner2','siteSetting'));
     }
 
     public function getProductStock()

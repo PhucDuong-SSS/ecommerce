@@ -33,7 +33,6 @@
 
     <script src="https://js.stripe.com/v3/"></script>
 
-
 </head>
 
 <body>
@@ -51,8 +50,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col d-flex flex-row">
-                        <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('frontend/images/phone.png')}}" alt=""></div>+38 068 005 3570</div>
-                        <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('frontend/images/mail.png')}}" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
+                        <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('frontend/images/phone.png')}}" alt=""></div>{{$siteSetting[0]->phone_one}}</div>
+                        <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('frontend/images/mail.png')}}" alt=""></div><a href="mailto:phucngocduong@gmail.com">phucngocduong@gmail.com</a></div>
                         <div class="top_bar_content ml-auto">
                             <div class="top_bar_menu">
                                 <ul class="standard_dropdown top_bar_dropdown">
@@ -110,21 +109,7 @@
                             <div class="header_search_content">
                                 <div class="header_search_form_container">
                                     <form action="#" class="header_search_form clearfix">
-                                        <input type="search" required="required" class="header_search_input" placeholder="Search for products...">
-                                        <div class="custom_dropdown">
-                                            <div class="custom_dropdown_list">
-                                                <span class="custom_dropdown_placeholder clc">All Categories</span>
-                                                <i class="fas fa-chevron-down"></i>
-                                                <ul class="custom_list clc">
-                                                    <li><a class="clc" href="#">All Categories</a></li>
-                                                    <li><a class="clc" href="#">Computers</a></li>
-                                                    <li><a class="clc" href="#">Laptops</a></li>
-                                                    <li><a class="clc" href="#">Cameras</a></li>
-                                                    <li><a class="clc" href="#">Hardware</a></li>
-                                                    <li><a class="clc" href="#">Smartphones</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                        <input type="search" required="required" class="header_search_input" placeholder="Search for name products...">
                                         <button type="submit" class="header_search_button trans_300" value="Submit"><img src="{{asset('frontend/images/search.png')}}" alt=""></button>
                                     </form>
                                 </div>
@@ -179,32 +164,16 @@
                                     <div class="cat_menu_text">categories</div>
                                 </div>
 
+
                                 <ul class="cat_menu">
-                                    <li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
-                                    <li><a href="#">Cameras & Photos<i class="fas fa-chevron-right"></i></a></li>
-                                    <li class="hassubs">
-                                        <a href="#">Hardware<i class="fas fa-chevron-right"></i></a>
-                                        <ul>
-                                            <li class="hassubs">
-                                                <a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
-                                                <ul>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Smartphones & Tablets<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">TV & Audio<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Gadgets<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Car Electronics<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Video Games & Consoles<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li>
+                                    <li><a href="{{route('product.showProductCategory',['id'=>7])}}">Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
+                                    <li><a href="{{route('product.showProductCategory',['id'=>6])}}">Computer<i class="fas fa-chevron-right"></i></a></li>
+                                    <li><a href="{{route('product.showProductCategory',['id'=>8])}}">Camera<i class="fas fa-chevron-right"></i></a></li>
+                                    <li><a href="{{route('product.showProductCategory',['id'=>9])}}">Hardware<i class="fas fa-chevron-right"></i></a></li>
+                                    <li><a href="{{route('product.showProductCategory',['id'=>10])}}">Smart Phone<i class="fas fa-chevron-right"></i></a></li>
+                                    <li><a href="{{route('product.showProductCategory',['id'=>11])}}">Tablet<i class="fas fa-chevron-right"></i></a></li>
+                                    <li><a href="{{route('product.showProductCategory',['id'=>12])}}">Tivi<i class="fas fa-chevron-right"></i></a></li>
+                                    <li><a href="{{route('product.showProductCategory',['id'=>13])}}">Accessory<i class="fas fa-chevron-right"></i></a></li>
                                 </ul>
                             </div>
 
@@ -212,39 +181,10 @@
 
                             <div class="main_nav_menu ml-auto">
                                 <ul class="standard_dropdown main_nav_dropdown">
-                                    <li><a href="#">Home<i class="fas fa-chevron-down"></i></a></li>
-                                    <li class="hassubs">
-                                        <a href="#">Super Deals<i class="fas fa-chevron-down"></i></a>
-                                        <ul>
-                                            <li>
-                                                <a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                <ul>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="hassubs">
-                                        <a href="#">Featured Brands<i class="fas fa-chevron-down"></i></a>
-                                        <ul>
-                                            <li>
-                                                <a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                <ul>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                        </ul>
-                                    </li>
+                                    <li><a href="{{route('index')}}">Home<i class="fas fa-chevron-down"></i></a></li>
+                                    <li><a href="blog.html">Product<i class="fas fa-chevron-down"></i></a></li>
+
+
                                     <li class="hassubs">
                                         <a href="#">Pages<i class="fas fa-chevron-down"></i></a>
                                         <ul>
@@ -356,8 +296,8 @@
                             </ul>
 
                             <div class="menu_contact">
-                                <div class="menu_contact_item"><div class="menu_contact_icon"><img src="{{asset('frontend/images/phone_white.png')}}" alt=""></div>+38 068 005 3570</div>
-                                <div class="menu_contact_item"><div class="menu_contact_icon"><img src="{{asset('frontend/images/mail_white.png')}}" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
+                                <div class="menu_contact_item"><div class="menu_contact_icon"><img src="{{asset('frontend/images/phone_white.png')}}" alt=""></div> 0123 456 789 </div>
+                                <div class="menu_contact_item"><div class="menu_contact_icon"><img src="{{asset('frontend/images/mail_white.png')}}" alt=""></div><a href="{{$siteSetting[0]->phone_one}}">{{$siteSetting[0]->email}}</a></div>
                             </div>
                         </div>
                     </div>
@@ -407,9 +347,14 @@
 
 
 
-<script src="{{ asset('frontend/js/jquery-3.3.1.min.js')}}"></script>
-<script src="{{ asset('frontend/styles/bootstrap4/popper.js')}}"></script>
-<script src="{{ asset('frontend/styles/bootstrap4/bootstrap.min.js')}}"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
+        integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
+        integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj"
+        crossorigin="anonymous"></script>
 <script src="{{ asset('frontend/plugins/greensock/TweenMax.min.js')}}"></script>
 <script src="{{ asset('frontend/plugins/greensock/TimelineMax.min.js')}}"></script>
 <script src="{{ asset('frontend/plugins/scrollmagic/ScrollMagic.min.js')}}"></script>
@@ -489,35 +434,37 @@
     });
 
 
-    $( document ).ready(function() {
-        $(document).on("click", "#content_product", function(e){
-         let idProudct = $('#content_product').attr('data-id');
-
-         let products = localStorage.getItem('products');
-         if(products == null)
-         {
-             arrayProduct = new Array();
-             arrayProduct.push(idProudct);
-             localStorage.setItem('products',JSON.stringify(arrayProduct));
-         }
-         else
-         {
-             let products = localStorage.getItem('products');
-
-             products = $.parseJSON(products);
-             if(products.indexOf(idProudct)==-1)
-             {
-                 products.push(idProudct);
-                 localStorage.setItem('products',JSON.stringify('products'));
-             }
-            console.log(products)
-         }
-        });
-    });
 </script>
 
-
-
+<script>
+    $(function (){
+        $(".owl-carousel").owlCarousel({
+            loop: true,
+            margin: 10,
+            dots: false,
+            autoplay: true,
+            animateOut: 'fadeOut',
+            autoplayTimeout: 3000,
+            autoplayHoverPause: true,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 2,
+                    nav: true,
+                    slideBy: 2
+                },
+                600: {
+                    items: 3,
+                    nav: true,
+                },
+                1000: {
+                    items: 4,
+                    nav: true,
+                }
+            }
+        });
+    })
+</script>
 
 
 </body>

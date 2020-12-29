@@ -33,7 +33,7 @@
                         @foreach($products as $row)
                             <tr>
 {{--                                <td>{{ $row->code }}</td>--}}
-                                <td>{{ $row->name }}</td>
+                                <td>{{substr($row->name,0,35)  }}</td>
 
                                 <td> <img src="{{ asset($row->image_one) }}" height="50px;" width="50px;"> </td>
                                 <td>{{ $row->category->name }}</td>

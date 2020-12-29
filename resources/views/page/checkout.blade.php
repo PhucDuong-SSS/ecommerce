@@ -24,7 +24,7 @@
                                         <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
                                             <div class="cart_item_name cart_info_col">
                                                 <div class="cart_item_title">Name</div>
-                                                <div class="cart_item_text">{{ $row->name  }}</div>
+                                                <div class="cart_item_text">{{ substr($row->name,0,35)   }}</div>
                                             </div>
 
                                             @if($row->options->color == NULL)

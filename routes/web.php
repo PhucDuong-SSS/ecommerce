@@ -31,12 +31,6 @@ use App\Http\Controllers\ContactController;
 |
 */
 
-Route::get('/', function () {
-//    return bcrypt('123456');
-//    return  view('admin.category.list');
-    return view('page.layout.index');
-//    return view('page.blog');
-});
 //Frontend
 Route::get('/',[ProductController::class, 'showProductFrontend'])->name('index');
 //Contact page
@@ -124,7 +118,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::get('delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
         Route::get('show/{id}', [ProductController::class, 'show'])->name('product.show');
         Route::get('get-subcategory/{id}', [ProductController::class, 'getSubCategory'])->name('product.getsubcategory');
-        Route::post('update-photo/{id}', [ProductController::class, 'updateImageProduct'])->name('product.updatephoto');
+        Route::post('update-photo/{id}',[ProductController::class, 'updateImage'])->name('product.updatephoto');
         Route::get('inactive/{id}', [ProductController::class, 'inactive'])->name('product.inactive');
         Route::get('active/{id}', [ProductController::class, 'active'])->name('product.active');
 
@@ -191,9 +185,6 @@ Route::middleware('auth')->prefix('admin')->group(function () {
             Route::get('get-mesage-details/{id}',[ContactController::class, 'showDetail'])->name('contact.showDetail');
 
         });
-
-
-
 
 
     });

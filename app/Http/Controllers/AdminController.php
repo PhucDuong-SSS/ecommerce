@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Repo\UserRepo\UserRepositoryInterface;
+use Illuminate\Http\RedirectResponse;
 
 class AdminController extends Controller
 {
@@ -92,7 +93,8 @@ class AdminController extends Controller
         return view('admin.role.editUser', compact('user'));
     }
 
-    public function updateUser(UserRequest $request, $id)
+    public function updateUser(Request $request, $id): RedirectResponse
+
     {
         $user = $this->userRepository->findById($id);
         $this->userRepository->update($user, $request);

@@ -5,6 +5,7 @@ use App\Http\Repo\BaseRepository;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
 
 class ProductRepository extends BaseRepository implements ProductRepositoryInterface
@@ -104,6 +105,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     {
 
         $old_one = $obj->image_one;
+
         $old_two = $obj->image_two;
         $old_three = $obj->image_three;
 
@@ -122,7 +124,6 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
                 unlink(storage_path().'/app/public/'.$image_one_old);
             }
             $image_one_name = hexdec(uniqid()) . '.' . $image_one->getClientOriginalExtension();
-
             Image::make($image_one)->resize(300, 300)->save(storage_path().'/app/public/' . $image_one_name);
             $obj->image_one= 'storage/' . $image_one_name;
         }
@@ -228,6 +229,15 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     {
 
         return $this->model->where('category_id',$id)->paginate(10);
+    }
+    public function getMainBanner()
+    {
+        return $this->model->where('status',1)->where('main_slider',1)->first();
+    }
+    public function getsiteSetting()
+    {
+        $siteSetting = DB::table('site_settings')->get();
+        return $siteSetting;
     }
 
 }
