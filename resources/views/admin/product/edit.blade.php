@@ -74,19 +74,19 @@
 
 
 
-                            <div class="col-lg-4">
-                                <div class="form-group mg-b-10-force">
-                                    <label class="form-control-label">Brand: <span class="tx-danger">*</span></label>
-                                    <select class="form-control select2" data-placeholder="Choose country" name="brand_id">
-                                        <option label="Choose Brand"></option>
+{{--                            <div class="col-lg-4">--}}
+{{--                                <div class="form-group mg-b-10-force">--}}
+{{--                                    <label class="form-control-label">Brand: <span class="tx-danger">*</span></label>--}}
+{{--                                    <select class="form-control select2" data-placeholder="Choose country" name="brand_id">--}}
+{{--                                        <option label="Choose Brand"></option>--}}
 
-                                        @foreach($brands as $brand)
-                                            <option value="{{ $brand->id }}" <?php if ($brand->id == $product->brand_id) {
-                                                echo "selected"; } ?> > {{ $brand->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div><!-- col-4 -->
+{{--                                        @foreach($brands as $brand)--}}
+{{--                                            <option value="{{ $brand->id }}" <?php if ($brand->id == $product->brand_id) {--}}
+{{--                                                echo "selected"; } ?> > {{ $brand->name }}</option>--}}
+{{--                                        @endforeach--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                            </div><!-- col-4 -->--}}
 
 
                             <div class="col-lg-4">

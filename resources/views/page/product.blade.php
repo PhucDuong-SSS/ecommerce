@@ -1,7 +1,7 @@
 @extends('page.layout.app_layout')
 @section('css')
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/product_styles.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/product_responsive.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/category_style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/blog_styles.css') }}">
 @endsection
 @section('script')
     <script src="{{ asset('frontend/js/product_custom.js')}}"></script>
@@ -18,21 +18,21 @@
                 <!-- Images -->
                 <div class="col-lg-2 order-lg-1 order-2">
                     <ul class="image_list">
-                        <li data-image="{{ asset( $product->image_one ) }}"><img src="{{ asset( $product->image_one ) }}" alt=""></li>
-                        <li data-image="{{ asset( $product->image_two ) }}"><img src="{{ asset( $product->image_two ) }}" alt=""></li>
-                        <li data-image="{{ asset( $product->image_three ) }}"><img src="{{ asset( $product->image_three ) }}" alt=""></li>
+                        <li data-image="{{asset('frontend/images/single_4.jpg')}}"><img src="{{asset('frontend/images/single_4.jpg')}}" alt=""></li>
+                        <li data-image="{{asset('frontend/images/single_3.jpg')}}"><img src="{{asset('frontend/images/single_3.jpg')}}" alt=""></li>
+                        <li data-image="{{asset('frontend/images/single_2.jpg')}}"><img src="{{asset('frontend/images/single_2.jpg')}}" alt=""></li>
                     </ul>
                 </div>
 
                 <!-- Selected Image -->
                 <div class="col-lg-5 order-lg-2 order-1">
-                    <div class="image_selected"><img src="{{ asset( $product->image_one ) }}" alt=""></div>
+                    <div class="image_selected"><img src="{{asset('frontend/images/single_3.jpg')}}" alt=""></div>
                 </div>
 
                 <!-- Description -->
                 <div class="col-lg-5 order-3">
                     <div class="product_description">
-                        <div class="product_category">{{ $product->brand->name }}</div>
+{{--                        <div class="product_category">{{ $product->brand->name }}</div>--}}
                         <div class="product_name">{{ $product->name }}</div>
                         <div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
                         <div class="product_text"><p>
@@ -96,37 +96,151 @@
     </div>
     </div>
 
-    <!-- Brands -->
+    <!-- product list-->
+    <div class="container">
+        <!-- product title-->
 
-    <div class="brands">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="brands_slider_container">
+        <div class="row">
+            <div class="col col-lg-12">
+                <div class="product-wap d-flex flex-row align-items-start justify-content-between">
+                    <!-- navbar title-->
+                    <div class="block-product__menu d-flex flex-row ">
+                        <h2 class="block-product__menu-title"><a href="">Relate</a></h2>
+                        <ul class="d-flex flex-row">
+                            <li><a class="product-link" class="product-link" href="">Iphone 12 Pro Max</a></li>
+                            <li><a class="product-link" href="">Iphone 12 Pro Max</a></li>
+                            <li><a class="product-link" href="">Iphone 12 Pro Max</a></li>
+                            <li><a class="product-link" href="">Iphone 12 Pro Max</a></li>
 
-                        <!-- Brands Slider -->
+                        </ul>
+                        <div class="blog_button"><a href="blog_single.html">Continue Reading</a></div>
+                    </div>
 
-                        <div class="owl-carousel owl-theme brands_slider">
 
-                            <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_1.jpg')}}" alt=""></div></div>
-                            <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_2.jpg')}}" alt=""></div></div>
-                            <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_3.jpg')}}" alt=""></div></div>
-                            <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_4.jpg')}}" alt=""></div></div>
-                            <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_5.jpg')}}" alt=""></div></div>
-                            <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_6.jpg')}}" alt=""></div></div>
-                            <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_7.jpg')}}" alt=""></div></div>
-                            <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_8.jpg')}}" alt=""></div></div>
 
+
+
+                </div>
+            </div>
+
+        </div>
+        <div class="row ">
+            <div class="col-md-3 col-sm-6">
+                <div class="product-grid4">
+                    <div class="product-image4">
+                        <a href="#">
+                            <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-1.jpg">
+                            <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg">
+                        </a>
+                        <ul class="social">
+                            <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
+                            <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+                            <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
+                        <span class="product-new-label">New</span>
+                        <span class="product-discount-label">-10%</span>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="title"><a href="#">Women's Black Top</a></h3>
+                        <div class="price">
+                            $14.40
+                            <span>$16.00</span>
                         </div>
-
-                        <!-- Brands Slider Navigation -->
-                        <div class="brands_nav brands_prev"><i class="fas fa-chevron-left"></i></div>
-                        <div class="brands_nav brands_next"><i class="fas fa-chevron-right"></i></div>
-
+                        <div class="home-product-item__origin">
+                            <span class="home-product-item__branch">100 view</span>
+                            <span class="home-product-item__origin-name">100 Sold</span>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="product-grid4">
+                    <div class="product-image4">
+                        <a href="#">
+                            <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-1.jpg">
+                            <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg">
+                        </a>
+                        <ul class="social">
+                            <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
+                            <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+                            <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
+                        <span class="product-new-label">New</span>
+                        <span class="product-discount-label">-10%</span>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="title"><a href="#">Women's Black Top</a></h3>
+                        <div class="price">
+                            $14.40
+                            <span>$16.00</span>
+                        </div>
+                        <div class="home-product-item__origin">
+                            <span class="home-product-item__branch">100 view</span>
+                            <span class="home-product-item__origin-name">100 Sold</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="product-grid4">
+                    <div class="product-image4">
+                        <a href="#">
+                            <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-1.jpg">
+                            <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg">
+                        </a>
+                        <ul class="social">
+                            <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
+                            <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+                            <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
+                        <span class="product-new-label">New</span>
+                        <span class="product-discount-label">-10%</span>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="title"><a href="#">Women's Black Top</a></h3>
+                        <div class="price">
+                            $14.40
+                            <span>$16.00</span>
+                        </div>
+                        <div class="home-product-item__origin">
+                            <span class="home-product-item__branch">100 view</span>
+                            <span class="home-product-item__origin-name">100 Sold</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="product-grid4">
+                    <div class="product-image4">
+                        <a href="#">
+                            <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-1.jpg">
+                            <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg">
+                        </a>
+                        <ul class="social">
+                            <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
+                            <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+                            <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
+                        <span class="product-new-label">New</span>
+                        <span class="product-discount-label">-10%</span>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="title"><a href="#">Women's Black Top</a></h3>
+                        <div class="price">
+                            $14.40
+                            <span>$16.00</span>
+                        </div>
+                        <div class="home-product-item__origin">
+                            <span class="home-product-item__branch">100 view</span>
+                            <span class="home-product-item__origin-name">100 Sold</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
+
 
 @endsection

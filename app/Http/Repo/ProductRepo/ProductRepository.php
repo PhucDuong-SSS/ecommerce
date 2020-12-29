@@ -24,7 +24,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         $this->model->discount_price = $request->discount_price;
         $this->model->category_id = $request->category_id;
         $this->model->sub_category_id = $request->subcategory_id;
-        $this->model->brand_id = $request->brand_id;
+//        $this->model->brand_id = $request->brand_id;
         $this->model->size = $request->product_size;
         $this->model->color = $request->product_color;
         $this->model->selling_price = $request->selling_price;
@@ -80,7 +80,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         $obj->discount_price = $request->discount_price;
         $obj->category_id = $request->category_id;
         $obj->sub_category_id = $request->subcategory_id;
-        $obj->brand_id = $request->brand_id;
+//        $obj->brand_id = $request->brand_id;
         $obj->size = $request->product_size;
         $obj->color = $request->product_color;
         $obj->selling_price = $request->selling_price;
@@ -135,25 +135,6 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
     }
 
-    public function removeImage($obj)
-    {
-        $old_one = $obj->image_one;
-        $old_two = $obj->image_two;
-        $old_three = $obj->image_three;
-
-        $image_one_delete=ltrim($old_one,'storage/');
-        $image_two_delete=ltrim($old_two,'storage/');
-        $image_three_delete=ltrim($old_three,'storage/');
-        if (file_exists(storage_path().'/app/public/'.$image_one_delete)) {
-            unlink(storage_path().'/app/public/'.$image_one_delete);
-        }
-        if (file_exists(storage_path().'/app/public/'.$image_two_delete)) {
-            unlink(storage_path().'/app/public/'.$image_two_delete);
-        }
-        if (file_exists(storage_path().'/app/public/'.$image_three_delete)) {
-            unlink(storage_path().'/app/public/'.$image_three_delete);
-        }
-    }
 
     public function inactive($obj)
     {

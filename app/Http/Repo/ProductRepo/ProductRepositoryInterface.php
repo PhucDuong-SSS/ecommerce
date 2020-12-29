@@ -15,7 +15,6 @@ interface ProductRepositoryInterface extends RepositoryInterface
 
     public function updateImageProduct($request, $obj);
 
-    public function removeImage($obj);
 
     public function inactive($obj);
 

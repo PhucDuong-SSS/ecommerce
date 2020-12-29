@@ -1,8 +1,3 @@
-{{--@php--}}
-{{--    $setting = DB::table('sitesetting')->first();--}}
-
-{{--@endphp--}}
-
 
     <!DOCTYPE html>
 <html lang="en">
@@ -75,7 +70,7 @@
                                         <li>
                                             <a href="{{route('customer.showProfile')}}"><div class="user_icon"><img src="{{ asset('frontend/images/user.svg')}}" alt=""></div> {{\Illuminate\Support\Facades\Auth::guard('customer')->user()->username}}<i class="fas fa-chevron-down"></i></a>
                                             <ul>
-                                                <li><a href="">Wishlist</a></li>
+{{--                                                <li><a href="">Wishlist</a></li>--}}
                                                 <li><a href="">Checkout</a></li>
                                                 <li><a href="{{route('customer.logout')}}">Logout</a></li>
                                             </ul>
@@ -121,10 +116,10 @@
                     <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
                         <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
                             <div class="wishlist d-flex flex-row align-items-center justify-content-end">
-                                <div class="wishlist_icon"><img src="{{asset('frontend/images/heart.png')}}" alt=""></div>
+{{--                                <div class="wishlist_icon"><img src="{{asset('frontend/images/heart.png')}}" alt=""></div>--}}
                                 <div class="wishlist_content">
-                                    <div class="wishlist_text"><a href="#">Wishlist</a></div>
-                                    <div class="wishlist_count"><span id="wishlist">{{\Illuminate\Support\Facades\Session::get('count')}}</span></div>
+{{--                                    <div class="wishlist_text"><a href="#">Wishlist</a></div>--}}
+{{--                                    <div class="wishlist_count"><span id="wishlist">{{\Illuminate\Support\Facades\Session::get('count')}}</span></div>--}}
                                 </div>
                             </div>
 
@@ -166,14 +161,26 @@
 
 
                                 <ul class="cat_menu">
-                                    <li><a href="{{route('product.showProductCategory',['id'=>7])}}">Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
-                                    <li><a href="{{route('product.showProductCategory',['id'=>6])}}">Computer<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="{{route('product.showProductCategory',['id'=>8])}}">Camera<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="{{route('product.showProductCategory',['id'=>9])}}">Hardware<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="{{route('product.showProductCategory',['id'=>10])}}">Smart Phone<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="{{route('product.showProductCategory',['id'=>11])}}">Tablet<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="{{route('product.showProductCategory',['id'=>12])}}">Tivi<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="{{route('product.showProductCategory',['id'=>13])}}">Accessory<i class="fas fa-chevron-right"></i></a></li>
+                                    @if(count($categories))
+                                        @foreach($categories as $category)
+                                    <li class="hassubs">
+
+
+                                        <a href="{{route('product.showProductCategory',['id'=>$category->id])}}">{{$category->name}}<i class="fas fa-chevron-right"></i></a>
+                                        <ul>
+                                            @foreach($category->sub_categories as $sub)
+
+                                            <li>
+                                                <a href="#">{{$sub->name}}<i class="fas fa-chevron-right"></i></a>
+                                            </li>
+                                            @endforeach
+
+                                        </ul>
+                                    </li>
+
+                                        @endforeach
+                                    @endif
+
                                 </ul>
                             </div>
 
@@ -316,37 +323,6 @@
 </div>
 
 
-<!--Order Traking Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Your Status Code</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form method="post" action="">
-                    @csrf
-                    <div class="modal-body">
-                        <label> Status Code</label>
-                        <input type="text" name="code" required="" class="form-control" placeholder="Your Order Status Code">
-                    </div>
-
-                    <button class="btn btn-danger" type="submit">Track Now </button>
-
-                </form>
-
-
-            </div>
-
-        </div>
-    </div>
-</div>
-
-
-
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
@@ -355,6 +331,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
         integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj"
         crossorigin="anonymous"></script>
+{{--<script src="{{ asset('frontend/styles/bootstrap4/popper.js')}}"></script>--}}
+{{--<script src="{{ asset('frontend/styles/bootstrap4/bootstrap.min.js')}}"></script>--}}
 <script src="{{ asset('frontend/plugins/greensock/TweenMax.min.js')}}"></script>
 <script src="{{ asset('frontend/plugins/greensock/TimelineMax.min.js')}}"></script>
 <script src="{{ asset('frontend/plugins/scrollmagic/ScrollMagic.min.js')}}"></script>
@@ -364,7 +342,6 @@
 <script src="{{ asset('frontend/plugins/slick-1.8.0/slick.js')}}"></script>
 <script src="{{ asset('frontend/plugins/easing/easing.js')}}"></script>
 @yield('script')
-{{--<script src="{{ asset('frontend/js/custom.js')}}"></script>--}}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 
@@ -436,6 +413,146 @@
 
 </script>
 
+<script>
+    $(function (){
+        $(".owl-carousel").owlCarousel({
+            loop: true,
+            margin: 10,
+            dots: false,
+            autoplay: true,
+            animateOut: 'fadeOut',
+            autoplayTimeout: 3000,
+            autoplayHoverPause: true,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 2,
+                    nav: true,
+                    slideBy: 2
+                },
+                600: {
+                    items: 3,
+                    nav: true,
+                },
+                1000: {
+                    items: 4,
+                    nav: true,
+                }
+            }
+        });
+    })
+</script>
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $('.addcart').on('click', function(){
+            var id = $(this).data('id');
+            if (id) {
+                $.ajax({
+                    url: " {{ url('/add-cart/') }}/"+id,
+                    type:"GET",
+                    datType:"json",
+                    success:function(data){
+                        $('#count').html(data.count);
+                        $('#subtotal').html(data.subtotal);
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            onOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+
+                        if ($.isEmptyObject(data.error)) {
+
+                            Toast.fire({
+                                icon: 'success',
+                                title: data.success
+                            })
+                        }else{
+                            Toast.fire({
+                                icon: 'error',
+                                title: data.error
+                            })
+                        }
+
+
+                    },
+                });
+
+            }else{
+                alert('danger');
+            }
+        });
+
+        $('.addWishlist').on('click', function(){
+            var id = $(this).data('id');
+            if (id) {
+                $.ajax({
+                    url: " {{ url('/customer/add-wishlist/') }}/"+id,
+                    type:"GET",
+                    datType:"json",
+                    success:function(data){
+                        console.log(data);
+                        $('#wishlist').html(data.count);
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            onOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+
+                        if ($.isEmptyObject(data.error)) {
+
+                            Toast.fire({
+                                icon: 'success',
+                                title: data.success
+                            })
+                        }else{
+                            Toast.fire({
+                                icon: 'error',
+                                title: data.error
+                            })
+                        }
+
+
+                    },
+                });
+
+            }else{
+                alert('danger');
+            }
+        });
+
+    });
+
+</script>
+<script>
+    /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+    var i;
+
+    for (i = 0; i < dropdown.length; i++) {
+        dropdown[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
+            }
+        });
+    }
+</script>
 <script>
     $(function (){
         $(".owl-carousel").owlCarousel({

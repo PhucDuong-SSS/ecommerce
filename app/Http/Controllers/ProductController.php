@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Repo\ProductRepo\ProductRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 use function PHPUnit\Framework\isEmpty;
 
 class ProductController extends Controller
@@ -98,10 +99,14 @@ class ProductController extends Controller
         isEmpty($product->wishlist)?$has_wishlist = true:$has_wishlist=false;
         isEmpty($product->orderdetail)?$has_order_details = true:$has_order_details=false;
 
-        if(!$has_order_details && !$has_wishlist )
+        if($has_order_details && $has_wishlist )
         {
-            $this->productRepository->removeImage($product);
+            $product = $this->productRepository->findById($id);
+            Storage::delete($product->image_one);
+            Storage::delete($product->image_two);
+            Storage::delete($product->image_three);
             $this->productRepository->delete($id);
+
             $notification = [
                 'message'=>'Successfully deleted product',
                 'alert-type'=>'success'
@@ -144,6 +149,7 @@ class ProductController extends Controller
 
     public function showProductFrontend()
     {
+        $categories= Category::all();
         $featuredProducts = $this->productRepository->getFeaturedProduct();
         $trendProducts = $this->productRepository->getTrendProduct();
         $hotProducts = $this->productRepository->getHotProduct();
@@ -164,18 +170,22 @@ class ProductController extends Controller
     }
     public function showDetails($id)
     {
+        $siteSetting = $this->productRepository->getsiteSetting();
+        $categories= Category::all();
+
         $product = $this->productRepository->findById($id);
         $color = $product->color;
         $product_color = explode(',', $color);
-        return view('page.product', compact('product','product_color'));
+        return view('page.product', compact('product','product_color','siteSetting','categories'));
     }
 
     public function showProductCategory($id)
     {
+        $siteSetting = $this->productRepository->getsiteSetting();
         $productsCategory = $this->productRepository->showProductCategory($id);
         $brands = $this->productRepository->getBrand();
         $categories = $this->productRepository->getCategory();
-        return view('page.shop', compact('productsCategory','categories','brands'));
+        return view('page.shop', compact('productsCategory','categories','brands','siteSetting'));
     }
 
     public function renderProductView(Request $request)
