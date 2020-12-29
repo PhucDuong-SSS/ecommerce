@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 class ProductRepository extends BaseRepository implements ProductRepositoryInterface
@@ -38,31 +39,26 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         $this->model->buyone_getone = $request->buyone_getone;
         $this->model->status = 1;
 
-        $image_one = $request->image_one;
-        $image_two = $request->image_two;
-        $image_three = $request->image_three;
-
-        if ($image_one && $image_two && $image_three) {
-            $image_one_name = hexdec(uniqid()) . '.' . $image_one->getClientOriginalExtension();
-
-            Image::make($image_one)->resize(300, 300)->save(storage_path().'/app/public/' . $image_one_name);
-            $this->model->image_one = 'storage/' . $image_one_name;
-
-            $image_two_name = hexdec(uniqid()) . '.' . $image_two->getClientOriginalExtension();
-            Image::make($image_two)->resize(300, 300)->save(storage_path().'/app/public/' . $image_two_name);
-            $this->model->image_two = 'storage/' . $image_two_name;
-
-
-            $image_three_name = hexdec(uniqid()) . '.' . $image_three->getClientOriginalExtension();
-            Image::make($image_three)->resize(300, 300)->save(storage_path().'/app/public/' . $image_three_name);
-            $this->model->image_three = 'storage/' . $image_three_name;
-
-            $this->model->save();
-
-
+        if($request->hasFile('image_one')){
+            $pathImage = $request->file('image_one')->store('public/images');
+            $pathImage = Storage::disk('s3')->put('images',$request->image_one,'public');
+            $this->model->image_one = $pathImage;
         }
+        if($request->hasFile('image_two')){
+            $pathImage = $request->file('image_one')->store('public/images');
+            $pathImage = Storage::disk('s3')->put('images',$request->image_two,'public');
+            $this->model->image_two = $pathImage;
+        }
+        if($request->hasFile('image_three')){
+            $pathImage = $request->file('image_three')->store('public/images');
+            $pathImage = Storage::disk('s3')->put('images',$request->image_three,'public');
+            $this->model->image_three = $pathImage;
+        }
+        $this->model->save();
+
 
     }
+
 
     public function getCategory()
     {
@@ -105,7 +101,6 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     {
 
         $old_one = $obj->image_one;
-
         $old_two = $obj->image_two;
         $old_three = $obj->image_three;
 
@@ -113,45 +108,30 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         $image_two = $request->file('image_two');
         $image_three = $request->file('image_three');
 
-        $image_one = $request->file('image_one');
-        $image_two = $request->file('image_two');
-        $image_three = $request->file('image_three');
+        if($request->hasFile('image_one')){
+            $pathImage = $request->file('image_one')->store('public/images');
+            $pathImage = Storage::disk('s3')->put('images',$request->image_one,'public');
 
-        if($image_one)
-        {
-            $image_one_old=ltrim($old_one,'storage/');
-            if (file_exists(storage_path().'/app/public/'.$image_one_old)) {
-                unlink(storage_path().'/app/public/'.$image_one_old);
-            }
-            $image_one_name = hexdec(uniqid()) . '.' . $image_one->getClientOriginalExtension();
-            Image::make($image_one)->resize(300, 300)->save(storage_path().'/app/public/' . $image_one_name);
-            $obj->image_one= 'storage/' . $image_one_name;
+            Storage::delete($old_one);
+            $obj->image_one = $pathImage;
+            $obj->save();
         }
-        if($image_two)
-        {
-            $image_two_old=ltrim($old_two,'storage/');
-            if (file_exists(storage_path().'/app/public/'.$image_two_old)) {
-                unlink(storage_path().'/app/public/'.$image_two_old);
-            }
-            $image_two_name = hexdec(uniqid()) . '.' . $image_two->getClientOriginalExtension();
+        if($request->hasFile('image_two')){
+            $pathImage = $request->file('image_two')->store('public/images');
+            $pathImage = Storage::disk('s3')->put('images',$request->image_two,'public');
 
-            Image::make($image_two)->resize(300, 300)->save(storage_path().'/app/public/' . $image_two_name);
-            $obj->image_two = 'storage/' . $image_two_name;
+            Storage::delete($old_two);
+            $obj->image_two = $pathImage;
+            $obj->save();
         }
-        if($image_three)
-        {
-            $image_three_old=ltrim($old_three,'storage/');
-            if (file_exists(storage_path().'/app/public/'.$image_three_old)) {
-                unlink(storage_path().'/app/public/'.$image_three_old);
-            }
-            $image_three_name = hexdec(uniqid()) . '.' . $image_three->getClientOriginalExtension();
+        if($request->hasFile('image_three')){
+            $pathImage = $request->file('image_three')->store('public/images');
+            $pathImage = Storage::disk('s3')->put('images',$request->image_three,'public');
 
-            Image::make($image_three)->resize(300, 300)->save(storage_path().'/app/public/' . $image_three_name);
-            $obj->image_three= 'storage/' . $image_three_name;
+            Storage::delete($old_three);
+            $obj->image_three = $pathImage;
+            $obj->save();
         }
-
-
-        $obj->save();
 
     }
 

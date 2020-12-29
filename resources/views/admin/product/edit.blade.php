@@ -241,7 +241,7 @@
                         </div>
 
                         <div class="col-lg-6 col-sm-6">
-                            <img src=" {{ asset($product->image_one) }} " style="width: 80px; height: 80px;">
+                            <img src=" {{ $product->getUrl().$product->image_one}} " style="width: 80px; height: 80px;">
                         </div>
 
                     </div><!-- col-4 -->
@@ -259,7 +259,7 @@
                         </div>
 
                         <div class="col-lg-6 col-sm-6">
-                            <img src=" {{ asset($product->image_two) }} " style="width: 80px; height: 80px;">
+                            <img src=" {{ $product->getUrl().$product->image_two}}" style="width: 80px; height: 80px;">
                         </div>
                     </div><!-- col-4 -->
 
@@ -276,7 +276,7 @@
                             </label>
                         </div>
                         <div class="col-lg-6 col-sm-6">
-                            <img src=" {{ asset($product->image_three) }} " style="width: 80px; height: 80px;">
+                            <img src=" {{ $product->getUrl().$product->image_three}} " style="width: 80px; height: 80px;">
                         </div>
                     </div><!-- col-4 -->
 
