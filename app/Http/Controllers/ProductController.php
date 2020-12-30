@@ -230,6 +230,59 @@ class ProductController extends Controller
         return view('page.shop', compact('productsCategory','categories','siteSetting'));
 
     }
+    //show proddut sub
+    public function showProductSubCategory($subcategoryId)
+    {
+        $siteSetting = $this->productRepository->getsiteSetting();
+        $productsCategory = $this->productRepository->showProductSubCategory($subcategoryId);
+        $categories = $this->productRepository->getCategory();
+        return view('page.subcategory', compact('productsCategory','categories','siteSetting'));
+
+    }
+    //
+    public function showProductSubCategoryFeature($subcategoryId)
+    {
+        $siteSetting = $this->productRepository->getsiteSetting();
+        $productsCategory = $this->productRepository->showProductSubCategory($subcategoryId);
+        $categories = $this->productRepository->getCategory();
+        return view('page.subcategory', compact('productsCategory','categories','siteSetting'));
+
+    }
+    public function showProductSubCategoryTrend($subcategoryId)
+    {
+        $siteSetting = $this->productRepository->getsiteSetting();
+        $productsCategory = $this->productRepository->showProductSubCategory($subcategoryId);
+        $categories = $this->productRepository->getCategory();
+        return view('page.subcategory', compact('productsCategory','categories','siteSetting'));
+
+    }
+    public function showProductSubCategoryView($subcategoryId)
+    {
+        $siteSetting = $this->productRepository->getsiteSetting();
+        $productsCategory = $this->productRepository->showProductSubCategory($subcategoryId);
+        $categories = $this->productRepository->getCategory();
+        return view('page.subcategory', compact('productsCategory','categories','siteSetting'));
+
+    }
+    public function showProductSubCategoryPriceAsc($subcategoryId)
+    {
+        $siteSetting = $this->productRepository->getsiteSetting();
+        $productsCategory = $this->productRepository->showProductSubCategory($subcategoryId);
+        $categories = $this->productRepository->getCategory();
+        return view('page.subcategory', compact('productsCategory','categories','siteSetting'));
+
+    }
+    public function showProductSubCategoryPriceDecs($subcategoryId)
+    {
+        $siteSetting = $this->productRepository->getsiteSetting();
+        $productsCategory = $this->productRepository->showProductSubCategory($subcategoryId);
+        $categories = $this->productRepository->getCategory();
+        return view('page.subcategory', compact('productsCategory','categories','siteSetting'));
+
+    }
+
+
+
 
     public function renderProductView(Request $request)
     {

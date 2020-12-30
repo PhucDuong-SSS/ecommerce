@@ -10,6 +10,22 @@
 
     <!-- Single Product -->
     <!-- Single Product -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 breadcrumb-wrap">
+                <div class="breadcrumb">
+                    <ul class="breadcrumbs-view d-flex flex-row" >
+                        <li><a class="breadcrumbs-view__link" href="{{route('index')}}">Home</a></li>
+                            <li><a class="breadcrumbs-view__link" href="{{route('product.showProductCategory',['id'=>$product->category->id])}}">{{$product->category->name}}</a></li>
+                            <li><a class="breadcrumbs-view__link" href="{{route('product.showProductSubCategory',['id'=>$product->sub_category->id])}}">{{$product->sub_category->name}}</a></li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
 
     <div class="single_product">
         <div class="container">

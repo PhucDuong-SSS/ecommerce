@@ -203,24 +203,51 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
     public function showProductCategoryFeature($categoryId)
     {
-        return $this->model->where('category_id',$categoryId)->where('hot_deal',1)->paginate(8);
+        return $this->model->where('category_id',$categoryId)->where('status',1)->where('hot_deal',1)->paginate(8);
     }
     public function showProductCategoryTrend($categoryId)
     {
-        return $this->model->where('category_id',$categoryId)->where('trend',1)->paginate(8);
+        return $this->model->where('category_id',$categoryId)->where('status',1)->where('trend',1)->paginate(8);
     }
     public function showProductCategoryView($categoryId)
     {
-        return $this->model->where('category_id',$categoryId)->orderBy('view', 'desc')->paginate(8);
+        return $this->model->where('category_id',$categoryId)->where('status',1)->orderBy('view', 'desc')->paginate(8);
     }
     public function showProductCategoryPriceAsc($categoryId)
     {
-        return $this->model->where('category_id',$categoryId)->orderBy('selling_price', 'asc')->paginate(8);
+        return $this->model->where('category_id',$categoryId)->where('status',1)->orderBy('selling_price', 'asc')->paginate(8);
     }
     public function showProductCategoryPriceDecs($categoryId)
     {
-        return $this->model->where('category_id',$categoryId)->orderBy('selling_price', 'desc')->paginate(8);
+        return $this->model->where('category_id',$categoryId)->where('status',1)->orderBy('selling_price', 'desc')->paginate(8);
     }
+
+    public function showProductSubCategory($id)
+    {
+
+        return $this->model->where('sub_category_id',$id)->where('status',1)->paginate(8);
+    }
+    public function showProductSubCategoryFeature($subcategoryId)
+    {
+        return $this->model->where('sub_category_id',$subcategoryId)->where('hot_deal',1)->where('status',1)->paginate(8);
+    }
+    public function showProductSubCategoryTrend($subcategoryId)
+    {
+        return $this->model->where('sub_category_id',$subcategoryId)->where('trend',1)->where('status',1)->paginate(8);
+    }
+    public function showProductSubCategoryView($subcategoryId)
+    {
+        return $this->model->where('sub_category_id',$subcategoryId)->where('status',1)->orderBy('view', 'desc')->paginate(8);
+    }
+    public function showProductSubCategoryPriceAsc($subcategoryId)
+    {
+        return $this->model->where('sub_category_id',$subcategoryId)->where('status',1)->orderBy('selling_price', 'asc')->paginate(8);
+    }
+    public function showProductSubCategoryPriceDecs($subcategoryId)
+    {
+        return $this->model->where('sub_category_id',$subcategoryId)->where('status',1)->orderBy('selling_price', 'desc')->paginate(8);
+    }
+
 
 
 }

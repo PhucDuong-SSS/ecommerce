@@ -45,6 +45,15 @@ Route::get('show-product-category-trend/{categoryId}/',[ProductController::class
 Route::get('show-product-category-hightview/{categoryId}/',[ProductController::class, 'showProductCategoryView'])->name('product.showProductCategoryView');
 Route::get('show-product-category-priceasc/{categoryId}/',[ProductController::class, 'showProductCategoryPriceAsc'])->name('product.showProductCategoryPriceAsc');
 Route::get('show-product-category-pricedesc/{categoryId}/',[ProductController::class, 'showProductCategoryPriceDecs'])->name('product.showProductCategoryPriceDecs');
+//Show subcategory product
+Route::get('show-product-sub_category/{id}',[ProductController::class, 'showProductSubCategory'])->name('product.showProductSubCategory');
+Route::get('show-product-sub-category-feature/{categoryId}/',[ProductController::class, 'showProductSubCategoryFeature'])->name('product.showProductSubCategoryFeature');
+Route::get('show-product-sub-category-trend/{categoryId}/',[ProductController::class, 'showProductSubCategoryTrend'])->name('product.showProductSubCategoryTrend');
+Route::get('show-product-sub-category-hightview/{categoryId}/',[ProductController::class, 'showProductSubCategoryView'])->name('product.showProductSubCategoryView');
+Route::get('show-product-sub-category-priceasc/{categoryId}/',[ProductController::class, 'showProductSubCategoryPriceAsc'])->name('product.showProductSubCategoryPriceAsc');
+Route::get('show-product-sub-category-pricedesc/{categoryId}/',[ProductController::class, 'showProductSubCategoryPriceDecs'])->name('product.showProductSubCategoryPriceDecs');
+
+
 
 //recently product
 Route::post('show-recently-product',[ProductController::class, 'renderProductView'])->name('product.showrecently');

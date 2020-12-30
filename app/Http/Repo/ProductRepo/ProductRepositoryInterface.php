@@ -43,6 +43,20 @@ interface ProductRepositoryInterface extends RepositoryInterface
 
     public function showProductCategoryPriceAsc($categoryId);
 
+    public function showProductSubCategory($categoryId);
+
+    public function showProductSubCategoryFeature($subcategoryId);
+    public function showProductSubCategoryTrend($subcategoryId);
+
+    public function showProductSubCategoryView($subcategoryId);
+
+    public function showProductSubCategoryPriceDecs($subcategoryId);
+
+    public function showProductSubCategoryPriceAsc($subcategoryId);
+
+
+
+
 
     public function getMainBanner();
 

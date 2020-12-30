@@ -54,6 +54,7 @@ class CartController extends Controller
 
     public function showCart(){
         $carts = Cart::content();
+
         return view('page.cart',compact('carts'));
     }
 

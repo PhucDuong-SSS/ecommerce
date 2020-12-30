@@ -62,8 +62,9 @@
                 <div class="breadcrumb">
                     <ul class="breadcrumbs-view d-flex flex-row" >
                         <li><a class="breadcrumbs-view__link" href="{{route('index')}}">Home</a></li>
-                        @if(count($productsCategory)>0)
+                        @if(count($productsCategory))
                         <li><a class="breadcrumbs-view__link" href="{{route('product.showProductCategory',['id'=>$productsCategory[0]->category->id])}}">{{$productsCategory[0]->category->name}}</a></li>
+                        <li><a class="breadcrumbs-view__link" href="{{route('product.showProductSubCategory',['id'=>$productsCategory[0]->sub_category->id])}}">{{$productsCategory[0]->sub_category->name}}</a></li>
                         @endif
                     </ul>
 
@@ -74,16 +75,16 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="sidenav">
-                    @if(count($productsCategory)>0)
-                    <a href="{{route('product.showProductCategoryFeature',['categoryId'=>$productsCategory[0]->category->id])}}">Hot deal</a>
-                    <a href="{{route('product.showProductCategoryTrend',['categoryId'=>$productsCategory[0]->category->id])}}">Trend</a>
-                    <a href="{{route('product.showProductCategoryView',['categoryId'=>$productsCategory[0]->category->id])}}">Hight view</a>
+                    @if(count($productsCategory))
+                    <a href="{{route('product.showProductSubCategoryFeature',['categoryId'=>$productsCategory[0]->sub_category->id])}}">Hot deal</a>
+                    <a href="{{route('product.showProductSubCategoryTrend',['categoryId'=>$productsCategory[0]->sub_category->id])}}">Trend</a>
+                    <a href="{{route('product.showProductSubCategoryView',['categoryId'=>$productsCategory[0]->sub_category->id])}}">Hight view</a>
                     <button class="dropdown-btn">Sorf by
                         <i class="fa fa-caret-down"></i>
                     </button>
                     <div class="dropdown-container">
-                        <a href="{{route('product.showProductCategoryPriceAsc',['categoryId'=>$productsCategory[0]->category->id])}}">Price(Low>Hight)</a>
-                        <a href="{{route('product.showProductCategoryPriceDecs',['categoryId'=>$productsCategory[0]->category->id])}}">Price(Hight>Low)</a>
+                        <a href="{{route('product.showProductSubCategoryPriceAsc',['categoryId'=>$productsCategory[0]->sub_category->id])}}">Price(Low>Hight)</a>
+                        <a href="{{route('product.showProductSubCategoryPriceDecs',['categoryId'=>$productsCategory[0]->sub_category->id])}}">Price(Hight>Low)</a>
                     </div>
                     @endif
                 </div>
