@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
@@ -54,17 +55,18 @@ class CartController extends Controller
 
     public function showCart(){
         $carts = Cart::content();
-
-        return view('page.cart',compact('carts'));
+        $categories = Category::all();
+        $siteSetting = DB::table('site_settings')->get();
+        return view('page.cart',compact('carts','siteSetting','categories'));
     }
 
 
     public function removeCart($rowId){
         Cart::remove($rowId);
-        $notification=array(
-            'messege'=>'Product Remove form Cart',
+        $notification = [
+            'message'=>'Successfully removed',
             'alert-type'=>'success'
-        );
+        ];
         return Redirect()->back()->with($notification);
 
     }
@@ -72,13 +74,20 @@ class CartController extends Controller
 
     public function updateCart(Request $request){
 
-        $rowId = $request->productid;
-        $qty = $request->qty;
-        Cart::update($rowId,$qty);
-        $notification=array(
-            'messege'=>'Product Quantity Updated',
+        $ArrId = $request->productid;
+        $quantity = $request->qty;
+        foreach ($ArrId as $keyId=>$rowId){
+
+            foreach ($quantity as $keyQty=>$qty ){
+                if($keyId == $keyQty){
+                    Cart::update($rowId,['qty'=>$qty]);
+                }
+            }
+        }
+        $notification = [
+            'message'=>'Successfully updated',
             'alert-type'=>'success'
-        );
+        ];
         return Redirect()->back()->with($notification);
 
     }
@@ -90,11 +99,14 @@ class CartController extends Controller
 
     public function checkout(){
         if (Auth::guard('customer')->check()) {
+            $categories = Category::all();
+            $siteSetting = DB::table('site_settings')->get();
+
             $setting = DB::table('settings')->first();
             $shipping_charge = $this->number_unformat($setting->shipping_charge);
             $subtotal = $this->number_unformat(Cart::Subtotal());
             $cart = Cart::content();
-            return view('page.checkout',compact('cart','setting','shipping_charge','subtotal'));
+            return view('page.checkout',compact('cart','setting','shipping_charge','subtotal','categories','siteSetting'));
 
         }else{
             $notification=array(

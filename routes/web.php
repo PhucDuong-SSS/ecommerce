@@ -69,7 +69,7 @@ Route::get('remove-cart/{id}',[CartController::class, 'removeCart'])->name('cart
 Route::get('remove-all-cart',[CartController::class, 'destroyCart'])->name('cart.destroyCart');
 Route::post('update-cart',[CartController::class, 'updateCart'])->name('cart.updateCart');
 Route::get('customer/checkout',[CartController::class, 'checkout'])->name('cart.checkout');
-Route::get('customer/checkout',[CartController::class, 'checkout'])->name('cart.checkout');
+//Route::get('customer/checkout',[CartController::class, 'checkout'])->name('cart.checkout');
 Route::post('customer/add-coupon',[CartController::class, 'coupon'])->name('cart.addCoupon');
 Route::get('customer/remove-coupon',[CartController::class, 'couponRemove'])->name('cart.couponRemove');
 Route::get('customer/payment',[CartController::class, 'showPaymentPage'])->name('cart.showPaymentPage');

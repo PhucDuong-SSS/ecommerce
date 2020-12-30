@@ -131,7 +131,7 @@
                                         <div class="cart_count"><span id="count">{{\Gloudemans\Shoppingcart\Facades\Cart::count()}}</span></div>
                                     </div>
                                     <div class="cart_content">
-                                        <div class="cart_text"><a href="{{route('cart.showCart')}}">Cart</a></div>
+                                        <div class="cart_text"><a href="{{route('cart.checkout')}}">Cart</a></div>
                                         <div class="cart_price"><span id="subtotal">{{\Gloudemans\Shoppingcart\Facades\Cart::subtotal()}}</span></div>
                                     </div>
                                 </div>
@@ -371,6 +371,7 @@
             break;
     }
     @endif
+
 </script>
 
 
