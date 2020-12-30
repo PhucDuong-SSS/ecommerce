@@ -166,13 +166,15 @@ class CartController extends Controller
     }
     public function showPaymentPage()
     {
+        $categories = Category::all();
+        $siteSetting = DB::table('site_settings')->get();
         $customer =Auth::guard('customer')->user();
         $setting = DB::table('settings')->first();
         $cart = Cart::content();
         $subtotal = $this->number_unformat(Cart::Subtotal());
         $shipping_charge = $this->number_unformat($setting->shipping_charge);
 
-        return view('page.paymentpage',compact('cart','shipping_charge', 'subtotal','customer') );
+        return view('page.paymentpage',compact('cart','shipping_charge', 'subtotal','customer','siteSetting','categories') );
     }
 
     public function addProductCart( Request  $request,$id)

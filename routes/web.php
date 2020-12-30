@@ -74,7 +74,6 @@ Route::post('customer/add-coupon',[CartController::class, 'coupon'])->name('cart
 Route::get('customer/remove-coupon',[CartController::class, 'couponRemove'])->name('cart.couponRemove');
 Route::get('customer/payment',[CartController::class, 'showPaymentPage'])->name('cart.showPaymentPage');
 Route::post('customer/payment-process',[PaymentController::class, 'paymentProcess'])->name('payment.paymentProcess');
-Route::post('customer/payment-process',[PaymentController::class, 'paymentProcess'])->name('payment.paymentProcess');
 Route::post('customer/stripe-charge',[PaymentController::class, 'stripeCharge'])->name('payment.stripeCharge');
 
 

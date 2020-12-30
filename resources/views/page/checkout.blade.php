@@ -106,7 +106,7 @@
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="cart__btn">
-                    <a href="#">Continue Shopping</a>
+                    <a href="{{route('index')}}">Continue Shopping</a>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
@@ -137,8 +137,8 @@
                     <ul>
                         <li>Subtotal <span>${{  Cart::Subtotal() }}</span></li>
                         @if(Session::has('coupon'))
-                            <li>Coupon code <span>$ {{ Session::get('coupon')['name'] }}</span></li>
-                            <li>Coupon code <span>(- {{ Session::get('coupon')['discount'] }}% ) <a href="{{ route('cart.couponRemove') }}" class="btn btn-danger btn-sm">X</a></span></li>
+                            <li>Coupon code <span> {{ Session::get('coupon')['name'] }}</span></li>
+                            <li>Coupon discount <span>(- {{ Session::get('coupon')['discount'] }}% ) <a href="{{ route('cart.couponRemove') }}" class="btn btn-danger btn-sm">X</a></span></li>
                         @else
                         @endif
                           <li>Shipping <span>$ {{ $shipping_charge}}</span></li>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Coupon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +14,8 @@ class PaymentController extends Controller
 {
     public function paymentProcess(Request $request){
 
+        $categories = Category::all();
+        $siteSetting = DB::table('site_settings')->get();
         $data = array();
         $data['name'] = $request->name;
         $data['phone'] = $request->phone;
@@ -19,6 +23,7 @@ class PaymentController extends Controller
         $data['address'] = $request->address;
         $data['city'] = $request->city;
         $data['payment'] = $request->payment;
+        $data['note'] = $request->note;
         $setting = DB::table('settings')->first();
         $subtotal = $this->number_unformat(Cart::Subtotal());
         $shipping_charge = $this->number_unformat($setting->shipping_charge);
@@ -26,11 +31,61 @@ class PaymentController extends Controller
 
         if ($request->payment == 'stripe') {
 
-            return view('page.stripe',compact('data','shipping_charge','subtotal','cart'));
+            return view('page.stripe',compact('data','shipping_charge','subtotal','cart','siteSetting','categories'));
+
+        }elseif ($request->payment == 'cod') {
+            $data = array();
+            $data['customer_id'] = Auth::guard('customer')->id();
+            $data['payment_type'] = $request->payment;
+            $data['shipping'] = $request->shipping;
+            $data['subtotal'] = $request->subtotal;
+            $data['total'] = $request->total;
+            $data['vat'] = $request->vat;
+            $data['status_code'] = mt_rand(100000,999999);
+            $data['status'] = 0;
+            $data['date'] = date('d-m-y');
+            $data['month'] = date('F');
+            $data['year'] = date('Y');
+            $order_id = DB::table('orders')->insertGetId($data);
+            /// Insert Shipping Table
+
+            $shipping = array();
+            $shipping['order_id'] = $order_id;
+            $shipping['ship_name'] = $request->name;
+            $shipping['ship_phone'] = $request->phone;
+            $shipping['ship_email'] = $request->email;
+            $shipping['ship_address'] = $request->address;
+            $shipping['ship_city'] = $request->city;
+            $shipping['ship_note'] = $request->note;
+            DB::table('shippings')->insert($shipping);
+            // Insert Order Details Table
+
+            $content = Cart::content();
+            $details = array();
+            foreach ($content as $row) {
+                $details['order_id'] = $order_id;
+                $details['product_id'] = $row->id;
+                $details['quantity'] = $row->qty;
+                $details['singleprice'] = $row->price;
+                $details['totalprice'] = $row->qty*$row->price;
+                DB::table('order_details')->insert($details);
+
+            }
+
+            Cart::destroy();
+            if (Session::has('coupon')) {
+                $couponName = Session::get('coupon')['name'];
+                Coupon::where('name',$couponName)->delete();
+                Session::forget('coupon');
+            }
+            $notification = [
+                'message'=>' Resquest order done',
+                'alert-type'=>'success'
+            ];
+            return Redirect()->route('index')->with($notification);
+
 
         }elseif ($request->payment == 'paypal') {
-            # code...
-        }elseif ($request->payment == 'ideal') {
             # code...
         }else{
             echo "Cash On Delivery";
@@ -109,6 +164,8 @@ class PaymentController extends Controller
 
         Cart::destroy();
         if (Session::has('coupon')) {
+            $couponName = Session::get('coupon')['name'];
+            Coupon::where('name',$couponName)->delete();
             Session::forget('coupon');
         }
         $notification = [
