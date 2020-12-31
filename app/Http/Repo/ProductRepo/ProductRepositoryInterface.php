@@ -54,6 +54,8 @@ interface ProductRepositoryInterface extends RepositoryInterface
 
     public function showProductSubCategoryPriceAsc($subcategoryId);
 
+    public function searchProduct($request);
+
 
 
 

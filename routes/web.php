@@ -53,6 +53,9 @@ Route::get('show-product-sub-category-hightview/{categoryId}/',[ProductControlle
 Route::get('show-product-sub-category-priceasc/{categoryId}/',[ProductController::class, 'showProductSubCategoryPriceAsc'])->name('product.showProductSubCategoryPriceAsc');
 Route::get('show-product-sub-category-pricedesc/{categoryId}/',[ProductController::class, 'showProductSubCategoryPriceDecs'])->name('product.showProductSubCategoryPriceDecs');
 
+//search product
+Route::post('search-product',[ProductController::class, 'searchProduct'])->name('product.searchProduct');
+
 
 
 //recently product

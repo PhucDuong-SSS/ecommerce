@@ -247,7 +247,12 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     {
         return $this->model->where('sub_category_id',$subcategoryId)->where('status',1)->orderBy('selling_price', 'desc')->paginate(8);
     }
+    public function searchProduct($request)
+    {
+        $search = $request->search;
+        return $this->model->where('name', 'like','%'.$search.'%' )->where('status',1)->paginate(8);
 
+    }
 
 
 }

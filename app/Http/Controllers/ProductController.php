@@ -296,6 +296,17 @@ class ProductController extends Controller
         }
     }
 
+    public function searchProduct(Request $request)
+    {
+        $siteSetting = $this->productRepository->getsiteSetting();
+        $keyword = $request->search;
+        $categories = $this->productRepository->getCategory();
+        $searchProducts = $this->productRepository->searchProduct($request);
+        return view('page.search',compact('siteSetting','categories','searchProducts','keyword'));
+
+
+    }
+
 
 
 }

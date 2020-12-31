@@ -103,8 +103,9 @@
                         <div class="header_search">
                             <div class="header_search_content">
                                 <div class="header_search_form_container">
-                                    <form action="#" class="header_search_form clearfix">
-                                        <input type="search" required="required" class="header_search_input" placeholder="Search for name products...">
+                                    <form method="post" action="{{route('product.searchProduct')}}" class="header_search_form clearfix">
+                                        @csrf
+                                        <input type="search" name="search" required="required" class="header_search_input" placeholder="Search for name products...">
                                         <button type="submit" class="header_search_button trans_300" value="Submit"><img src="{{asset('frontend/images/search.png')}}" alt=""></button>
                                     </form>
                                 </div>
