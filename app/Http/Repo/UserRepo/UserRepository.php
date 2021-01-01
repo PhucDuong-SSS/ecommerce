@@ -68,12 +68,12 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     }
     public function getTotalofDay($date)
     {
-        $totalToday = DB::table('orders')->where('date',$date)->sum('total');
+        $totalToday = Order::where('date',$date)->sum('total');
         return $totalToday;
     }
     public function getTotalofMonth($month)
     {
-        $totalMonth = DB::table('orders')->where('month',$month)->sum('total');
+        $totalMonth = Order::where('month',$month)->sum('total');
         return $totalMonth;
     }
     public function getTotalofYear($year)
