@@ -88,7 +88,11 @@ class PaymentController extends Controller
         }elseif ($request->payment == 'paypal') {
             # code...
         }else{
-            echo "Cash On Delivery";
+            $notification = [
+                'message'=>' Choise method payment',
+                'alert-type'=>'warning'
+            ];
+            return Redirect()->back()->with($notification);
         }
 
 
