@@ -31,7 +31,7 @@
                             <tr>
                                 <td>{{ $key +1 }}</td>
                                 <td>{{ $row->name }}</td>
-                                <td> <img src="{{asset($row->logo)}}" height="70px;" width="80px;"> </td>
+                                <td> <img src="{{\App\Http\Controllers\LinkConst::LINK.$row->logo}}" height="70px;" width="80px;"> </td>
                                 <td>
                                     <a href="{{route('brand.editForm',$row->id) }} " class="btn btn-sm btn-info">Edit</a>
                                     <a href="{{ route('brand.delete', $row->id)  }}" class="btn btn-sm btn-danger" id="delete">Delete</a>

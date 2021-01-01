@@ -59,9 +59,9 @@
 
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label class="form-control-label">Product Details (ENGLISH): <span class="tx-danger">*</span></label>
+                                    <label class="form-control-label">Post Details (ENGLISH): <span class="tx-danger">*</span></label>
 
-                                    <textarea class="form-control" id="summernote"  name="details_en">
+                                    <textarea  class="form-control" id="ckeditor1"  name="details_en">
 
                                     </textarea>
                                     @error('details_en')
@@ -73,9 +73,9 @@
 
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label class="form-control-label">Product Details (VN): <span class="tx-danger">*</span></label>
+                                    <label class="form-control-label">Post Details (VN): <span class="tx-danger">*</span></label>
 
-                                    <textarea class="form-control" id="summernote1"  name="details_vi">
+                                    <textarea id="ckeditor2" class="form-control" id="summernote1"  name="details_vi">
 
                                      </textarea>
                                     @error('details_vi')
@@ -145,5 +145,9 @@
             }
         }
     </script>
+    @section('js')
+        CKEDITOR.replace('ckeditor1')
+        CKEDITOR.replace('ckeditor2')
+        @endsection
 
 @endsection

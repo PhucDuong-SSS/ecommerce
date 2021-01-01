@@ -52,7 +52,7 @@
                         <div class="product_name">{{ $product->name }}</div>
                         <div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
                         <div class="product_text"><p>
-                                {{  substr($product->details,0, 600 )  }}
+                                {!! $product->details !!}
                             </p></div>
                         <div class="order_info d-flex flex-row">
 

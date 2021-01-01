@@ -140,7 +140,7 @@
                                 <div class="form-group">
                                     <label class="form-control-label">Product Details: <span class="tx-danger">*</span></label>
 
-                                    <textarea class="form-control" id="summernote"  name="product_details">
+                                    <textarea  class="form-control" id="ckeditor3"  name="product_details">
 
              </textarea>
 
@@ -369,4 +369,7 @@
             }
         }
     </script>
+@endsection
+@section('js')
+    CKEDITOR.replace('ckeditor3')
 @endsection

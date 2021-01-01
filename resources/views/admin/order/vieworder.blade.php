@@ -156,7 +156,7 @@
                                         <td>{{ $row->code }}</td>
                                         <td>{{ $row->name }}</td>
 
-                                        <td> <img src="{{ asset($row->image_one) }}" height="50px;" width="50px;"> </td>
+                                        <td> <img src="{{ \App\Http\Controllers\LinkConst::LINK.$row->image_one}}" height="50px;" width="50px;"> </td>
                                         <td>{{ $row->color }}</td>
                                         <td>{{ $row->quantity }}</td>
                                         <td>{{ $row->singleprice }}</td>

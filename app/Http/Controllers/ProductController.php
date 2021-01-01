@@ -174,6 +174,7 @@ class ProductController extends Controller
         $categories= Category::all();
 
         $product = $this->productRepository->findById($id);
+        $this->productRepository->plusView($product);
         $categoryId = $product->category->id;
         $productRelated  = Product::where('category_id',$categoryId)->limit(4)->get();
         $color = $product->color;

@@ -4,6 +4,7 @@ namespace App\Http\Repo\PostRepo;
 use App\Http\Repo\BaseRepository;
 use App\Models\Post;
 use App\Models\PostCategory;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 class PostRepository extends BaseRepository implements PostRepositoryInterface
@@ -27,13 +28,12 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
         $this->model->details_en = $request->details_en;
         $this->model->details_vi = $request->details_vi;
         $post_image = $request->file('post_image');
-        if ($post_image) {
-            $image_name = hexdec(uniqid()) . '.' . $post_image->getClientOriginalExtension();
-
-            Image::make($post_image)->resize(400, 200)->save(storage_path() . '/app/public/' . $image_name);
-            $this->model->post_image = 'storage/' . $image_name;
+        if($request->hasFile('post_image')){
+            $pathImage = Storage::disk('s3')->put('images',$post_image,'public');
+            $this->model->post_image = $pathImage;
             $this->model->save();
         }
+
     }
     public function update($request, $obj)
     {
@@ -45,31 +45,14 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
         $post_image = $request->file('post_image');
         $old_image = $obj->post_image;
 
-        if ($post_image) {
-            $image_old_move=ltrim($old_image,'storage/');
-            if (file_exists(storage_path().'/app/public/'.$image_old_move))
-            {
-                unlink(storage_path().'/app/public/'.$image_old_move);
-            }
-
-            $image_name = hexdec(uniqid()) . '.' . $post_image->getClientOriginalExtension();
-
-            Image::make($post_image)->resize(400, 200)->save(storage_path() . '/app/public/' . $image_name);
-            $obj->post_image = 'storage/' . $image_name;
-
-        }
-        $obj->save();
-
-    }
-
-    public function removeImage($obj)
-    {
-        $old_image = $obj->post_image;
-        $image_old_move=ltrim($old_image,'storage/');
-        if (file_exists(storage_path().'/app/public/'.$image_old_move))
+        if($request->hasFile('post_image'))
         {
-            unlink(storage_path().'/app/public/'.$image_old_move);
+            $pathImage = Storage::disk('s3')->put('images',$post_image,'public');
+            Storage::delete($old_image);
+            $obj->post_image = $pathImage;
+            $obj->save();
         }
 
     }
+
 }

@@ -31,7 +31,7 @@
                             <tr>
                                 <td>{{ $row->post_title_en }}</td>
                                 <td>{{ $row->postcategory->category_name_en }}</td>
-                                <td> <img src="{{ asset($row->post_image) }}" style="height: 50px; width: 50px;"> </td>
+                                <td> <img src="{{ \App\Http\Controllers\LinkConst::LINK.$row->post_image}}" style="height: 50px; width: 50px;"> </td>
                                 <td>
                                     <a href="{{ route('post.editForm',$row->id) }} " class="btn btn-sm btn-info">Edit</a>
                                     <a href="{{ route('post.delete', $row->id)}}" class="btn btn-sm btn-danger" id="delete">Delete</a>

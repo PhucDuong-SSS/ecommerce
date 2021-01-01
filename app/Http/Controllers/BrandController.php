@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\BrandRequest;
 use Illuminate\Http\Request;
 use App\Http\Repo\BrandRepo\BrandRepositoryInterface;
+use Illuminate\Support\Facades\Storage;
 
 class BrandController extends Controller
 {
@@ -50,8 +51,8 @@ class BrandController extends Controller
     public function delete($id)
     {
         $brand = $this->brandRepository->findById($id);
-        unlink($brand->logo);
-    $this->brandRepository->delete($id);
+        Storage::delete($brand->logo);
+        $this->brandRepository->delete($id);
     $notification = [
         'message'=>'Successfully deleted brand',
         'alert-type'=>'success'

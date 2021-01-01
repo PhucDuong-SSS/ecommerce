@@ -115,8 +115,8 @@
                                 <div class="form-group">
                                     <label class="form-control-label">Product Details: <span class="tx-danger">*</span></label>
 
-                                    <textarea class="form-control" id="summernote"  name="product_details">
-                                            {{ $product->details }}
+                                    <textarea class="form-control" id="ckeditor4"  name="product_details">
+                                            {!! $product->details !!}
                                     </textarea>
 
                                 </div>
@@ -347,8 +347,6 @@
         }
     </script>
 
-
-
     <script type="text/javascript">
         function readURL3(input){
             if (input.files && input.files[0]) {
@@ -365,3 +363,7 @@
     </script>
 
 @endsection
+@section('js')
+    CKEDITOR.replace('ckeditor4');
+@endsection
+

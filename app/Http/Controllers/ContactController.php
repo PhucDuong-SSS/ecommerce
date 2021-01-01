@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactRequest;
+use App\Models\Category;
+use App\Models\SiteSetting;
 use Illuminate\Http\Request;
 use App\Http\Repo\ContactRepo\ContactRepositoryInterface;
+use Illuminate\Support\Facades\DB;
 
 class ContactController extends Controller
 {
@@ -16,7 +19,10 @@ class ContactController extends Controller
 
     public function showContactPage()
     {
-        return view('page.contact');
+        $categories= Category::all();
+        $siteSetting = DB::table('site_settings')->get();
+
+        return view('page.contact',compact('categories','siteSetting'));
     }
     public function storeInfo(ContactRequest $request)
     {

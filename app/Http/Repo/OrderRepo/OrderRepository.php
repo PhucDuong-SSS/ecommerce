@@ -39,7 +39,8 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
         foreach ($product as $row) {
             DB::table('products')
                 ->where('id',$row->product_id)
-                ->update(['quantity' => DB::raw('quantity-'.$row->quantity)]);
+                ->update(['quantity' => DB::raw('quantity-'.$row->quantity),
+                    'sold' => DB::raw('sold+'.$row->quantity)]);
         }
     }
 }

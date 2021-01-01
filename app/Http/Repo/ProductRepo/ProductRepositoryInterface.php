@@ -56,7 +56,7 @@ interface ProductRepositoryInterface extends RepositoryInterface
 
     public function searchProduct($request);
 
-
+    public function plusView($obj);
 
 
 

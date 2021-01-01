@@ -20,7 +20,7 @@
                             <div class="contact_info_image"><img src="images/contact_1.png" alt=""></div>
                             <div class="contact_info_content">
                                 <div class="contact_info_title">Phone</div>
-                                <div class="contact_info_text">+38 068 005 3570</div>
+                                <div class="contact_info_text">{{$siteSetting[0]->phone_one}}</div>
                             </div>
                         </div>
 
@@ -29,7 +29,7 @@
                             <div class="contact_info_image"><img src="images/contact_2.png" alt=""></div>
                             <div class="contact_info_content">
                                 <div class="contact_info_title">Email</div>
-                                <div class="contact_info_text">fastsales@gmail.com</div>
+                                <div class="contact_info_text">{{$siteSetting[0]->email}}</div>
                             </div>
                         </div>
 
@@ -38,7 +38,7 @@
                             <div class="contact_info_image"><img src="images/contact_3.png" alt=""></div>
                             <div class="contact_info_content">
                                 <div class="contact_info_title">Address</div>
-                                <div class="contact_info_text">10 Suffolk at Soho, London, UK</div>
+                                <div class="contact_info_text">{{$siteSetting[0]->company_address}}</div>
                             </div>
                         </div>
 

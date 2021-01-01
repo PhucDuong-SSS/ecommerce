@@ -44,7 +44,7 @@
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1"> Old Brand Logo</label>
-                                <img src="{{ asset($brand->logo) }}" height="70px;" width="90px;">
+                                <img src="{{ \App\Http\Controllers\LinkConst::LINK.$brand->logo}}" height="70px;" width="90px;">
                                 <input type="hidden" name="old_logo" value="{{ $brand->logo }}">
                             </div>
 

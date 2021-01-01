@@ -254,5 +254,12 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
     }
 
+    public function plusView($obj)
+    {
+       $view = $obj->view;
+       $view++;
+       $obj->view = $view;
+       $obj->save();
+    }
 
 }

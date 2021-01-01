@@ -24,7 +24,6 @@
     <!-- chart -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
 
-{{--    <link rel="stylesheet" href="{{asset('frontend/sweetalert2.min.css')}}">--}}
 
     <script src="https://js.stripe.com/v3/"></script>
 
@@ -94,7 +93,7 @@
                     <!-- Logo -->
                     <div class="col-lg-2 col-sm-3 col-3 order-1">
                         <div class="logo_container">
-                            <div class="logo"><a href="{{route('index')}}">OneClick</a></div>
+                            <div class="logo"><a href="{{route('index')}}">Ishop</a></div>
                         </div>
                     </div>
 
@@ -172,7 +171,7 @@
                                             @foreach($category->sub_categories as $sub)
 
                                             <li>
-                                                <a href="#">{{$sub->name}}<i class="fas fa-chevron-right"></i></a>
+                                                <a href="{{route('product.showProductSubCategory',['id'=>$sub->id])}}">{{$sub->name}}<i class="fas fa-chevron-right"></i></a>
                                             </li>
                                             @endforeach
 
@@ -190,22 +189,17 @@
                             <div class="main_nav_menu ml-auto">
                                 <ul class="standard_dropdown main_nav_dropdown">
                                     <li><a href="{{route('index')}}">Home<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="blog.html">Product<i class="fas fa-chevron-down"></i></a></li>
+                                    <li><a href="{{route('product.showProductCategory',['id'=>$categories[0]->id])}}">Shop<i class="fas fa-chevron-down"></i></a></li>
 
 
                                     <li class="hassubs">
                                         <a href="#">Pages<i class="fas fa-chevron-down"></i></a>
                                         <ul>
-                                            <li><a href="shop.html">Shop<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="product.html">Product<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="blog_single.html">Blog Post<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="regular.html">Regular Post<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
+                                            <li><a href="{{route('product.showProductCategory',['id'=>$categories[0]->id])}}">Shop<i class="fas fa-chevron-down"></i></a></li>
+                                            <li><a href="{{route('cart.showCart')}}">Cart<i class="fas fa-chevron-down"></i></a></li>
+                                            <li><a href="{{route('contact.showContactPage')}}">Contact<i class="fas fa-chevron-down"></i></a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
                                     <li><a href="{{route('contact.showContactPage')}}">Contact<i class="fas fa-chevron-down"></i></a></li>
                                 </ul>
                             </div>
@@ -411,7 +405,6 @@
                 });
         });
     });
-
 
 </script>
 

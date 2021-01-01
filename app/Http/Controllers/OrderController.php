@@ -103,10 +103,11 @@ class OrderController extends Controller
         $order =$this->orderRepositoty->findById($id);
         $status = 3;
         $this->orderRepositoty->changeStatus($order,$status);
-        $notification=array(
-            'messege'=>'Product Delivery Done',
+        $notification = [
+            'message'=>'Product Delivery Done',
             'alert-type'=>'success'
-        );
+        ];
+
         return Redirect()->route('order.showSuccessPayment')->with($notification);
     }
 
