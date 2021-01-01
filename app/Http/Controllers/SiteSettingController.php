@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SiteSettingRequest;
+use App\Models\SiteSetting;
 use Illuminate\Http\Request;
 use App\Http\Repo\SiteSettingRepo\SiteSettingRepositoryInterface;
 
@@ -17,8 +18,7 @@ class SiteSettingController extends Controller
 
     public function index()
     {
-        $setting = $this->siteSettingRepository->getAll();
-        $setting=$setting[0];
+        $setting = SiteSetting::first();
         return view('admin.siteSetting.list', compact('setting'));
     }
 

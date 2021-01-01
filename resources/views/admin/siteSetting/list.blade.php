@@ -3,7 +3,7 @@
     <!-- ########## START: MAIN PANEL ########## -->
     <div class="sl-mainpanel">
         <nav class="breadcrumb sl-breadcrumb">
-            <a class="breadcrumb-item" href="{{route('dashboard.show')}}">Starlight</a>
+            <a class="breadcrumb-item" href="{{route('dashboard.show')}}">Ishop</a>
             <span class="breadcrumb-item active">Website Setting</span>
         </nav>
 
