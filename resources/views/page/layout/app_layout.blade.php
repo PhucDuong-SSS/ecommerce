@@ -67,10 +67,9 @@
 
                                     <ul class="standard_dropdown top_bar_dropdown">
                                         <li>
-                                            <a href="{{route('customer.showProfile')}}"><div class="user_icon"><img src="{{ asset('frontend/images/user.svg')}}" alt=""></div> {{\Illuminate\Support\Facades\Auth::guard('customer')->user()->username}}<i class="fas fa-chevron-down"></i></a>
+                                            <a href="#"><div class="user_icon"><img src="{{ asset('frontend/images/user.svg')}}" alt=""></div> {{\Illuminate\Support\Facades\Auth::guard('customer')->user()->username}}<i class="fas fa-chevron-down"></i></a>
                                             <ul>
 {{--                                                <li><a href="">Wishlist</a></li>--}}
-                                                <li><a href="">Checkout</a></li>
                                                 <li><a href="{{route('customer.logout')}}">Logout</a></li>
                                             </ul>
                                         </li>
