@@ -31,27 +31,18 @@
                 <div class="footer_column">
                     <div class="footer_title">Find it Fast</div>
                     <ul class="footer_list">
-                        <li><a href="#">Computers</a></li>
-                        <li><a href="#">Laptop</a></li>
-                        <li><a href="#">Hardware</a></li>
-                        <li><a href="#">Smartphones</a></li>
-                        <li><a href="#">Tablet</a></li>
-                    </ul>
-                    <div class="footer_subtitle">Gadgets</div>
-                    <ul class="footer_list">
-                        <li><a href="#">Car Electronics</a></li>
-                    </ul>
+                        <li><a href="#">Iphone</a></li>
+                        <li><a href="#">Macbook</a></li>
+                        <li><a href="#">Iwatch</a></li>
+                        <li><a href="#">Ipad</a></li>
+
                 </div>
             </div>
 
             <div class="col-lg-2">
                 <div class="footer_column">
                     <ul class="footer_list footer_list_2">
-                        <li><a href="#">Video Games & Consoles</a></li>
-                        <li><a href="#">Accessories</a></li>
-                        <li><a href="#">Cameras & Photos</a></li>
-                        <li><a href="#">Hardware</a></li>
-                        <li><a href="#">Computers & Laptops</a></li>
+
                     </ul>
                 </div>
             </div>
@@ -61,8 +52,6 @@
                     <div class="footer_title">Customer Care</div>
                     <ul class="footer_list">
                         <li><a href="#">My Account</a></li>
-                        <li><a href="#">Order Tracking</a></li>
-                        <li><a href="#">Wish List</a></li>
                         <li><a href="#">Customer Services</a></li>
                         <li><a href="#">Returns / Exchange</a></li>
                         <li><a href="#">FAQs</a></li>
