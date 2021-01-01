@@ -62,7 +62,7 @@
                                     @error('details_en')
                                     <div style="color: red">{{ $message }}</div>
                                     @enderror
-                                    <textarea class="form-control" id="summernote"  name="details_en">
+                                    <textarea class="form-control" id="ckeditor1"  name="details_en">
 
                                       {!! $post->details_en !!}
 
@@ -77,9 +77,9 @@
                                     @error('details_vi')
                                     <div style="color: red">{{ $message }}</div>
                                     @enderror
-                                    <textarea class="form-control" id="summernote1"  name="details_vi">
+                                    <textarea class="form-control" id="ckeditor2"  name="details_vi">
                                   {!! $post->details_vi !!}
-             </textarea>
+                                 </textarea>
 
                                 </div>
                             </div><!-- col-4 -->
@@ -105,7 +105,7 @@
                                     <label class="form-control-label">Old Post Image: <span class="tx-danger">*</span></label>
                                     <label class="custom-file">
 
-                                        <img src="{{ asset($post->post_image) }}" style="height: 80px; width: 130px;">
+                                        <img src="{{ \App\Http\Controllers\LinkConst::LINK.$post->post_image}}" style="height: 80px; width: 130px;">
                                         <input type="hidden" name="old_image" value="{{ $post->post_image }}">
 
                                     </label>
@@ -156,4 +156,9 @@
         }
     </script>
 
+
+@endsection
+@section('js')
+    CKEDITOR.replace('ckeditor1')
+    CKEDITOR.replace('ckeditor2')
 @endsection

@@ -1,23 +1,14 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>OneClick</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="OneTech shop project">
+    <meta name="description" content="Ishop project">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/bootstrap4/bootstrap.min.css')}}">
     <link href="{{ asset('frontend/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css') }}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/plugins/OwlCarousel2-2.2.1/owl.carousel.css') }} ">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/plugins/OwlCarousel2-2.2.1/owl.theme.default.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/plugins/OwlCarousel2-2.2.1/animate.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{asset('frontend/plugins/slick-1.8.0/slick.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/contact_styles.css') }} ">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/contact_responsive.css') }}">
-
-
-
-<!-- chart -->
+    <link href="{{ asset('frontend/styles/login.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
 
 
@@ -27,104 +18,55 @@
 
 <body>
 
-    <div class="contact_form">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6  " style="border: 1px solid grey; padding: 20px; border-radius: 25px;">
-                    <div class="contact_form_container">
-                        <div class="contact_form_title text-center">Sign In</div>
 
-                        <form action="{{route('customer.login')}}" id="contact_form" method="post">
-                            @csrf
 
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">User Name</label>
-                                <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('email') }}"  aria-describedby="emailHelp"  required="">
-                                @error('usrname')
-                                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
+    <div class="main">
+
+        <section class="signup">
+            <!-- <img src="img/signup-bg.jpg" alt=""> -->
+            <div class="container">
+                <div class="signup-content">
+                    <form method="POST" action="{{route('customer.login')}}" class="signup-form">
+                        @csrf
+                        <h2 class="form-title">Login account</h2>
+
+
+                        <div class="form-group">
+                            <input type="text" class="form-input" name="username"  placeholder="User Name"/>
+                            @error('username')
+                            <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                            @enderror
+                        </div>
+
+
+                        <div class="form-group">
+                            <input type="password" class="form-input @error('password') is-invalid @enderror" name="password" id="password" placeholder="Password"/>
+                            <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
+                            @error('password')
+                            <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
                                 @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Password</label>
-                                <input type="password" class="form-control @error('password') is-invalid @enderror"  aria-describedby="emailHelp" name="password" required="">
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                                @enderror
-
-                            </div>
+                        </div>
 
 
-                            <div class="contact_form_button">
-                                <button type="submit" class="btn btn-info">Login</button>
-                            </div>
-                        </form>
-                        <br>
-                        <a href="">Already Registered? Login</a>   <br> <br>
-                        <a href="">I forgot my password</a>   <br> <br>
+                        <div class="form-group">
+                            <input type="submit" name="submit" id="submit" class="form-submit" value="Log in"/>
+                        </div>
+                        <!-- alert to user -->
+                        <div style="text-align: center; color:red">
 
-                        <button type="submit" class="btn btn-primary btn-block"><i class="fab fa-facebook-square"></i> Login with Facebook </button>
+                        </div>
 
-                        <a href="{{ url('/auth/redirect/google') }}" class="btn btn-danger btn-block"><i class="fab fa-google"></i> Login with Google </a>
-
-                    </div>
+                    </form>
+                    <p class="loginhere">
+                        I do'nt have an account ? <a href="{{route('customer.register')}}" class="loginhere-link">Register here</a>
+                    </p>
                 </div>
-
-
-{{--                <div class="col-lg-5 offset-lg-1" style="border: 1px solid grey; padding: 20px; border-radius: 25px;">--}}
-{{--                    <div class="contact_form_container">--}}
-{{--                        <div class="contact_form_title text-center">Sign Up</div>--}}
-
-{{--                        <form action="" id="contact_form" method="post">--}}
-{{--                            @csrf--}}
-
-{{--                            <div class="form-group">--}}
-{{--                                <label for="exampleInputEmail1">Full Name</label>--}}
-{{--                                <input type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Enter Your Full Name " name="name" required="">--}}
-{{--                            </div>--}}
-
-{{--                            <div class="form-group">--}}
-{{--                                <label for="exampleInputEmail1">Phone</label>--}}
-{{--                                <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}"  aria-describedby="emailHelp" placeholder="Enter Your Phone " required="">--}}
-{{--                            </div>--}}
-
-{{--                            <div class="form-group">--}}
-{{--                                <label for="exampleInputEmail1">Email</label>--}}
-{{--                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  aria-describedby="emailHelp" placeholder="Enter Your Email " required="">--}}
-{{--                            </div>--}}
-
-{{--                            <div class="form-group">--}}
-{{--                                <label for="exampleInputEmail1">Password</label>--}}
-{{--                                <input type="password" class="form-control"  aria-describedby="emailHelp" placeholder="Enter Your Password " name="password" required="">--}}
-{{--                            </div>--}}
-
-{{--                            <div class="form-group">--}}
-{{--                                <label for="exampleInputEmail1">Confirm Password</label>--}}
-{{--                                <input type="password" class="form-control"  aria-describedby="emailHelp" placeholder="Re-Type Password " name="password_confirmation" required="">--}}
-{{--                            </div>--}}
-{{--                            <div class="contact_form_button">--}}
-{{--                                <button type="submit" class="btn btn-info">Sign Up</button>--}}
-{{--                            </div>--}}
-{{--                        </form>--}}
-
-{{--                    </div>--}}
-{{--                </div>--}}
-
             </div>
-        </div>
+        </section>
 
-
-
-
-
-
-
-</div>
-
+    </div>
 
 
 
@@ -132,24 +74,12 @@
 <script src="{{ asset('frontend/js/jquery-3.3.1.min.js')}}"></script>
 <script src="{{ asset('frontend/styles/bootstrap4/popper.js')}}"></script>
 <script src="{{ asset('frontend/styles/bootstrap4/bootstrap.min.js')}}"></script>
-<script src="{{ asset('frontend/plugins/greensock/TweenMax.min.js')}}"></script>
-<script src="{{ asset('frontend/plugins/greensock/TimelineMax.min.js')}}"></script>
-<script src="{{ asset('frontend/plugins/scrollmagic/ScrollMagic.min.js')}}"></script>
-<script src="{{ asset('frontend/plugins/greensock/animation.gsap.min.js')}}"></script>
-<script src="{{ asset('frontend/plugins/greensock/ScrollToPlugin.min.js')}}"></script>
-<script src="{{ asset('frontend/plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
-<script src="{{ asset('frontend/plugins/slick-1.8.0/slick.js')}}"></script>
-<script src="{{ asset('frontend/plugins/easing/easing.js')}}"></script>
-@yield('script')
-{{--<script src="{{ asset('frontend/js/custom.js')}}"></script>--}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 
 
 
-{{--<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>--}}
-{{--<script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>--}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
     <script>
         @if(Session::has('message'))
         var type = "{{Session::get('alert-type', 'info') }}";
@@ -172,13 +102,6 @@
         }
         @endif
     </script>
-
-
-
-
-
-
-
 
 
 

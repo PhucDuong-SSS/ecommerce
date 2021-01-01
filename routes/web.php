@@ -40,6 +40,23 @@ Route::post('show-contact-page',[ContactController::class, 'storeInfo'])->name('
 // Show detail products
 Route::get('show-product-details/{id}',[ProductController::class, 'showDetails'])->name('product.showDetails');
 Route::get('show-product-category/{id}',[ProductController::class, 'showProductCategory'])->name('product.showProductCategory');
+Route::get('show-product-category-feature/{categoryId}/',[ProductController::class, 'showProductCategoryFeature'])->name('product.showProductCategoryFeature');
+Route::get('show-product-category-trend/{categoryId}/',[ProductController::class, 'showProductCategoryTrend'])->name('product.showProductCategoryTrend');
+Route::get('show-product-category-hightview/{categoryId}/',[ProductController::class, 'showProductCategoryView'])->name('product.showProductCategoryView');
+Route::get('show-product-category-priceasc/{categoryId}/',[ProductController::class, 'showProductCategoryPriceAsc'])->name('product.showProductCategoryPriceAsc');
+Route::get('show-product-category-pricedesc/{categoryId}/',[ProductController::class, 'showProductCategoryPriceDecs'])->name('product.showProductCategoryPriceDecs');
+//Show subcategory product
+Route::get('show-product-sub_category/{id}',[ProductController::class, 'showProductSubCategory'])->name('product.showProductSubCategory');
+Route::get('show-product-sub-category-feature/{categoryId}/',[ProductController::class, 'showProductSubCategoryFeature'])->name('product.showProductSubCategoryFeature');
+Route::get('show-product-sub-category-trend/{categoryId}/',[ProductController::class, 'showProductSubCategoryTrend'])->name('product.showProductSubCategoryTrend');
+Route::get('show-product-sub-category-hightview/{categoryId}/',[ProductController::class, 'showProductSubCategoryView'])->name('product.showProductSubCategoryView');
+Route::get('show-product-sub-category-priceasc/{categoryId}/',[ProductController::class, 'showProductSubCategoryPriceAsc'])->name('product.showProductSubCategoryPriceAsc');
+Route::get('show-product-sub-category-pricedesc/{categoryId}/',[ProductController::class, 'showProductSubCategoryPriceDecs'])->name('product.showProductSubCategoryPriceDecs');
+
+//search product
+Route::post('search-product',[ProductController::class, 'searchProduct'])->name('product.searchProduct');
+
+
 
 //recently product
 Route::post('show-recently-product',[ProductController::class, 'renderProductView'])->name('product.showrecently');
@@ -55,11 +72,10 @@ Route::get('remove-cart/{id}',[CartController::class, 'removeCart'])->name('cart
 Route::get('remove-all-cart',[CartController::class, 'destroyCart'])->name('cart.destroyCart');
 Route::post('update-cart',[CartController::class, 'updateCart'])->name('cart.updateCart');
 Route::get('customer/checkout',[CartController::class, 'checkout'])->name('cart.checkout');
-Route::get('customer/checkout',[CartController::class, 'checkout'])->name('cart.checkout');
+//Route::get('customer/checkout',[CartController::class, 'checkout'])->name('cart.checkout');
 Route::post('customer/add-coupon',[CartController::class, 'coupon'])->name('cart.addCoupon');
 Route::get('customer/remove-coupon',[CartController::class, 'couponRemove'])->name('cart.couponRemove');
 Route::get('customer/payment',[CartController::class, 'showPaymentPage'])->name('cart.showPaymentPage');
-Route::post('customer/payment-process',[PaymentController::class, 'paymentProcess'])->name('payment.paymentProcess');
 Route::post('customer/payment-process',[PaymentController::class, 'paymentProcess'])->name('payment.paymentProcess');
 Route::post('customer/stripe-charge',[PaymentController::class, 'stripeCharge'])->name('payment.stripeCharge');
 

@@ -28,7 +28,7 @@ class CustomerRequest extends FormRequest
             'username' => 'required|unique:customers,username'.$this->id,
             'email' => 'required|unique:customers,email'.$this->id,
             'password' => 'required|min:6',
-            'password_confirmation' => 'required|same:password|min:6'
+            'password_confirmation' => 'same:password|min:6'
         ];
     }
 }

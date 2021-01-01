@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Repo\ProductRepo\ProductRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 use function PHPUnit\Framework\isEmpty;
 
 class ProductController extends Controller
@@ -98,10 +99,14 @@ class ProductController extends Controller
         isEmpty($product->wishlist)?$has_wishlist = true:$has_wishlist=false;
         isEmpty($product->orderdetail)?$has_order_details = true:$has_order_details=false;
 
-        if(!$has_order_details && !$has_wishlist )
+        if($has_order_details && $has_wishlist )
         {
-            $this->productRepository->removeImage($product);
+            $product = $this->productRepository->findById($id);
+            Storage::delete($product->image_one);
+            Storage::delete($product->image_two);
+            Storage::delete($product->image_three);
             $this->productRepository->delete($id);
+
             $notification = [
                 'message'=>'Successfully deleted product',
                 'alert-type'=>'success'
@@ -144,6 +149,7 @@ class ProductController extends Controller
 
     public function showProductFrontend()
     {
+        $categories= Category::all();
         $featuredProducts = $this->productRepository->getFeaturedProduct();
         $trendProducts = $this->productRepository->getTrendProduct();
         $hotProducts = $this->productRepository->getHotProduct();
@@ -164,19 +170,120 @@ class ProductController extends Controller
     }
     public function showDetails($id)
     {
+        $siteSetting = $this->productRepository->getsiteSetting();
+        $categories= Category::all();
+
         $product = $this->productRepository->findById($id);
+        $this->productRepository->plusView($product);
+        $categoryId = $product->category->id;
+        $productRelated  = Product::where('category_id',$categoryId)->limit(4)->get();
         $color = $product->color;
         $product_color = explode(',', $color);
-        return view('page.product', compact('product','product_color'));
+        return view('page.product', compact('product','product_color','siteSetting','categories','productRelated'));
     }
 
     public function showProductCategory($id)
     {
+        $siteSetting = $this->productRepository->getsiteSetting();
         $productsCategory = $this->productRepository->showProductCategory($id);
-        $brands = $this->productRepository->getBrand();
         $categories = $this->productRepository->getCategory();
-        return view('page.shop', compact('productsCategory','categories','brands'));
+        return view('page.shop', compact('productsCategory','categories','siteSetting'));
     }
+
+    public function showProductCategoryFeature($categoryId)
+    {
+        $siteSetting = $this->productRepository->getsiteSetting();
+        $productsCategory = $this->productRepository->showProductCategoryFeature($categoryId);
+        $categories = $this->productRepository->getCategory();
+        return view('page.shop', compact('productsCategory','categories','siteSetting'));
+
+    }
+
+    public function showProductCategoryTrend($categoryId)
+    {
+        $siteSetting = $this->productRepository->getsiteSetting();
+        $productsCategory = $this->productRepository->showProductCategoryTrend($categoryId);
+        $categories = $this->productRepository->getCategory();
+        return view('page.shop', compact('productsCategory','categories','siteSetting'));
+
+    }
+    public function showProductCategoryView($categoryId)
+    {
+        $siteSetting = $this->productRepository->getsiteSetting();
+        $productsCategory = $this->productRepository->showProductCategoryView($categoryId);
+        $categories = $this->productRepository->getCategory();
+        return view('page.shop', compact('productsCategory','categories','siteSetting'));
+
+    }
+    public function showProductCategoryPriceDecs($categoryId)
+    {
+        $siteSetting = $this->productRepository->getsiteSetting();
+        $productsCategory = $this->productRepository->showProductCategoryPriceDecs($categoryId);
+        $categories = $this->productRepository->getCategory();
+        return view('page.shop', compact('productsCategory','categories','siteSetting'));
+
+    }
+    public function showProductCategoryPriceAsc($categoryId)
+    {
+        $siteSetting = $this->productRepository->getsiteSetting();
+        $productsCategory = $this->productRepository->showProductCategoryPriceAsc($categoryId);
+        $categories = $this->productRepository->getCategory();
+        return view('page.shop', compact('productsCategory','categories','siteSetting'));
+
+    }
+    //show proddut sub
+    public function showProductSubCategory($subcategoryId)
+    {
+        $siteSetting = $this->productRepository->getsiteSetting();
+        $productsCategory = $this->productRepository->showProductSubCategory($subcategoryId);
+        $categories = $this->productRepository->getCategory();
+        return view('page.subcategory', compact('productsCategory','categories','siteSetting'));
+
+    }
+    //
+    public function showProductSubCategoryFeature($subcategoryId)
+    {
+        $siteSetting = $this->productRepository->getsiteSetting();
+        $productsCategory = $this->productRepository->showProductSubCategory($subcategoryId);
+        $categories = $this->productRepository->getCategory();
+        return view('page.subcategory', compact('productsCategory','categories','siteSetting'));
+
+    }
+    public function showProductSubCategoryTrend($subcategoryId)
+    {
+        $siteSetting = $this->productRepository->getsiteSetting();
+        $productsCategory = $this->productRepository->showProductSubCategory($subcategoryId);
+        $categories = $this->productRepository->getCategory();
+        return view('page.subcategory', compact('productsCategory','categories','siteSetting'));
+
+    }
+    public function showProductSubCategoryView($subcategoryId)
+    {
+        $siteSetting = $this->productRepository->getsiteSetting();
+        $productsCategory = $this->productRepository->showProductSubCategory($subcategoryId);
+        $categories = $this->productRepository->getCategory();
+        return view('page.subcategory', compact('productsCategory','categories','siteSetting'));
+
+    }
+    public function showProductSubCategoryPriceAsc($subcategoryId)
+    {
+        $siteSetting = $this->productRepository->getsiteSetting();
+        $productsCategory = $this->productRepository->showProductSubCategory($subcategoryId);
+        $categories = $this->productRepository->getCategory();
+        return view('page.subcategory', compact('productsCategory','categories','siteSetting'));
+
+    }
+    public function showProductSubCategoryPriceDecs($subcategoryId)
+    {
+        $siteSetting = $this->productRepository->getsiteSetting();
+        $productsCategory = $this->productRepository->showProductSubCategory($subcategoryId);
+        $categories = $this->productRepository->getCategory();
+        return view('page.subcategory', compact('productsCategory','categories','siteSetting'));
+
+    }
+
+
+
 
     public function renderProductView(Request $request)
     {
@@ -188,6 +295,17 @@ class ProductController extends Controller
 
             return response()->json(['data'=>$html]);
         }
+    }
+
+    public function searchProduct(Request $request)
+    {
+        $siteSetting = $this->productRepository->getsiteSetting();
+        $keyword = $request->search;
+        $categories = $this->productRepository->getCategory();
+        $searchProducts = $this->productRepository->searchProduct($request);
+        return view('page.search',compact('siteSetting','categories','searchProducts','keyword'));
+
+
     }
 
 

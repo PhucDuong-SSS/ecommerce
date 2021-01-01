@@ -1,10 +1,10 @@
 @extends('page.layout.app_layout')
 @section('css')
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/contact_styles.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/contact_responsive.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/category_style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/blog_responsive.css') }}">
 @endsection
 @section('script')
-    <script src="{{ asset('frontend/js/contact_custom.js')}}"></script>
+    <script src="{{ asset('frontend/js/blog_custom.js')}}"></script>
 @endsection
 @section('content')
 
@@ -46,159 +46,91 @@
 
     <div class="contact_form">
         <div class="container">
+
             <div class="row">
-                <div class="col-lg-7" style="border: 1px solid grey; padding: 20px; border-radius: 25px;">
-                    <div class="contact_form_container">
-                        <div class="contact_form_title text-center">Cart Products</div>
-
-
-                        <div class="cart_items">
-                            <ul class="cart_list">
-
-                                @foreach($cart as $row)
-
-                                    <li class="cart_item clearfix">
-
-
-
-                                        <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
-
-                                            <div class="cart_item_name cart_info_col">
-                                                <div class="cart_item_title"><b>Product Image</b></div>
-                                                <div class="cart_item_text"><img src="{{ asset($row->options->image) }} " style="width: 70px; width: 70px;" alt=""></div>
-                                            </div>
-
-
-                                            <div class="cart_item_name cart_info_col">
-                                                <div class="cart_item_title"><b>Name</b></div>
-                                                <div class="cart_item_text">{{ $row->name  }}</div>
-                                            </div>
-
-                                            @if($row->options->color == NULL)
-
-                                            @else
-                                                <div class="cart_item_color cart_info_col">
-                                                    <div class="cart_item_title"><b>Color</b></div>
-                                                    <div class="cart_item_text"> {{ $row->options->color }}</div>
-                                                </div>
-                                            @endif
-
-
-                                            @if($row->options->size == NULL)
-
-                                            @else
-                                                <div class="cart_item_color cart_info_col">
-                                                    <div class="cart_item_title"><b>Size</b></div>
-                                                    <div class="cart_item_text"> {{ $row->options->size }}</div>
-                                                </div>
-                                            @endif
-
-
-                                            <div class="cart_item_quantity cart_info_col">
-                                                <div class="cart_item_title"><b>Quantity</b></div>
-                                                <div class="cart_item_text"> {{ $row->qty }}</div>
-
-                                            </div>
-
-
-
-                                            <div class="cart_item_price cart_info_col">
-                                                <div class="cart_item_title"><b>Price</b></div>
-                                                <div class="cart_item_text">${{ $row->price }}</div>
-                                            </div>
-                                            <div class="cart_item_total cart_info_col">
-                                                <div class="cart_item_title"><b>Total</b></div>
-                                                <div class="cart_item_text">${{ $row->price*$row->qty }}</div>
-                                            </div>
-
-
-                                        </div>
+                    <div class="col-lg-6">
+                        <div class="checkout__order">
+                            <h5>Your order</h5>
+                            <div class="checkout__order__product">
+                                <ul>
+                                    <li>
+                                        <span class="top__text">Product</span>
+                                        <span class="top__text__right">Total</span>
                                     </li>
-                                @endforeach
-                            </ul>
+                                    @foreach($cart as $key => $row)
+                                        <li>{{$row->name}} <span>$ {{$row->price}}</span></li>
+
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div class="checkout__order__total">
+                                <ul>
+                                    <li>Subtotal <span>$ {{ $subtotal }}</span></li>
+
+                                    <li>Shipping <span>$ {{ $shipping_charge}}</span></li>
+
+
+                                    @if(Session::has('coupon'))
+                                        <li>Coupon Code <span>{{ Session::get('coupon')['name'] }}</span></li>
+                                        <li>Coupon discount <span>(- {{ Session::get('coupon')['discount'] }}% ) <a href="{{ route('cart.couponRemove') }}" class="btn btn-danger btn-sm">X</a> </span></li>
+                                        <li>Vat <span>$ {{$vat = Session::get('coupon')['balance']*10/100}}</span></li>
+
+
+                                        <li>Total <span>$ {{$total_pay = Session::get('coupon')['balance']*1.1  +$shipping_charge }} </span></li>
+
+                                    @else
+                                        <li>Vat <span>$  {{ $vat = $subtotal*0.1}}</span></li>
+
+                                        <li>Total <span>$ {{$total_pay= $subtotal*1.1 +$shipping_charge  }}</span></li>
+
+                                    @endif
+                                </ul>
+                            </div>
+
                         </div>
-
-                        <ul class="list-group col-lg-8" style="float: right;">
-                            @if(Session::has('coupon'))
-                                <li class="list-group-item">Subtotal : <span style="float: right;">
-            ${{ Session::get('coupon')['balance'] }} </span> </li>
-                                <li class="list-group-item">Coupon : ({{ Session::get('coupon')['name'] }} )
-                                    <a href="{{ route('cart.couponRemove') }}" class="btn btn-danger btn-sm">X</a>
-                                    <span style="float: right;">${{ Session::get('coupon')['discount'] }} </span> </li>
-                            @else
-                                <li class="list-group-item">Subtotal : <span style="float: right;">
-            ${{  Cart::Subtotal() }} </span> </li>
-                            @endif
-
-
-
-                            <li class="list-group-item">Shiping Charge : <span style="float: right;">${{ $shipping_charge  }} </span> </li>
-                                @if(Session::has('coupon'))
-                                    <li class="list-group-item">Vat :<span style="float: right;">{{$vat = Session::get('coupon')['balance']*10/100}} </span> </li>
-                                    {{$total = Session::get('coupon')['balance']}}
-                                @else
-                                    <li class="list-group-item">Vat : <span style="float: right;">{{$vat =$subtotal*0.1}} </span> </li>
-                                    {{$total = $subtotal}}
-                                @endif
-                            @if(Session::has('coupon'))
-                                    <li class="list-group-item">Total : <span style="float: right;">{{ $total_pay = Session::get('coupon')['balance']*1.1  +$shipping_charge }} đ</span> </li>
-                            @else
-                                    <li class="list-group-item">Total : <span style="float: right;"> {{$total_pay= $subtotal*1.1 +$shipping_charge  }} đ</span> </li>
-                            @endif
-
-                        </ul>
-
-
-
                     </div>
-                </div>
+                    <div class="col-lg-6" style="border: 1px solid grey; padding-top: 50px; border-radius: 25px;">
+                        <div class="contact_form_container">
+                            <div class="contact_form_title text-center">Shipping Address</div>
+
+                            <form action="{{route('payment.stripeCharge')}}" method="post" id="payment-form">
+                                @csrf
+                                <div class="form-row">
+                                    <label for="card-element">
+                                        Credit or debit card
+                                    </label>
+                                    <div id="card-element">
+                                        <!-- A Stripe Element will be inserted here. -->
+                                    </div>
+                                    <!-- Used to display form errors. -->
+                                    <div id="card-errors" role="alert"></div>
+                                </div><br>
+
+                                <input type="hidden" name="shipping" value="{{ $shipping_charge }} ">
+                                <input type="hidden" name="vat" value="{{ $vat }} ">
+                                <input type="hidden" name="subtotal" value="{{ $subtotal }} ">
+                                <input type="hidden" name="total" value="{{ $total_pay }} ">
+                                <input type="hidden" name="vat" value="{{ $vat }} ">
+                                <input type="hidden" name="ship_name" value="{{ $data['name'] }} ">
+                                <input type="hidden" name="ship_phone" value="{{ $data['phone'] }} ">
+                                <input type="hidden" name="ship_email" value="{{ $data['email'] }} ">
+                                <input type="hidden" name="ship_address" value="{{ $data['address'] }} ">
+                                <input type="hidden" name="ship_city" value="{{ $data['city'] }} ">
+                                <input type="hidden" name="ship_note" value="{{ $data['note'] }} ">
+                                <input type="hidden" name="payment_type" value="{{ $data['payment'] }} ">
 
 
+                                <button class="btn btn-info">Pay Now</button>
+                            </form>
 
 
-
-                <div class="col-lg-5" style="border: 1px solid grey; padding: 20px; border-radius: 25px;">
-                    <div class="contact_form_container">
-                        <div class="contact_form_title text-center">Shipping Address</div>
-
-                        <form action="{{route('payment.stripeCharge')}}" method="post" id="payment-form">
-                            @csrf
-                            <div class="form-row">
-                                <label for="card-element">
-                                    Credit or debit card
-                                </label>
-                                <div id="card-element">
-                                    <!-- A Stripe Element will be inserted here. -->
-                                </div>
-                                <!-- Used to display form errors. -->
-                                <div id="card-errors" role="alert"></div>
-                            </div><br>
-
-                            <input type="hidden" name="shipping" value="{{ $shipping_charge }} ">
-                            <input type="hidden" name="vat" value="{{ $vat }} ">
-                            <input type="hidden" name="subtotal" value="{{ $total_pay }} ">
-                            <input type="hidden" name="total" value="{{ $total }} ">
-                            <input type="hidden" name="vat" value="{{ $vat }} ">
-                            <input type="hidden" name="ship_name" value="{{ $data['name'] }} ">
-                            <input type="hidden" name="ship_phone" value="{{ $data['phone'] }} ">
-                            <input type="hidden" name="ship_email" value="{{ $data['email'] }} ">
-                            <input type="hidden" name="ship_address" value="{{ $data['address'] }} ">
-                            <input type="hidden" name="ship_city" value="{{ $data['city'] }} ">
-                            <input type="hidden" name="payment_type" value="{{ $data['payment'] }} ">
-
-
-                            <button class="btn btn-info">Pay Now</button>
-                        </form>
-
-
+                        </div>
                     </div>
+
                 </div>
-
-7
-
 
             </div>
-        </div>
+
         <div class="panel"></div>
     </div>
 
@@ -282,4 +214,108 @@
 
 @endsection
 
+{{--<div class="col-lg-7" style="border: 1px solid grey; padding: 20px; border-radius: 25px;">--}}
+{{--    <div class="contact_form_container">--}}
+{{--        <div class="contact_form_title text-center">Cart Products</div>--}}
 
+
+{{--        <div class="cart_items">--}}
+{{--            <ul class="cart_list">--}}
+
+{{--                @foreach($cart as $row)--}}
+
+{{--                    <li class="cart_item clearfix">--}}
+
+
+
+{{--                        <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">--}}
+
+{{--                            <div class="cart_item_name cart_info_col">--}}
+{{--                                <div class="cart_item_title"><b>Product Image</b></div>--}}
+{{--                                <div class="cart_item_text"><img src="{{ asset($row->options->image) }} " style="width: 70px; width: 70px;" alt=""></div>--}}
+{{--                            </div>--}}
+
+
+{{--                            <div class="cart_item_name cart_info_col">--}}
+{{--                                <div class="cart_item_title"><b>Name</b></div>--}}
+{{--                                <div class="cart_item_text">{{ $row->name  }}</div>--}}
+{{--                            </div>--}}
+
+{{--                            @if($row->options->color == NULL)--}}
+
+{{--                            @else--}}
+{{--                                <div class="cart_item_color cart_info_col">--}}
+{{--                                    <div class="cart_item_title"><b>Color</b></div>--}}
+{{--                                    <div class="cart_item_text"> {{ $row->options->color }}</div>--}}
+{{--                                </div>--}}
+{{--                            @endif--}}
+
+
+{{--                            @if($row->options->size == NULL)--}}
+
+{{--                            @else--}}
+{{--                                <div class="cart_item_color cart_info_col">--}}
+{{--                                    <div class="cart_item_title"><b>Size</b></div>--}}
+{{--                                    <div class="cart_item_text"> {{ $row->options->size }}</div>--}}
+{{--                                </div>--}}
+{{--                            @endif--}}
+
+
+{{--                            <div class="cart_item_quantity cart_info_col">--}}
+{{--                                <div class="cart_item_title"><b>Quantity</b></div>--}}
+{{--                                <div class="cart_item_text"> {{ $row->qty }}</div>--}}
+
+{{--                            </div>--}}
+
+
+
+{{--                            <div class="cart_item_price cart_info_col">--}}
+{{--                                <div class="cart_item_title"><b>Price</b></div>--}}
+{{--                                <div class="cart_item_text">${{ $row->price }}</div>--}}
+{{--                            </div>--}}
+{{--                            <div class="cart_item_total cart_info_col">--}}
+{{--                                <div class="cart_item_title"><b>Total</b></div>--}}
+{{--                                <div class="cart_item_text">${{ $row->price*$row->qty }}</div>--}}
+{{--                            </div>--}}
+
+
+{{--                        </div>--}}
+{{--                    </li>--}}
+{{--                @endforeach--}}
+{{--            </ul>--}}
+{{--        </div>--}}
+
+{{--        <ul class="list-group col-lg-8" style="float: right;">--}}
+{{--            @if(Session::has('coupon'))--}}
+{{--                <li class="list-group-item">Subtotal : <span style="float: right;">--}}
+{{--            ${{ Session::get('coupon')['balance'] }} </span> </li>--}}
+{{--                <li class="list-group-item">Coupon : ({{ Session::get('coupon')['name'] }} )--}}
+{{--                    <a href="{{ route('cart.couponRemove') }}" class="btn btn-danger btn-sm">X</a>--}}
+{{--                    <span style="float: right;">${{ Session::get('coupon')['discount'] }} </span> </li>--}}
+{{--            @else--}}
+{{--                <li class="list-group-item">Subtotal : <span style="float: right;">--}}
+{{--            ${{  Cart::Subtotal() }} </span> </li>--}}
+{{--            @endif--}}
+
+
+
+{{--            <li class="list-group-item">Shiping Charge : <span style="float: right;">${{ $shipping_charge  }} </span> </li>--}}
+{{--            @if(Session::has('coupon'))--}}
+{{--                <li class="list-group-item">Vat :<span style="float: right;">{{$vat = Session::get('coupon')['balance']*10/100}} </span> </li>--}}
+{{--                {{$total = Session::get('coupon')['balance']}}--}}
+{{--            @else--}}
+{{--                <li class="list-group-item">Vat : <span style="float: right;">{{$vat =$subtotal*0.1}} </span> </li>--}}
+{{--                {{$total = $subtotal}}--}}
+{{--            @endif--}}
+{{--            @if(Session::has('coupon'))--}}
+{{--                <li class="list-group-item">Total : <span style="float: right;">{{ $total_pay = Session::get('coupon')['balance']*1.1  +$shipping_charge }} đ</span> </li>--}}
+{{--            @else--}}
+{{--                <li class="list-group-item">Total : <span style="float: right;"> {{$total_pay= $subtotal*1.1 +$shipping_charge  }} đ</span> </li>--}}
+{{--            @endif--}}
+
+{{--        </ul>--}}
+
+
+
+{{--    </div>--}}
+{{--</div>--}}

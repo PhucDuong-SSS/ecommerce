@@ -9,7 +9,7 @@
     <meta name="twitter:site" content="@themepixels">
     <meta name="twitter:creator" content="@themepixels">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Starlight">
+    <meta name="twitter:title" content="Ishop">
     <meta name="twitter:description" content="Premium Quality and Responsive UI for Dashboard.">
     <meta name="twitter:image" content="http://themepixels.me/starlight/img/starlight-social.png">
 
@@ -49,7 +49,7 @@
 <body>
 
 <!-- ########## START: LEFT PANEL ########## -->
-<div class="sl-logo"><a href=""><i class="icon ion-android-star-outline"></i> starlight</a></div>
+<div class="sl-logo"><a href=""><i class="icon ion-android-star-outline"></i> Ishop</a></div>
 <div class="sl-sideleft">
     <div class="input-group input-group-search">
         <input type="search" name="search" class="form-control" placeholder="Search">
@@ -290,7 +290,7 @@
         <nav class="nav">
             <div class="dropdown">
                 <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
-                    <span class="logged-name">{{\Illuminate\Support\Facades\Auth::user()->username}}</span></span>
+                    <span class="logged-name">Hi {{\Illuminate\Support\Facades\Auth::user()->username}}</span></span>
 {{--                    <img src="{{asset('backend/img/img3.jpg')}}" class="wd-32 rounded-circle" alt="">--}}
                 </a>
                 <div class="dropdown-menu dropdown-menu-header wd-200">
@@ -335,7 +335,6 @@
                 <!-- loop starts here -->
                 <a href="" class="media-list-link">
                     <div class="media">
-                        <img src="{{asset('backend/img/img3.jpg')}}" class="wd-40 rounded-circle" alt="">
                         <div class="media-body">
                             <p class="mg-b-0 tx-medium tx-gray-800 tx-13">Donna Seay</p>
                             <span class="d-block tx-11 tx-gray-500">2 minutes ago</span>
@@ -346,7 +345,6 @@
                 <!-- loop ends here -->
                 <a href="" class="media-list-link">
                     <div class="media">
-                        <img src="{{asset('backend/img/img4.jpg')}}" class="wd-40 rounded-circle" alt="">
                         <div class="media-body">
                             <p class="mg-b-0 tx-medium tx-gray-800 tx-13">Samantha Francis</p>
                             <span class="d-block tx-11 tx-gray-500">3 hours ago</span>
@@ -356,7 +354,6 @@
                 </a>
                 <a href="" class="media-list-link">
                     <div class="media">
-                        <img src="{{asset('backend/img/img7.jpg')}}" class="wd-40 rounded-circle" alt="">
                         <div class="media-body">
                             <p class="mg-b-0 tx-medium tx-gray-800 tx-13">Robert Walker</p>
                             <span class="d-block tx-11 tx-gray-500">5 hours ago</span>
@@ -366,7 +363,6 @@
                 </a>
                 <a href="" class="media-list-link">
                     <div class="media">
-                        <img src="{{asset('backend/img/img5.jpg')}}" class="wd-40 rounded-circle" alt="">
                         <div class="media-body">
                             <p class="mg-b-0 tx-medium tx-gray-800 tx-13">Larry Smith</p>
                             <span class="d-block tx-11 tx-gray-500">Yesterday, 8:34pm</span>
@@ -377,7 +373,6 @@
                 </a>
                 <a href="" class="media-list-link">
                     <div class="media">
-                        <img src="{{asset('backend/img/img3.jpg')}}" class="wd-40 rounded-circle" alt="">
                         <div class="media-body">
                             <p class="mg-b-0 tx-medium tx-gray-800 tx-13">Donna Seay</p>
                             <span class="d-block tx-11 tx-gray-500">Jan 23, 2:32am</span>
@@ -396,7 +391,6 @@
                 <!-- loop starts here -->
                 <a href="" class="media-list-link read">
                     <div class="media pd-x-20 pd-y-15">
-                        <img src="{{asset('backend/img/img8.jpg')}}" class="wd-40 rounded-circle" alt="">
                         <div class="media-body">
                             <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">Suzzeth Bungaos</strong> tagged you and 18 others in a post.</p>
                             <span class="tx-12">October 03, 2017 8:45am</span>
@@ -406,7 +400,6 @@
                 <!-- loop ends here -->
                 <a href="" class="media-list-link read">
                     <div class="media pd-x-20 pd-y-15">
-                        <img src="{{asset('backend/img/img9.jpg')}}" class="wd-40 rounded-circle" alt="">
                         <div class="media-body">
                             <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">Mellisa Brown</strong> appreciated your work <strong class="tx-medium tx-gray-800">The Social Network</strong></p>
                             <span class="tx-12">October 02, 2017 12:44am</span>
@@ -424,7 +417,6 @@
                 </a>
                 <a href="" class="media-list-link read">
                     <div class="media pd-x-20 pd-y-15">
-                        <img src="{{asset('backend/img/img5.jpg')}}" class="wd-40 rounded-circle" alt="">
                         <div class="media-body">
                             <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">Julius Erving</strong> wants to connect with you on your conversation with <strong class="tx-medium tx-gray-800">Ronnie Mara</strong></p>
                             <span class="tx-12">October 01, 2017 6:08pm</span>
@@ -433,7 +425,6 @@
                 </a>
                 <a href="" class="media-list-link read">
                     <div class="media pd-x-20 pd-y-15">
-                        <img src="{{asset('backend/img/img8.jpg')}}" class="wd-40 rounded-circle" alt="">
                         <div class="media-body">
                             <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">Suzzeth Bungaos</strong> tagged you and 12 others in a post.</p>
                             <span class="tx-12">September 27, 2017 6:45am</span>
@@ -442,7 +433,6 @@
                 </a>
                 <a href="" class="media-list-link read">
                     <div class="media pd-x-20 pd-y-15">
-                        <img src="{{asset('backend/img/img10.jpg')}}" class="wd-40 rounded-circle" alt="">
                         <div class="media-body">
                             <p class="tx-13 mg-b-0 tx-gray-700">10+ new items added are for sale in your <strong class="tx-medium tx-gray-800">Sale Group</strong></p>
                             <span class="tx-12">September 28, 2017 11:30pm</span>
@@ -451,7 +441,6 @@
                 </a>
                 <a href="" class="media-list-link read">
                     <div class="media pd-x-20 pd-y-15">
-                        <img src="{{asset('backend/img/img9.jpg')}}" class="wd-40 rounded-circle" alt="">
                         <div class="media-body">
                             <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">Mellisa Brown</strong> appreciated your work <strong class="tx-medium tx-gray-800">The Great Pyramid</strong></p>
                             <span class="tx-12">September 26, 2017 11:01am</span>
@@ -460,7 +449,6 @@
                 </a>
                 <a href="" class="media-list-link read">
                     <div class="media pd-x-20 pd-y-15">
-                        <img src="{{asset('backend/img/img5.jpg')}}" class="wd-40 rounded-circle" alt="">
                         <div class="media-body">
                             <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">Julius Erving</strong> wants to connect with you on your conversation with <strong class="tx-medium tx-gray-800">Ronnie Mara</strong></p>
                             <span class="tx-12">September 23, 2017 9:19pm</span>
@@ -476,8 +464,11 @@
 
 @yield('content')
 
-<script src="{{asset('backend/lib/jquery/jquery.js')}}"></script>`
-<script src="{{asset('backend/lib/popper.js/popper.js')}}"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
+        integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU"
+        crossorigin="anonymous"></script>
 <script src="{{asset('backend/lib/bootstrap/bootstrap.js')}}"></script>
 <script src="{{asset('backend/lib/jquery-ui/jquery-ui.js')}}"></script>
 <script src="{{asset('backend/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js')}}"></script>
@@ -524,6 +515,7 @@
 <script src="{{asset('backend/js/starlight.js')}}"></script>
 <script src="{{asset('backend/js/ResizeSensor.js')}}"></script>
 <script src="{{asset('backend/js/dashboard.js')}}"></script>
+<script src="{{asset('backend/ckeditor/ckeditor.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 <script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
 
@@ -570,7 +562,10 @@
             });
     });
 </script>
+<script>
+    @yield('js')
 
+</script>
 
 </body>
 </html>

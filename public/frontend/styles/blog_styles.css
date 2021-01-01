@@ -35,7 +35,6 @@
     margin: 0;
     padding: 0;
     -webkit-font-smoothing: antialiased;
-    -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
     text-shadow: rgba(0,0,0,.01) 0 0 1px;
 }
 body
@@ -57,7 +56,7 @@ div
 ul
 {
     list-style: none;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 p
 {
@@ -67,7 +66,6 @@ p
     font-weight: 400;
     color: #828282;
     -webkit-font-smoothing: antialiased;
-    -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
     text-shadow: rgba(0,0,0,.01) 0 0 1px;
 }
 p a
@@ -78,7 +76,6 @@ p a
     border-bottom: solid 1px #ffa07f;
     -webkit-transition: all 200ms ease;
     -moz-transition: all 200ms ease;
-    -ms-transition: all 200ms ease;
     -o-transition: all 200ms ease;
     transition: all 200ms ease;
 }
@@ -86,7 +83,6 @@ a, a:hover, a:visited, a:active, a:link
 {
     text-decoration: none;
     -webkit-font-smoothing: antialiased;
-    -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
     text-shadow: rgba(0,0,0,.01) 0 0 1px;
 }
 p a:active
@@ -121,7 +117,6 @@ h1, h2, h3, h4, h5, h6
     font-family: 'Rubik', sans-serif;
     font-weight: 500;
     -webkit-font-smoothing: antialiased;
-    -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
     text-shadow: rgba(0,0,0,.01) 0 0 1px;
 }
 h1::selection,
@@ -180,7 +175,6 @@ section
 {
     -webkit-transition: all 300ms ease;
     -moz-transition: all 300ms ease;
-    -ms-transition: all 300ms ease;
     -o-transition: all 300ms ease;
     transition: all 300ms ease;
 }
@@ -425,7 +419,7 @@ section
     visibility: hidden;
     opacity: 0;
     background: #FFFFFF;
-    box-shadow: 0px 10px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     -webkit-transition: opacity 0.3s ease;
     -moz-transition: opacity 0.3s ease;
     -ms-transition: opacity 0.3s ease;
@@ -611,13 +605,7 @@ section
     line-height: 50px;
     color: #a3a3a3 !important;
 }
-.header_search_input::input-placeholder
-{
-    font-size: 16px !important;
-    font-weight: 300;
-    line-height: 50px;
-    color: #a3a3a3 !important;
-}
+
 .custom_dropdown
 {
     width: calc((100% - 50px) * 0.399);
@@ -1547,11 +1535,11 @@ select option
     font-size: 16px;
     color: rgba(0,0,0,0.3);
 }
-.newsletter_input::input-placeholder
-{
-    font-size: 16px;
-    color: rgba(0,0,0,0.3);
-}
+/*.newsletter_input:input-placeholder*/
+/*{*/
+/*    font-size: 16px;*/
+/*    color: rgba(0,0,0,0.3);*/
+/*}*/
 .newsletter_button
 {
     position: absolute;
@@ -1608,15 +1596,15 @@ select option
     margin-bottom: 18px;
     margin-top: -10px;
 }
-.footer .logo
-{
-    top: auto;
-    -webkit-transform: transform: none;
-    -moz-transform: transform: none;
-    -ms-transform: transform: none;
-    -o-transform: transform: none;
-    transform: none;
-}
+/*.footer .logo*/
+/*{*/
+/*    top: auto;*/
+/*    -webkit-transform: transform: none;*/
+/*    -moz-transform: transform: none;*/
+/*    -ms-transform: transform: none;*/
+/*    -o-transform: transform: none;*/
+/*    transform: none;*/
+/*}*/
 .footer .logo a
 {
     color: #000000;

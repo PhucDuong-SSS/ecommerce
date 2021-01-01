@@ -11,5 +11,4 @@ interface PostRepositoryInterface extends RepositoryInterface
 
     public function update($request, $obj);
 
-    public function removeImage($obj);
 }

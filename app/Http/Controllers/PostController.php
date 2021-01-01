@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PostRequest;
 use Illuminate\Http\Request;
 use App\Http\Repo\PostRepo\PostRepositoryInterface;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -58,7 +59,7 @@ class PostController extends Controller
     public function delete($id)
     {
         $post = $this->postRepository->findById($id);
-        $this->postRepository->removeImage($post);
+        Storage::delete($post->post_image);
         $this->postRepository->delete($id);
         $notification = [
             'message'=>'Successfully deleted post',

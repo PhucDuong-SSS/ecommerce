@@ -15,7 +15,6 @@ interface ProductRepositoryInterface extends RepositoryInterface
 
     public function updateImageProduct($request, $obj);
 
-    public function removeImage($obj);
 
     public function inactive($obj);
 
@@ -35,9 +34,36 @@ interface ProductRepositoryInterface extends RepositoryInterface
 
     public function showProductCategory($id);
 
+    public function showProductCategoryFeature($categoryId);
+    public function showProductCategoryTrend($categoryId);
+
+    public function showProductCategoryView($categoryId);
+
+    public function showProductCategoryPriceDecs($categoryId);
+
+    public function showProductCategoryPriceAsc($categoryId);
+
+    public function showProductSubCategory($categoryId);
+
+    public function showProductSubCategoryFeature($subcategoryId);
+    public function showProductSubCategoryTrend($subcategoryId);
+
+    public function showProductSubCategoryView($subcategoryId);
+
+    public function showProductSubCategoryPriceDecs($subcategoryId);
+
+    public function showProductSubCategoryPriceAsc($subcategoryId);
+
+    public function searchProduct($request);
+
+    public function plusView($obj);
+
+
+
     public function getMainBanner();
 
     public function getsiteSetting();
+
 
 
 }
