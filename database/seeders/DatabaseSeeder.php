@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $user->name ='admin';
         $user->username ='admin';
         $user->email ='admin@gmail.com';
+        $user->password = bcrypt('123456');
         $user->phone ='0975396865';
         $user->category =1;
         $user->coupon =1;
