@@ -5,6 +5,7 @@ namespace App\Http\Repo\UserRepo;
 
 
 use App\Http\Repo\BaseRepository;
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -77,19 +78,19 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     }
     public function getTotalofYear($year)
     {
-        $totalYear = DB::table('orders')->where('year',$year)->sum('total');
+        $totalYear = Order::where('year',$year)->sum('total');
         return $totalYear;
     }
 
     public function getDeliveryThisDay($date)
     {
-        $delevery = DB::table('orders')->where('date',$date)->where('status',3)->sum('total');
+        $delevery = Order::where('date',$date)->where('status',3)->sum('total');
         return $delevery;
     }
 
     public function getOrderReturn()
     {
-        $orderReturns = DB::table('orders')->where('status',4)->sum('total');
+        $orderReturns = Order::where('status',4)->sum('total');
         return $orderReturns;
     }
      public function getProduct()
