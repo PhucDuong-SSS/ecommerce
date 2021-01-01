@@ -14,7 +14,7 @@ class ModifyTotalColumnOfOrdersTable extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->float('total', 50)->change();
+            $table->float('total',10,2)->change();
         });
     }
 
