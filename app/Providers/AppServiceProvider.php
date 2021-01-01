@@ -33,6 +33,7 @@ use App\Http\Repo\UserRepo\UserRepository;
 use App\Http\Repo\UserRepo\UserRepositoryInterface;
 use App\Http\Repo\WishlistRepo\WishlistRepository;
 use App\Http\Repo\WishlistRepo\WishlistRepositoryInterface;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
