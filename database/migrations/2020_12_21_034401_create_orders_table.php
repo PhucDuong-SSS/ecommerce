@@ -25,7 +25,7 @@ class CreateOrdersTable extends Migration
             $table->string('subtotal')->nullable();
             $table->string('vat')->nullable();
             $table->string('shipping')->nullable();
-            $table->string('total')->nullable();
+            $table->float('total',15,2)->nullable();
             $table->string('status')->nullable()->default(0);
             $table->string('status_code')->nullable();
             $table->string('month')->nullable();
