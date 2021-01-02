@@ -98,6 +98,9 @@
                                     <tr>
                                         <th> City : </th>
                                         <th> {{ $order->ship->ship_city }} </th>
+                                    </tr>  <tr>
+                                        <th> Note : </th>
+                                        <th> {{ $order->ship->ship_note }} </th>
                                     </tr>
 
                                     <tr>

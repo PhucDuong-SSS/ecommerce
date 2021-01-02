@@ -19,6 +19,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -158,6 +159,10 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::prefix('site-setting')->group(function () {
             Route::get('/', [SiteSettingController::class, 'index'])->name('siteSetting.list');
             Route::post('edit/{id}', [SiteSettingController::class, 'update'])->name('siteSetting.update');
+        });
+        Route::prefix('setting')->group(function () {
+            Route::get('/', [SettingController::class, 'index'])->name('setting.list');
+            Route::post('edit/{id}', [SettingController::class, 'update'])->name('setting.update');
         });
 
         Route::prefix('order')->group(function () {

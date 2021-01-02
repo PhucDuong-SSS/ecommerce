@@ -15,7 +15,7 @@
 
     <!-- Facebook -->
     <meta property="og:url" content="http://themepixels.me/starlight">
-    <meta property="og:title" content="Starlight">
+    <meta property="og:title" content="Ishop">
     <meta property="og:description" content="Premium Quality and Responsive UI for Dashboard.">
 
     <meta property="og:image" content="http://themepixels.me/starlight/img/starlight-social.png">
@@ -28,7 +28,7 @@
     <meta name="description" content="Premium Quality and Responsive UI for Dashboard.">
     <meta name="author" content="ThemePixels">
 
-    <title>One click</title>
+    <title>Ishop</title>
 
     <!-- vendor css -->
     <link href="{{asset('backend/lib/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
@@ -49,7 +49,7 @@
 <body>
 
 <!-- ########## START: LEFT PANEL ########## -->
-<div class="sl-logo"><a href=""><i class="icon ion-android-star-outline"></i> starlight</a></div>
+<div class="sl-logo"><a href="{{route('dashboard.show')}}"><i class="icon ion-android-star-outline"></i> Ishop</a></div>
 <div class="sl-sideleft">
     <div class="input-group input-group-search">
         <input type="search" name="search" class="form-control" placeholder="Search">
@@ -272,6 +272,16 @@
         <ul class="sl-menu-sub nav flex-column">
             <li class="nav-item"><a href="{{ route('siteSetting.list') }}" class="nav-link">Site Setting</a></li>
         </ul>
+            <a href="#" class="sl-menu-link">
+                <div class="sl-menu-item">
+                    <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
+                    <span class="menu-item-label">Shipping Setting  </span>
+                    <i class="menu-item-arrow fa fa-angle-down"></i>
+                </div><!-- menu-item -->
+            </a><!-- sl-menu-link -->
+            <ul class="sl-menu-sub nav flex-column">
+                <li class="nav-item"><a href="{{ route('setting.list') }}" class="nav-link">Shipping Setting</a></li>
+            </ul>
         @else
         @endif
     </div><!-- sl-sideleft-menu -->
