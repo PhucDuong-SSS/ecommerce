@@ -15,13 +15,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $user= new User();
-        $user->name ='admin';
-        $user->username ='admin';
-        $user->email ='admin@gmail.com';
+        $user->name ='ishop';
+        $user->username ='ishop';
+        $user->email ='ishop@gmail.com';
         $user->password = bcrypt('123456');
-        $user->phone ='0975396865';
+        $user->phone ='0975396855';
         $user->category =1;
         $user->coupon =1;
+        $user->product =1;
         $user->blog =1;
         $user->order =1;
         $user->other =1;
