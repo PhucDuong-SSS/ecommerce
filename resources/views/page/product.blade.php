@@ -1,7 +1,7 @@
 @extends('page.layout.app_layout')
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/category_style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/blog_styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/blog_responsive.css') }}">
 @endsection
 @section('script')
     <script src="{{ asset('frontend/js/blog_custom.js')}}"></script>
@@ -93,14 +93,12 @@
 
                         <div class="button_container">
                             <button type="submit" class="button cart_button">Add to Cart</button>
-                            <div class="product_fav"><i class="fas fa-heart"></i></div>
                         </div>
 
                         <br><br>
 
 
                         <!-- Go to www.addthis.com/dashboard to customize your tools -->
-                        <div class="addthis_inline_share_toolbox"></div>
 
 
                         </form>
